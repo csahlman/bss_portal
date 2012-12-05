@@ -32,6 +32,8 @@ gem 'less-rails'
 gem 'therubyracer', :platforms => :ruby
 gem 'simple_form'
 
+gem 'mercury-rails'
+
 gem 'devise'
 
 # To use ActiveModel has_secure_password

@@ -1,5 +1,7 @@
 BssNewPortal::Application.routes.draw do
 
+  mount Mercury::Engine => '/'
+
   devise_for :admins
 
   resources :tracks, only: [ :show, :index ] do
