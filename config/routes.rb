@@ -12,6 +12,7 @@ BssNewPortal::Application.routes.draw do
     resources :tracks do 
       resources :lessons
     end
+    get '', to: 'dashboard#show', as: '/'
   end
 
   get 'tracks/:track_name', to: 'tracks#show', as: :track_name

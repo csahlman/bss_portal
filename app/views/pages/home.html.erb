@@ -19,16 +19,21 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <table class="table">
   <thead>
-    <th>1</th>
-    <th>2</th>
-    <th>3</th>
+    <th></th>
+    <th>Development</th>
+    <th>Product</th>
+    <th>Sales</th>
+    <th>Marketing</th>
   </thead>
-
-  <tr>
-    <td>asdf</td>
-    <td>asdfdsafasd</td>
-    <td>asdfasdfadsf</td>
-  </tr>
+  <% @semester.lesson_days.each do |lesson_day| %>
+    <tr>
+      <td>Day <%= lesson_day.day_value %></td>
+      <% lesson_day.lessons.each do |lesson| %>
+        <td><%= link_to lesson.summary, [lesson.track. lesson] %></td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
 
 </div>
+
