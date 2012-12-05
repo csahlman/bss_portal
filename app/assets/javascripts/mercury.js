@@ -456,3 +456,7 @@ $(window).bind('mercury:ready', function() {
   Mercury.saveURL = link.data('save-url');
   link.hide();
 });
+
+$(window).bind('mercury:saved', function() {
+  window.location = window.location.href.replace(/\/editor\//i, '/');
+});

@@ -1,5 +1,7 @@
 BssNewPortal::Application.routes.draw do
 
+  # match '/editor(/*requested_uri)' => 'admin/dashboard', as: :mercury_editor
+
   mount Mercury::Engine => '/'
 
   devise_for :admins

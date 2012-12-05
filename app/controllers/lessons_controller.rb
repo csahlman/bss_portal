@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  skip_before_filter :authenticate_admin!
 
   def show
     @track = Track.find(params[:track_id])

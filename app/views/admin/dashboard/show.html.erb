@@ -6,7 +6,7 @@
 
 <%= simple_form_for [:admin, Lesson.new] do |f| %>
   <%= f.input :summary, label: "This is the label for the link on the main page" %>
-  <%= f.input :description, label: "You can leave this blank for now" %>
+  <%= f.hidden_field :description %>
   <%= f.association :track %>
   <%= f.association :lesson_day, label: "Day" %>
   <%= f.button :submit %>
