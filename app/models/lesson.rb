@@ -16,4 +16,5 @@ class Lesson < ActiveRecord::Base
   attr_accessible :day, :description, :learning_materials, :summary
 
   belongs_to :track
+  belongs_to :lesson_day
 end
