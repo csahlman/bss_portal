@@ -22,6 +22,7 @@ end
 group :test, :development do 
   gem 'sqlite3'
   gem 'mongrel', '>= 1.2.0.pre2'
+  gem 'annotate'
 end
 
 gem 'jquery-rails'
@@ -30,6 +31,8 @@ gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer', :platforms => :ruby
 gem 'simple_form'
+
+gem 'devise'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
