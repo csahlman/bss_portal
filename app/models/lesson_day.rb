@@ -13,4 +13,8 @@ class LessonDay < ActiveRecord::Base
   attr_accessible :day_value
   has_many :lessons, dependent: :destroy
   belongs_to :semester
+
+  def to_label
+    day_value.to_s
+  end
 end

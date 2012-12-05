@@ -29,7 +29,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     <tr>
       <td>Day <%= lesson_day.day_value %></td>
       <% lesson_day.lessons.each do |lesson| %>
-        <td><%= link_to lesson.summary, [lesson.track. lesson] %></td>
+        <td><%= link_to lesson.summary, [lesson.track, lesson] %></td>
       <% end %>
     </tr>
   <% end %>

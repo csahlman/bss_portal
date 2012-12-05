@@ -1,3 +1,14 @@
 <%= link_to "Manage Tracks", '#' %><br>
-<%= link_to "Manage Lessons", '#' %><br>
+<%= link_to "Manage Lessons", admin_lessons_path %><br>
 <%= link_to "Manage Days", '#' %><br>
+
+<h2>Create a new Lesson (style it on the next page)</h2>
+
+<%= simple_form_for [:admin, Lesson.new] do |f| %>
+  <%= f.input :summary, label: "This is the label for the link on the main page" %>
+  <%= f.input :description, label: "You can leave this blank for now" %>
+  <%= f.association :track %>
+  <%= f.association :lesson_day, label: "Day" %>
+  <%= f.button :submit %>
+<% end %>
+

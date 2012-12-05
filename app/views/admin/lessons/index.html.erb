@@ -1,0 +1,7 @@
+<%= link_to "New Lesson", new_admin_lesson_path %>
+
+<ul>
+  <% @lessons.each do |lesson| %>
+    <li><%= link_to lesson.summary, [:admin, lesson] %></li>
+  <% end %>
+</ul>

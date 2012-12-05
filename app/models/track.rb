@@ -13,4 +13,8 @@ class Track < ActiveRecord::Base
   attr_accessible :description, :name
 
   has_many :lessons, dependent: :destroy
+
+  def to_label  #for simple_form association
+    name
+  end
 end

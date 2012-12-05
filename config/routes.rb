@@ -9,8 +9,9 @@ BssNewPortal::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :tracks do 
-      resources :lessons
+    resources :tracks 
+    resources :lessons do
+      member { put :mercury_update }
     end
     get '', to: 'dashboard#show', as: '/'
   end

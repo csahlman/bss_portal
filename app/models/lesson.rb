@@ -15,6 +15,13 @@
 class Lesson < ActiveRecord::Base
   attr_accessible  :description, :learning_materials, :summary
 
+  validates_presence_of :summary
+  
   belongs_to :track
   belongs_to :lesson_day
+
+  def self.parse_json(json_hash)
+    return json_hash['new_lesson']['value']
+  end
+
 end
