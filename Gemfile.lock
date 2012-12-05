@@ -77,6 +77,7 @@ GEM
       gem_plugin (~> 0.2.3)
     multi_json (1.4.0)
     orm_adapter (0.4.0)
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -146,6 +147,7 @@ DEPENDENCIES
   less-rails
   mercury-rails
   mongrel (>= 1.2.0.pre2)
+  pg
   rails (= 3.2.9)
   sass-rails (~> 3.2.3)
   simple_form
