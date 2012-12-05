@@ -1,6 +1,26 @@
 BssNewPortal::Application.routes.draw do
 
+  # This line mounts Refinery's routes at the root of your application.
+  # This means, any requests to the root URL of your application will go to Refinery::PagesController#home.
+  # If you would like to change where this extension is mounted, simply change the :at option to something different.
+  #
+  # We ask that you don't use the :as option here, as Refinery relies on it being the default of "refinery"
+  mount Refinery::Core::Engine, :at => '/'
+
+
   devise_for :admins
+  
+  resources :tracks, only: [ :show, :index ] do
+    resources :lessons, only: [ :show, :index ]
+  end
+
+  namespace :admin do
+    resources :tracks do 
+      resources :lessons
+    end
+  end
+
+  get 'tracks/:track_name', to: 'tracks#show', as: :track_name
 
   root to: 'pages#home'
   # The priority is based upon order of creation:

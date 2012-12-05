@@ -13,5 +13,7 @@
 #
 
 class Lesson < ActiveRecord::Base
-  attr_accessible :day, :description, :learning_materials, :summary, :track_id
+  attr_accessible :day, :description, :learning_materials, :summary
+
+  belongs_to :track
 end

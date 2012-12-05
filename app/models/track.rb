@@ -11,4 +11,6 @@
 
 class Track < ActiveRecord::Base
   attr_accessible :description, :name
+
+  has_many :lessons, dependent: :destroy
 end
