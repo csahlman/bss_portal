@@ -27,7 +27,11 @@
           </a>
           <%= link_to 'BSS Portal', root_path, class: "brand" %>
           <div class="container-fluid nav-collapse">
-            <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete if admin_signed_in? %></li>
+            <% if admin_signed_in? %>
+            <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+            <li><%= link_to "Admin", '/admin' %></li>
+
+            <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
