@@ -33,7 +33,8 @@ class Admin::LessonsController < Admin::BaseController
   end
 
   def destroy
-    
+    @lesson = Lesson.find(params[:id])
+    @lesson.destroy
   end
 
 

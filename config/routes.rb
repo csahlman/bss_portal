@@ -16,6 +16,7 @@ BssNewPortal::Application.routes.draw do
       member { put :mercury_update }
     end
     get '', to: 'dashboard#show', as: '/'
+    resources :lesson_days, only: [ :update, :create, :destroy ]
   end
 
   get 'tracks/:track_name', to: 'tracks#show', as: :track_name

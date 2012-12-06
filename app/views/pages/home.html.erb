@@ -18,7 +18,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <table class="table table-bordered">
   <thead>
-    <th></th>
+    <th>Day</th>
     <th>Development</th>
     <th>Product</th>
     <th>Sales</th>
@@ -26,11 +26,11 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </thead>
   <% @semester.lesson_days.each do |lesson_day| %>
     <tr>
-      <td>Day <%= lesson_day.day_value %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 1).last %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 2).last %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 3).last %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 4).last %></td>
+      <td><%= lesson_day.day_value %></td>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 1).all %></td>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 2).all %></td>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 3).all %></td>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 4).all %></td>
     </tr>
   <% end %>
 </table>
