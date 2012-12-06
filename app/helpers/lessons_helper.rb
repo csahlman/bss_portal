@@ -11,7 +11,7 @@ module LessonsHelper
     if lesson
       link_to lesson.summary, [:admin, lesson], class: "lesson_link"
     else
-      link_to "Create new template", new_admin_lesson_path(track_id: track_id, lesson_day_id: lesson_day.day_value)
+      link_to "Create new template", new_admin_lesson_path(track_id: track_id, lesson_day_id: lesson_day.id)
     end
   end
 end

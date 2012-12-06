@@ -6,11 +6,10 @@ class Admin::LessonsController < Admin::BaseController
 
   def create
     @lesson = Lesson.new
-    @lesson_day = LessonDay.find(params[:lesson][:lesson_day_id])
     @lesson.summary = params[:lesson][:summary]
     @lesson.track_id = params[:lesson][:track_id]
     @lesson.description = params[:lesson][:description]
-    @lesson.lesson_day = @lesson_day
+    @lesson.lesson_day_id = params[:lesson][:lesson_day_id]
     @lesson.save!
     redirect_to admin_lesson_path(@lesson)
   end
