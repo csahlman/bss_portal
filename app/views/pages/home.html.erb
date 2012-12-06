@@ -1,4 +1,3 @@
-<div id="lorem" data-mercury="full">
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -17,7 +16,7 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-<table class="table">
+<table class="table table-bordered">
   <thead>
     <th></th>
     <th>Development</th>
@@ -28,12 +27,12 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   <% @semester.lesson_days.each do |lesson_day| %>
     <tr>
       <td>Day <%= lesson_day.day_value %></td>
-      <% lesson_day.lessons.each do |lesson| %>
-        <td><%= link_to lesson.summary, [lesson.track, lesson] %></td>
-      <% end %>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 1).last %></td>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 2).last %></td>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 3).last %></td>
+      <td><%= lesson_link lesson_day.lessons.where(track_id: 4).last %></td>
     </tr>
   <% end %>
 </table>
 
-</div>
 

@@ -1,4 +1,8 @@
-<span id="new_lesson" data-mercury="full">
+<h2>Create a new Lesson (style it on the next page)</h2>
+
+<%= simple_form_for [:admin, @lesson] do |f| %>
+  <%= f.input :summary, label: "This is the label for the link on the main page" %>
+  <input id="lesson_description" name="lesson[description]" type="hidden" value='
 <div class="row-fluid">
   <div class="span12 pagination-centered">
     <div class="span3">
@@ -240,5 +244,8 @@
       </table>
     </div>
   </div>
-</div>
-</span>
+</div>' />
+  <%= f.hidden_field :track_id, value: params[:track_id] %>
+  <%= f.hidden_field :lesson_day_id, value: params[:lesson_day_id] %>
+  <%= f.button :submit %>
+<% end %>

@@ -11,3 +11,7 @@
  *= require_self
  *= require bootstrap_and_overrides
  */
+
+.lesson_link {
+  color: red;
+}
