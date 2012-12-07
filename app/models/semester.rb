@@ -11,5 +11,5 @@
 
 class Semester < ActiveRecord::Base
   attr_accessible :location, :name
-  has_many :lesson_days, dependent: :destroy
+  has_many :lesson_tracks, dependent: :destroy
 end

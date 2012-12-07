@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207022145) do
+ActiveRecord::Schema.define(:version => 20121207114622) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -41,9 +41,13 @@ ActiveRecord::Schema.define(:version => 20121207022145) do
   create_table "lesson_tracks", :force => true do |t|
     t.integer  "lesson_id"
     t.integer  "track_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "day_value"
+    t.integer  "semester_id"
   end
+
+  add_index "lesson_tracks", ["day_value"], :name => "index_lesson_tracks_on_day_value"
 
   create_table "lessons", :force => true do |t|
     t.string   "summary"

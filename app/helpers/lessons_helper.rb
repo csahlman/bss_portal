@@ -1,5 +1,15 @@
 module LessonsHelper
 
+  def build_admin_table_body(semester, num_days)
+    table_body = ''
+    num_days.times do |day|
+      table_body += '<tr>'
+      table_body += td_for_admin(semester.lesson_tracks.)
+
+    end
+    table_body.html_safe
+  end
+
   def lesson_link(lessons)
     links = ''
     if lessons.any?
@@ -15,6 +25,10 @@ module LessonsHelper
     lessons = lesson_day.lessons
     link_string = ''
     lessons.each do |lesson|
+      tracks = lesson.tracks
+      if tracks.map(&:id).include?(track_id)
+        
+      end
       link_string.concat "<div id='lesson_#{lesson.id}'>"
       link_string.concat( link_to lesson.summary, [:admin, lesson], 
          class: "lesson_link" )

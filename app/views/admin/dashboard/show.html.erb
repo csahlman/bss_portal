@@ -1,14 +1,14 @@
 <%= link_to "Manage Tracks", '#' %><br>
 <%= link_to "Manage Lessons", admin_lessons_path %><br>
 
-<%= link_to "Add a day", '#', id: "add_day" %><br>
+<%#= link_to "Add a day", '#', id: "add_day" %><br>
 
-<%= simple_form_for admin_lesson_days_path(LessonDay.new), 
+<%#= simple_form_for admin_lesson_days_path(LessonDay.new), 
   html: { id: "new_day" }, remote: true do |f| %>
-  <%= f.hidden_field :semester_id, value: @semester.id %>
-  <%= f.input :day_value %>
-  <%= f.button :submit %>
-<% end %>
+  <%#= f.hidden_field :semester_id, value: @semester.id %>
+  <%#= f.input :day_value %>
+  <%#= f.button :submit %>
+<%# end %>
 <table class="table table-bordered">
   <thead>
     <th>Day</th>
@@ -17,17 +17,6 @@
     <th>Sales</th>
     <th>Marketing</th>
   </thead>
-  <% @semester.lesson_days.each do |lesson_day| %>
-    <tr>
-      <td><%= lesson_day.day_value %> 
-        <small><%= link_to '(delete)', admin_lesson_day_path(lesson_day),
-          method: :delete, confirm: "Are you sure?", remote: true %></small>
-      </td>
-      <td><%= lesson_or_create_link(lesson_day, 1) %></td>
-      <td><%= lesson_or_create_link(lesson_day, 2) %></td>
-      <td><%= lesson_or_create_link(lesson_day, 3) %></td>
-      <td><%= lesson_or_create_link(lesson_day, 4) %></td>
-    </tr>  
-  <% end %>
+  <%= build_admin_table_body(@semester, 25) %>
 </table>
 
