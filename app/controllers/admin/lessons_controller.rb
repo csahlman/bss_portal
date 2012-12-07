@@ -6,10 +6,11 @@ class Admin::LessonsController < Admin::BaseController
 
   def create
     @lesson = Lesson.new
+    @tracks = Track.find(params[:lesson][:track_id])
     @lesson.summary = params[:lesson][:summary]
-    @lesson.track_id = params[:lesson][:track_id]
     @lesson.description = params[:lesson][:description]
     @lesson.lesson_day_id = params[:lesson][:lesson_day_id]
+    @lesson.tracks = @tracks
     @lesson.save!
     redirect_to admin_lesson_path(@lesson)
   end

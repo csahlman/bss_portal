@@ -4,7 +4,7 @@ module LessonsHelper
     links = ''
     if lessons.any?
       lessons.each do |lesson|
-        links.concat link_to lesson.summary, [lesson.track, lesson]
+        links.concat link_to lesson.summary, lesson
         links.concat '<br>'
       end
     end
@@ -12,7 +12,7 @@ module LessonsHelper
   end
 
   def lesson_or_create_link(lesson_day, track_id)
-    lessons = lesson_day.lessons.where(track_id: track_id).all
+    lessons = lesson_day.lessons
     link_string = ''
     lessons.each do |lesson|
       link_string.concat "<div id='lesson_#{lesson.id}'>"

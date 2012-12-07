@@ -6,9 +6,8 @@ BssNewPortal::Application.routes.draw do
 
   devise_for :admins
 
-  resources :tracks, only: [ :show, :index ] do
-    resources :lessons, only: [ :show, :index ]
-  end
+  resources :tracks, only: [ :show, :index ] 
+  resources :lessons, only: [ :show, :index ]
 
   namespace :admin do
     resources :tracks 

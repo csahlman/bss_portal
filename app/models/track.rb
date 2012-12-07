@@ -12,7 +12,8 @@
 class Track < ActiveRecord::Base
   attr_accessible :description, :name
 
-  has_many :lessons, dependent: :destroy
+  has_many :lessons, through: :lesson_tracks
+  has_many :lesson_tracks
 
   def to_label  #for simple_form association
     name
