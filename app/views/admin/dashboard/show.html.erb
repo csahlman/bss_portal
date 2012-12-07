@@ -257,9 +257,11 @@
   <div class="span3">
     <h2>Development</h2>
     <ul class="classes">
-      <% @semester.lesson_tracks.where(track_id: 1).each do |lesson_track| %>
-        <li>Day: <%= lesson_track.day_value %> 
-         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+      <% @development.lessons.each do |lesson| %>
+        <li>Day: <%= lesson.day_value %> 
+         | <%= link_to lesson.summary, lesson %> | 
+         <small><%= link_to "delete", admin_lesson_path(lesson), method: :delete,
+            confirm: "Are you sure?", remote: true %></small>
         </li>
       <% end %>
     </ul> 
@@ -267,9 +269,11 @@
   <div class="span3">
     <h2>Product</h2>
     <ul class="classes">
-      <% @semester.lesson_tracks.where(track_id: 2).each do |lesson_track| %>
-        <li>Day: <%= lesson_track.day_value %> 
-         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+      <% @product.lessons.each do |lesson| %>
+        <li>Day: <%= lesson.day_value %> 
+         | <%= link_to lesson.summary, lesson %> | 
+         <small><%= link_to "delete", admin_lesson_path(lesson), method: :delete,
+            confirm: "Are you sure?",  remote: true %></small>
         </li>
       <% end %>
     </ul> 
@@ -277,9 +281,11 @@
   <div class="span3">
     <h2>Marketing</h2>
     <ul class="classes">
-      <% @semester.lesson_tracks.where(track_id: 3).each do |lesson_track| %>
-        <li>Day: <%= lesson_track.day_value %> 
-         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+      <% @marketing.lessons.each do |lesson| %>
+        <li>Day: <%= lesson.day_value %> 
+         | <%= link_to lesson.summary, lesson %> | 
+         <small><%= link_to "delete", admin_lesson_path(lesson), method: :delete,
+           confirm: "Are you sure?", remote: true %></small>
         </li>
       <% end %>
     </ul> 
@@ -287,9 +293,12 @@
   <div class="span3">
     <h2>Sales</h2>
     <ul class="classes">
-      <% @semester.lesson_tracks.where(track_id: 4).each do |lesson_track| %>
-        <li>Day: <%= lesson_track.day_value %> 
-         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+      <% @sales.lessons.each do |lesson| %>
+        <li id="lesson_<%= lesson.id %>">
+          Day: <%= lesson.day_value %> 
+         | <%= link_to lesson.summary, lesson %> | 
+         <small><%= link_to "delete", admin_lesson_path(lesson), method: :delete,
+            confirm: "Are you sure?", remote: true %></small>
         </li>
       <% end %>
     </ul> 

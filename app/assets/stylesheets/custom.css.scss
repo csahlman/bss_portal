@@ -1,4 +1,9 @@
 .span3 {
   border: 1px solid black;
-  text-align: center;
+  h2 { 
+    text-align: center;
+  }
+  li {
+    list-style: none;
+  }
 }
