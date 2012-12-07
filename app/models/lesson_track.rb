@@ -12,7 +12,6 @@
 class LessonTrack < ActiveRecord::Base
   belongs_to :lesson
   belongs_to :track
-  belongs_to :semester
 
 
   def to_label
