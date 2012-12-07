@@ -1,4 +1,4 @@
-
+<p>
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -14,25 +14,49 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div class="row-fluid">
+  <div class="span3">
+    <h2>Development</h2>
+    <ul class="classes">
+      <% @semester.lesson_tracks.where(track_id: 1).each do |lesson_track| %>
+        <li>Day: <%= lesson_track.day_value %> 
+         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+        </li>
+      <% end %>
+    </ul> 
+  </div>
+  <div class="span3">
+    <h2>Product</h2>
+    <ul class="classes">
+      <% @semester.lesson_tracks.where(track_id: 2).each do |lesson_track| %>
+        <li>Day: <%= lesson_track.day_value %> 
+         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+        </li>
+      <% end %>
+    </ul> 
+  </div>
+  <div class="span3">
+    <h2>Marketing</h2>
+    <ul class="classes">
+      <% @semester.lesson_tracks.where(track_id: 3).each do |lesson_track| %>
+        <li>Day: <%= lesson_track.day_value %> 
+         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+        </li>
+      <% end %>
+    </ul> 
+  </div>
+  <div class="span3">
+    <h2>Sales</h2>
+    <ul class="classes">
+      <% @semester.lesson_tracks.where(track_id: 4).each do |lesson_track| %>
+        <li>Day: <%= lesson_track.day_value %> 
+         | <%= link_to lesson_track.lesson.summary, lesson_track.lesson %>
+        </li>
+      <% end %>
+    </ul> 
+  </div>
+</div>
 
-<table class="table table-bordered">
-  <thead>
-    <th>Day</th>
-    <th>Development</th>
-    <th>Product</th>
-    <th>Sales</th>
-    <th>Marketing</th>
-  </thead>
-  <% @semester.lesson_days.each do |lesson_day| %>
-    <tr>
-      <td><%= lesson_day.day_value %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 1).all %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 2).all %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 3).all %></td>
-      <td><%= lesson_link lesson_day.lessons.where(track_id: 4).all %></td>
-    </tr>
-  <% end %>
-</table>
 
 

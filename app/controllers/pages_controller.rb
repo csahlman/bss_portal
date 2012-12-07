@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @tracks = Track.all
-    @semester = Semester.includes(lesson_days: :lessons).first
+    @semester = Semester.includes(lesson_tracks: [ :lessons, :tracks ]).first
   end
 
 end

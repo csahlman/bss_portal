@@ -12,6 +12,8 @@
 class LessonDay < ActiveRecord::Base
   attr_accessible :day_value
 
+  default_scope order('day_value DESC')
+
   def to_label
     day_value.to_s
   end
