@@ -19,7 +19,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   <div class="span3">
     <h2>Development</h2>
     <ul class="classes">
-      <% @development.lessons.each do |lesson| %>
+      <% @development.ordered_days.each do |lesson| %>
         <li>Day: <%= lesson.day_value %> 
          | <%= link_to lesson.summary, lesson %>
         </li>
@@ -29,7 +29,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   <div class="span3">
     <h2>Product</h2>
     <ul class="classes">
-      <% @product.lessons.each do |lesson| %>
+      <% @product.ordered_days.each do |lesson| %>
         <li>Day: <%= lesson.day_value %> 
          | <%= link_to lesson.summary, lesson %>
         </li>
@@ -39,7 +39,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   <div class="span3">
     <h2>Marketing</h2>
     <ul class="classes">
-      <% @marketing.lessons.each do |lesson| %>
+      <% @marketing.ordered_days.each do |lesson| %>
         <li>Day: <%= lesson.day_value %> 
          | <%= link_to lesson.summary, lesson %>
         </li>
@@ -49,7 +49,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   <div class="span3">
     <h2>Sales</h2>
     <ul class="classes">
-      <% @sales.lessons.each do |lesson| %>
+      <% @sales.ordered_days.each do |lesson| %>
         <li>Day: <%= lesson.day_value %> 
          | <%= link_to lesson.summary, lesson %>
         </li>

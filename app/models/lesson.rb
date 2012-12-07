@@ -22,6 +22,7 @@ class Lesson < ActiveRecord::Base
   has_many :tracks, through: :lesson_tracks
 
   validates_presence_of :summary
+
   validates :day_value, presence: true, numericality: true
   validates :tracks, presence: true  
 
