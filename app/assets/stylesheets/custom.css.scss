@@ -1,9 +1,53 @@
-.span3 {
-  border: 1px solid black;
-  h2 { 
-    text-align: center;
+body {
+  background: #046380;
+  color: #EFECCA;
+
+  a, a:hover {
+    color: #EFECCA;
   }
-  li {
-    list-style: none;
+}
+
+.navbar {
+  color: #EFECCA;
+  .nav > li > a {
+    color: #EFECCA;
   }
+}
+
+
+.navbar-inner {
+  background: #002F2F;
+  border: 0px;
+  .brand {
+    color: #EFECCA;
+  }
+}
+
+
+.row-fluid {
+  .span3 {
+    background: #E6E2AF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    min-height: 200px;
+    color: #002F2F;
+    a, a:hover {
+      color: #002F2F;
+    }
+    h2 { 
+      text-align: center;
+      border-bottom: 1px solid black;
+      background: #002F2F;
+      color: #EFECCA;
+    }
+    li {
+      list-style: none;
+    }
+  }
+}
+
+.hero-unit {
+  text-align: center;
+  background: #A7A37E;
 }
