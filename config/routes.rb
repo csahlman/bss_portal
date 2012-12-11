@@ -9,7 +9,12 @@ BssNewPortal::Application.routes.draw do
   resources :tracks, only: [ :show, :index ] 
   resources :lessons, only: [ :show, :index ]
 
+
+
   namespace :admin do
+    resources :pages do 
+      get 'template', on: :collection
+    end
     resources :tracks 
     resources :lessons do
       member { put :mercury_update }
