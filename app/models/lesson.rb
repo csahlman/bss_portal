@@ -21,6 +21,8 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_tracks, dependent: :destroy
   has_many :tracks, through: :lesson_tracks
   has_many :days, dependent: :destroy 
+  has_many :instructors, through: :instructor_lessons
+  has_many :instructor_lessons, dependent: :destroy
 
   validates_presence_of :summary
 

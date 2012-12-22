@@ -12,7 +12,7 @@ class Admin::LessonsController < Admin::BaseController
     @tracks = Track.find(track_ids)
     @lesson.set_parameters(params[:lesson])
     @lesson.tracks = @tracks
-    @lesson.add_date(params[:lesson][:date])
+    # @lesson.add_date(params[:lesson][:date])
     @lesson.save!
     redirect_to admin_lesson_path(@lesson)
   end

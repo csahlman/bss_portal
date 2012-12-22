@@ -1,11 +1,11 @@
 class Admin::BaseController < ApplicationController
-  # before_filter :require_admin
+  before_filter :require_admin
 
-  # private
+  private
 
-  #   def require_admin
-  #     redirect_to root_path unless current_user.admin?
-  #   end 
+    def require_admin
+      redirect_to root_path unless current_user.admin?
+    end 
 
 
  # IMPLEMENT THIS LATER 
