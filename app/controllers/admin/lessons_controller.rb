@@ -10,11 +10,9 @@ class Admin::LessonsController < Admin::BaseController
     track_ids.delete(0)
     # this is a bug with rails 
     @tracks = Track.find(track_ids)
-    @lesson.summary = params[:lesson][:summary]
-    @lesson.day_value = params[:lesson][:day_value]
-    @lesson.description = params[:lesson][:description]
-    @lesson.lesson_day_id = params[:lesson][:lesson_day_id]
+    @lesson.set_parameters(params[:lesson])
     @lesson.tracks = @tracks
+    @lesson.add_date(params[:lesson][:date])
     @lesson.save!
     redirect_to admin_lesson_path(@lesson)
   end

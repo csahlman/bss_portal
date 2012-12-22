@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207125126) do
+ActiveRecord::Schema.define(:version => 20121222171732) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20121207125126) do
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
 
+  create_table "days", :force => true do |t|
+    t.datetime "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "lesson_id"
+  end
+
   create_table "lesson_days", :force => true do |t|
     t.integer  "day_value"
     t.integer  "semester_id"
@@ -41,6 +48,13 @@ ActiveRecord::Schema.define(:version => 20121207125126) do
   create_table "lesson_tracks", :force => true do |t|
     t.integer  "lesson_id"
     t.integer  "track_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "lesson_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -69,5 +83,20 @@ ActiveRecord::Schema.define(:version => 20121207125126) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",               :default => "", :null => false
+    t.string   "encrypted_password",  :default => "", :null => false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

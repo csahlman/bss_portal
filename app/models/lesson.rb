@@ -20,6 +20,7 @@ class Lesson < ActiveRecord::Base
 
   has_many :lesson_tracks, dependent: :destroy
   has_many :tracks, through: :lesson_tracks
+  has_many :days, dependent: :destroy 
 
   validates_presence_of :summary
 
@@ -29,6 +30,18 @@ class Lesson < ActiveRecord::Base
 
   def self.parse_json(json_hash)
     return json_hash['new_lesson']['value']
+  end
+
+  def set_parameters(params_hash)
+    self.summary = params_hash[:summary]
+    self.day_value = params_hash[:day_value]
+    self.description = params_hash[:description]
+    self.lesson_day_id = params_hash[:lesson_day_id] 
+  end
+
+  def add_date(date)
+    self.days << date
+    save!
   end
 
 end
