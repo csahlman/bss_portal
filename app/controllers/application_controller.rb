@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
   private
 
     def only_active_users
-      redirect_to recover_account_path
+      redirect_to recover_account_path if 
+        user_signed_in? && !current_user.active?
     end
 
 end

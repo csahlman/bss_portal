@@ -25,7 +25,9 @@ BssNewPortal::Application.routes.draw do
     resources :pages do 
       get 'template', on: :collection
     end
-    resources :users
+    resources :users do 
+      put 'make_active', on: :member
+    end
     resources :tracks 
     resources :lessons do
       member { put :mercury_update }

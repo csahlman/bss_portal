@@ -1,0 +1,33 @@
+<h2>Create a new user</h2>
+
+<%= simple_form_for [:admin, User.new] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :company %>
+  <%= f.input :email %>
+  <%= f.button :submit, "Create User" %>
+<% end %>
+
+<h2>Users that have explicitly requested reauthorization:</h2>
+
+<ul>
+  <% @to_reinstutute.each do |user| %>
+    <li>
+      <%= link_to user.name, user %>: 
+      <%= link_to "Make Active", make_active_admin_user_path(user),
+        method: :put, id: "user_#{user.id}", remote: true %>
+    </li>
+  <% end %>
+</ul>
+
+
+<h2>Users that have expired:</h2>
+
+<ul>
+  <% @inactive.each do |user| %>
+    <li>
+      <%= link_to user.name, user %>: 
+      <%= link_to "Make Active", make_active_admin_user(user),
+        method: :put, id: "user_#{user.id}", remote: true %>
+    </li>
+  <% end %>
+</ul>

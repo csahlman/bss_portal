@@ -1,6 +1,6 @@
 <%= link_to "Manage Tracks", '#' %><br>
 <%= link_to "Manage Lessons", admin_lessons_path %><br>
-<%= link_to "Send out a new email", new_admin_user_path %>
+<%= link_to "Manage Users", admin_users_path %>
 
 <%#= link_to "Add a day", '#', id: "add_day" %><br>
 <h3>Add a new day</h3>
@@ -249,7 +249,7 @@
   </div>
 </div>'>
   <%= f.input :summary %>
-  <%= f.input :day_value %>
+  <%= f.input :day_value, id: "date" %>
   <%= f.association :tracks, include_blank: false %>
   <%#= f.association :days, as: :string %>
   <%= f.button :submit %>
