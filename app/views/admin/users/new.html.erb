@@ -1,0 +1,8 @@
+<%= simple_form_for [:admin, User.new] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :company %>
+  <%= f.input :email %>
+  <%= f.button :submit, "Create User" %>
+  <%= f.hidden_field :password, value: "foobar" %>
+  <%= f.hidden_field :password_confirmation, value: "foobar" %>
+<% end %>

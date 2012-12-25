@@ -1,22 +1,31 @@
 BssNewPortal::Application.routes.draw do
 
-  devise_for :users
-
   # match '/editor(/*requested_uri)' => 'admin/dashboard', as: :mercury_editor
 
   mount Mercury::Engine => '/'
 
-  devise_for :admins
-
   resources :tracks, only: [ :show, :index ] 
   resources :lessons, only: [ :show, :index ]
 
+  resources :users, except: [ :edit, :update, :show ]
+
+  controller :sessions do
+    get 'sign_in' => :new
+    post 'sign_in' => :create
+    delete 'logout' => :destroy
+  end  
+
+  controller :recover_accounts do 
+    get 'recover_account' => :new
+    post 'recover_account' => :create
+  end
 
 
   namespace :admin do
     resources :pages do 
       get 'template', on: :collection
     end
+    resources :users
     resources :tracks 
     resources :lessons do
       member { put :mercury_update }
