@@ -1,5 +1,16 @@
 module LessonsHelper
 
+  def signup_link(user, lesson)
+    if user.lessons.include?(lesson)
+      lesson_user = current_user.lesson_users.where(lesson_id: lesson.id).last
+      link_to "Withdraw interest", lesson_user_path(lesson_user),
+         class: "lesson_#{lesson.id}", method: :delete, remote: true
+    else
+      link_to "Sign up to teach section", lesson_users_path(lesson_id: lesson.id), 
+        method: :post, action: :create, class: "lesson_#{lesson.id}", remote: true   
+    end
+  end
+
   # def build_admin_table_body(semester, num_days)
   #   table_body = ''
   #   num_days.times do |day|

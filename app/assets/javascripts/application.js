@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require jquery-1.7
 
-$(document).ready(function() {
-  $('#lesson_day_value').datePicker();
+// $(document).ready(function() {
+//   $('#lesson_day_value').datePicker();
 
-});
+// });

@@ -9,6 +9,8 @@ BssNewPortal::Application.routes.draw do
 
   resources :users, except: [ :edit, :update, :show ]
 
+  resources :lesson_users, only: [ :create, :destroy ]
+
   controller :sessions do
     get 'sign_in' => :new
     post 'sign_in' => :create

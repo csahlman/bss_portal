@@ -16,13 +16,14 @@
 class Lesson < ActiveRecord::Base
   attr_accessible  :description, :learning_materials, :summary
 
-  belongs_to :semester
-
   has_many :lesson_tracks, dependent: :destroy
   has_many :tracks, through: :lesson_tracks
-  has_many :days, dependent: :destroy 
-  has_many :instructors, through: :instructor_lessons
-  has_many :instructor_lessons, dependent: :destroy
+
+  has_many :days, through: :day_lessons
+  has_many :day_lessons, dependent: :destroy
+
+  has_many :users, through: :lesson_users
+  has_many :lesson_users, dependent: :destroy
 
   validates_presence_of :summary
 

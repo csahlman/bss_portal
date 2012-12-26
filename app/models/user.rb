@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: email_regex },
     uniqueness: { case_sensitive: false }
 
+  has_many :lessons, through: :lesson_users
+  has_many :lesson_users, dependent: :destroy
+
   scope :inactive, -> { where("expiration_time <= :now", now: Time.zone.now) } 
   scope :requested_recover, where(request_recover: true).order('name ASC')
   

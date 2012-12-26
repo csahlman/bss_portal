@@ -14,7 +14,8 @@
         <ul class="classes">
           <% track.ordered_days.each do |lesson| %>
             <li>Day: <%= lesson.day_value %> 
-             | <%= link_to lesson.summary, lesson %>
+             | <%= link_to lesson.summary, lesson %> |
+              <%= signup_link(current_user, lesson) %>
             </li>
           <% end %>
         </ul> 
