@@ -1,0 +1,30 @@
+<h1><%= @semester.name %> | <%= @semester.location %>
+<small><%= link_to "Edit", edit_admin_semester_path(@semester) %></small>
+</h1>
+
+
+
+<%= link_to "Back", admin_semesters_path %>
+
+<div class="row-fluid">
+  <div class="row-fluid">
+    <table class="table">
+      <thead>
+        <th>Day/Date</th>
+        <th>Development</th>
+        <th>Product</th>
+        <th>Marketing</th>
+        <th>Sales</th>
+      </thead>
+    <% @semester.days.each do |day| %>  
+      <tr>
+        <td>Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
+        <td><%= admin_display_classes day.lessons, @development %></td>
+        <td><%= admin_display_classes day.lessons, @product %></td>
+        <td><%= admin_display_classes day.lessons, @marketing %></td>
+        <td><%= admin_display_classes day.lessons, @sales %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>

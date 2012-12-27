@@ -16,5 +16,7 @@ class Day < ActiveRecord::Base
 
   has_many :lessons, through: :day_lessons
   has_many :day_lessons, dependent: :destroy
+
+  default_scope order('date ASC')
   
 end

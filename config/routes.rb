@@ -31,6 +31,7 @@ BssNewPortal::Application.routes.draw do
       put 'make_active', on: :member
     end
     resources :tracks 
+    resources :semesters
     resources :lessons do
       member { put :mercury_update }
     end

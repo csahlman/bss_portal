@@ -11,6 +11,32 @@ module LessonsHelper
     end
   end
 
+  def display_classes(lessons, track)
+    links = ""
+    lessons.each do |lesson|
+      if lesson.tracks.include?(track)
+        links.concat link_to lesson.summary, "#modal_#{lesson.id}", class: "btn btn-block btn-primary",
+          data: { toggle: 'modal' }
+        links.concat "<br>"
+      end
+    end
+    links.html_safe
+  end
+
+  def admin_display_classes(lessons, track)
+    links = ""
+    lessons.each do |lesson|
+      if lesson.tracks.include?(track)
+        links.concat link_to lesson.summary, [:admin, lesson], class: "lesson_#{lesson.id}"
+        links += " | "
+        links.concat link_to "delete ", [:admin, lesson], class: "lesson_#{lesson.id}",
+          method: :delete, confirm: "Are you sure?", remote: true  
+        links += "(#{lesson.users.count})"  
+      end
+    end
+    links.html_safe
+  end
+
   # def build_admin_table_body(semester, num_days)
   #   table_body = ''
   #   num_days.times do |day|

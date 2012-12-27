@@ -1,0 +1,6 @@
+<h1>All Semesters</h1>
+<ul>
+  <% @semesters.each do |semester| %>
+  <li><%= link_to "#{semester.name} | #{semester.location}", [:admin, semester] %></li>
+  <% end %>
+</ul>
