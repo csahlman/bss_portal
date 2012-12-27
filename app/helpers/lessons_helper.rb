@@ -1,5 +1,33 @@
 module LessonsHelper
 
+  def create_modal(lessons)
+    html_to_return = ""
+    lessons.each do |lesson|
+      html_to_return += '<div id="lesson_' + lesson.id.to_s + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      html_to_return += '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><small>x</small></button>'
+      html_to_return += '<center><p class="lead" id="myModalLabel">' + lesson.summary + '</p></center>'
+      html_to_return += '</div>'
+      html_to_return += '<div class="modal-body">'
+      html_to_return += '<p>' + lesson.description + '</p>'
+      html_to_return += '</div>'
+      html_to_return += '<div class="modal-footer">' + 
+        link_to("Learn More", lesson, class: 'btn btn-primary') + '</div></div>'
+    end
+    html_to_return.html_safe
+#     <div id="myModalex" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+#   <div class="modal-header">
+#     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><small>x</small></button>
+#     <center><p class="lead" id="myModalLabel">Class name</p></center>
+#   </div>
+#   <div class="modal-body">
+#     <p>Info paragraph</p>
+#   </div>
+#   <div class="modal-footer">
+#     <button class="btn btn-primary">Learn more ></button>
+#   </div>
+# </div>
+  end
+
   def signup_link(user, lesson)
     if user.lessons.include?(lesson)
       lesson_user = current_user.lesson_users.where(lesson_id: lesson.id).last

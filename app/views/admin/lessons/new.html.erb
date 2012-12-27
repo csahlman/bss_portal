@@ -1,7 +1,10 @@
 <h2>Create a new Lesson (style it on the next page)</h2>
 
+<div class="row-fluid">
+  <div class="span6">
 <%= simple_form_for [:admin, @lesson] do |f| %>
   <%= f.input :summary, label: "This is the label for the link on the main page" %>
+  <%= f.input  %>
   <input id="lesson_description" name="lesson[description]" type="hidden" value='
 <div class="row-fluid">
   <div class="span12 pagination-centered">
@@ -248,4 +251,10 @@
   <%= f.hidden_field :track_id, value: params[:track_id] %>
   <%= f.hidden_field :lesson_day_id, value: params[:lesson_day_id] %>
   <%= f.button :submit %>
-<% end %>
+<% end %>    
+  </div>
+  <div class="span6">
+    <h2>Add existing class</h2>
+  </div>
+</div>
+

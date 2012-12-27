@@ -25,9 +25,12 @@ class Lesson < ActiveRecord::Base
   has_many :users, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
 
+  # has_many :photos or something
+
+  # has_many :learning_materials
+
   validates_presence_of :summary
 
-  validates :day_value, presence: true, numericality: true
   validates :tracks, presence: true  
 
 
