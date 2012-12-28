@@ -1,19 +1,20 @@
 module LessonsHelper
 
-  def create_modal(lessons)
+  def create_modals(lessons, semester)
     html_to_return = ""
     lessons.each do |lesson|
-      html_to_return += '<div id="lesson_' + lesson.id.to_s + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
-      html_to_return += '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><small>x</small></button>'
-      html_to_return += '<center><p class="lead" id="myModalLabel">' + lesson.summary + '</p></center>'
-      html_to_return += '</div>'
+      html_to_return += '<div id="modal_' + lesson.id.to_s + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+      html_to_return += '<div class="modal-header">'
+      html_to_return += '<h3>' + lesson.summary + '</h3></div>'
+      # html_to_return += '</div>'
       html_to_return += '<div class="modal-body">'
-      html_to_return += '<p>' + lesson.description + '</p>'
+      html_to_return += '<p>' + lesson.short_description + '</p>'
       html_to_return += '</div>'
       html_to_return += '<div class="modal-footer">' + 
-        link_to("Learn More", lesson, class: 'btn btn-primary') + '</div></div>'
+        link_to("Learn More", [semester, lesson], class: 'btn btn-primary') + 
+         '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div></div>'
     end
-    html_to_return.html_safe
+    raw html_to_return.html_safe
 #     <div id="myModalex" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 #   <div class="modal-header">
 #     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><small>x</small></button>
@@ -51,15 +52,16 @@ module LessonsHelper
     links.html_safe
   end
 
-  def admin_display_classes(lessons, track)
+  def admin_display_classes(lessons, track, semester)
     links = ""
     lessons.each do |lesson|
       if lesson.tracks.include?(track)
-        links.concat link_to lesson.summary, [:admin, lesson], class: "lesson_#{lesson.id}"
+        links.concat link_to lesson.summary, admin_semester_lesson_path(@semester, lesson), 
+          class: "lesson_#{lesson.id}"
         links += " | "
-        links.concat link_to "delete ", [:admin, lesson], class: "lesson_#{lesson.id}",
+        links.concat link_to "delete ", [:admin, @semester, lesson], class: "lesson_#{lesson.id}",
           method: :delete, confirm: "Are you sure?", remote: true  
-        links += "(#{lesson.users.count})"  
+        links += "(#{lesson.users.count})<br>"  
       end
     end
     links.html_safe

@@ -4,9 +4,10 @@ BssNewPortal::Application.routes.draw do
 
   mount Mercury::Engine => '/'
 
-  resources :tracks, only: [ :show, :index ] 
-  resources :lessons, only: [ :show, :index ]
-
+  resources :tracks, only: [ :show, :index ]
+  resources :semesters do  
+    resources :lessons, only: [ :show, :index ]
+  end
   resources :users, except: [ :edit, :update, :show ]
 
   resources :lesson_users, only: [ :create, :destroy ]
@@ -31,10 +32,13 @@ BssNewPortal::Application.routes.draw do
       put 'make_active', on: :member
     end
     resources :tracks 
-    resources :semesters
-    resources :lessons do
-      member { put :mercury_update }
+    resources :semesters do
+      resources :lessons
+      resources :days
     end
+    # resources :lessons do
+    #   member { put :mercury_update }
+    # end
     get '', to: 'dashboard#show', as: '/'
     resources :lesson_tracks, only: [ :update, :create, :destroy ]
   end

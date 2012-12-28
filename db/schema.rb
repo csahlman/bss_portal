@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226204651) do
+ActiveRecord::Schema.define(:version => 20121228184923) do
 
   create_table "day_lessons", :force => true do |t|
     t.integer  "day_id"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20121226204651) do
     t.datetime "updated_at",  :null => false
     t.integer  "day_value"
     t.integer  "semester_id"
-    t.datetime "class_day"
   end
 
   create_table "lesson_days", :force => true do |t|
@@ -53,12 +52,11 @@ ActiveRecord::Schema.define(:version => 20121226204651) do
   create_table "lessons", :force => true do |t|
     t.string   "summary"
     t.text     "description"
-    t.text     "learning_materials"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "lesson_day_id"
-    t.integer  "day_value"
-    t.integer  "semester_id"
+    t.text     "short_description"
+    t.boolean  "save_template",     :default => false
   end
 
   create_table "semesters", :force => true do |t|

@@ -8,7 +8,6 @@
 #  updated_at  :datetime         not null
 #  day_value   :integer
 #  semester_id :integer
-#  class_day   :datetime
 #
 
 class Day < ActiveRecord::Base
@@ -17,6 +16,13 @@ class Day < ActiveRecord::Base
   has_many :lessons, through: :day_lessons
   has_many :day_lessons, dependent: :destroy
 
-  default_scope order('date ASC')
+  validates_presence_of :date
+  validates_presence_of :day_value
+
+  default_scope order('day_value ASC')
+
+  def to_s
+    "#{day_value} | #{date.strftime("%Y-%m-%d")}"
+  end
   
 end

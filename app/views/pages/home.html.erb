@@ -2,7 +2,7 @@
   <div class="row-fluid">
     <div class="span4">
       <div class="hero-unit">
-        <h1>Sign up for classes here</h1>
+        <h1>Welcome <%= current_user.name %></h1>
       </div>
     </div>
     <div class="span7">
@@ -21,7 +21,7 @@
         <th>Sales</th>
       </thead>
     <% @semester.days.each do |day| %>  
-      <%#= create_modal day.lessons %>
+      <%= create_modals day.lessons, @semester %>
       <tr>
         <td>Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
         <td><%= display_classes day.lessons, @development %></td>

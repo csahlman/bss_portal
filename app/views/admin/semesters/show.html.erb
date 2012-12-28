@@ -2,7 +2,7 @@
 <small><%= link_to "Edit", edit_admin_semester_path(@semester) %></small>
 </h1>
 
-<%= link_to "Add new day", new_admin_lesson_path %><br>
+<%= link_to "Add new lesson", new_admin_semester_lesson_path(@semester) %><br>
 
 
 <%= link_to "Back", admin_semesters_path %>
@@ -18,12 +18,14 @@
         <th>Sales</th>
       </thead>
     <% @semester.days.each do |day| %>  
-      <tr>
-        <td>Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
-        <td><%= admin_display_classes day.lessons, @development %></td>
-        <td><%= admin_display_classes day.lessons, @product %></td>
-        <td><%= admin_display_classes day.lessons, @marketing %></td>
-        <td><%= admin_display_classes day.lessons, @sales %></td>
+      <tr id="day_<%= day.id %>">
+        <td>Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %>
+         | <%= link_to "delete", [:admin, @semester, day], method: :delete,
+             confirm: "Are you sure?", remote: true %></td>
+        <td><%= admin_display_classes day.lessons, @development, @semester %></td>
+        <td><%= admin_display_classes day.lessons, @product, @semester %></td>
+        <td><%= admin_display_classes day.lessons, @marketing, @semester %></td>
+        <td><%= admin_display_classes day.lessons, @sales, @semester %></td>
       </tr>
     <% end %>
     </table>

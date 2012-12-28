@@ -2,15 +2,14 @@
 #
 # Table name: lessons
 #
-#  id                 :integer          not null, primary key
-#  summary            :string(255)
-#  description        :text
-#  learning_materials :text
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  lesson_day_id      :integer
-#  day_value          :integer
-#  semester_id        :integer
+#  id                :integer          not null, primary key
+#  summary           :string(255)
+#  description       :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  lesson_day_id     :integer
+#  short_description :text
+#  save_template     :boolean          default(FALSE)
 #
 
 class Lesson < ActiveRecord::Base
@@ -30,19 +29,30 @@ class Lesson < ActiveRecord::Base
   # has_many :learning_materials
 
   validates_presence_of :summary
+  validates_presence_of :short_description
+  validates_presence_of :days
 
   validates :tracks, presence: true  
 
+  scope :saved, where(save_template: true)
 
   def self.parse_json(json_hash)
     return json_hash['new_lesson']['value']
   end
 
+  def set_cloned_parameters(params_hash, clone)
+    self.short_description = clone.short_description
+    self.summary = clone.summary
+    self.description = clone.description
+    self.save_template = params_hash[:save_template]
+    self.tracks = clone.tracks    
+  end
+
   def set_parameters(params_hash)
+    self.short_description = params_hash[:short_description]
     self.summary = params_hash[:summary]
-    self.day_value = params_hash[:day_value]
     self.description = params_hash[:description]
-    self.lesson_day_id = params_hash[:lesson_day_id] 
+    self.save_template = params_hash[:save_template]
   end
 
   def add_date(date)

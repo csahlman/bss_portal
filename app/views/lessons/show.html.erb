@@ -1,5 +1,4 @@
-<h1><%= link_to "Edit #{@lesson.summary}", '/editor/admin/lessons/' + @lesson.id.to_s, 
-  id: "edit_link", data: { save_url: mercury_update_admin_lesson_path(@lesson) } if 
-    user_signed_in? %></h1>
+<h1><%= link_to "Edit #{@lesson.summary}", '/editor/admin/semesters/' + @semester.id.to_s + '/lessons/' + @lesson.id.to_s, 
+  id: "edit_link" if user_signed_in? %></h1>
 
 <%= raw @lesson.description %>

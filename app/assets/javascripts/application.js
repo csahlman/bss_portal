@@ -10,12 +10,16 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require jquery-1.7
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
 //= require twitter/bootstrap
-//= require jquery-1.7
+//= require_self
 
-// $(document).ready(function() {
-//   $('#lesson_day_value').datePicker();
-
-// });
+$(function() {
+  $('.jquery-ui-date').datepicker({
+    altField: "#recorded-at-alt",
+    altFormat: "yy-mm-dd"
+  });
+});
