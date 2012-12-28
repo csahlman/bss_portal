@@ -55,8 +55,15 @@ class Lesson < ActiveRecord::Base
     self.save_template = params_hash[:save_template]
   end
 
-  def add_date(date)
-    self.days << date
+  def add_user(user)
+    unless self.users.include?(user)
+      self.users << user
+      save!
+    end
+  end
+
+  def remove_user(user)
+    self.users.delete(user)
     save!
   end
 

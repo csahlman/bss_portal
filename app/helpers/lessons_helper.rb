@@ -10,9 +10,10 @@ module LessonsHelper
       html_to_return += '<div class="modal-body">'
       html_to_return += '<p>' + lesson.short_description + '</p>'
       html_to_return += '</div>'
-      html_to_return += '<div class="modal-footer">' + 
-        link_to("Learn More", [semester, lesson], class: 'btn btn-primary') + 
-         '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div></div>'
+      html_to_return += '<div class="modal-footer">'
+      html_to_return += link_to("Learn More", [semester, lesson], class: 'btn btn-primary') + 
+          link_to("Sign up to teach", signups_path(lesson_id: lesson.id), class: 'btn btn-success', method: :post)
+      html_to_return += '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div></div>'
     end
     raw html_to_return.html_safe
 #     <div id="myModalex" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -43,8 +44,9 @@ module LessonsHelper
   def display_classes(lessons, track)
     links = ""
     lessons.each do |lesson|
+      lesson.tracks.count > 1 ? css_class = "btn-success" : css_class = "btn-primary"
       if lesson.tracks.include?(track)
-        links.concat link_to lesson.summary, "#modal_#{lesson.id}", class: "btn btn-block btn-primary",
+        links.concat link_to lesson.summary, "#modal_#{lesson.id}", class: "btn btn-block #{css_class}",
           data: { toggle: 'modal' }
         links.concat "<br>"
       end
