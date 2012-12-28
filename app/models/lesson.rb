@@ -36,6 +36,15 @@ class Lesson < ActiveRecord::Base
 
   scope :saved, where(save_template: true)
 
+  def dates_by_semester(semester)
+    dates = self.days.where(semester_id: semester.id)
+    if dates.length > 1
+      "#{dates.first.date.strftime('%Y-%m-%d')}-#{dates.last.date.strftime('%Y-%m-%d')}"
+    else
+      "#{dates.first.date.strftime('%Y-%m-%d')}"
+    end
+  end
+
   def self.parse_json(json_hash)
     return json_hash['new_lesson']['value']
   end

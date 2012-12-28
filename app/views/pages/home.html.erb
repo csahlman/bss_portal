@@ -2,7 +2,16 @@
   <div class="row-fluid">
     <div class="span4">
       <div class="hero-unit">
-        <h1>Welcome <%= current_user.name %></h1>
+        <h4>Signed up to teach:</h4>
+        <ul>
+        <% current_user.lessons.each do |lesson| %>
+          <li id="user_lesson_<%= lesson.id %>">
+            <%= link_to "#{lesson.summary} #{lesson.dates_by_semester(@semester)}", [@semester, lesson] %> | 
+            <%= link_to "withdraw", signup_path(lesson), method: :delete,
+              confirm: "Are you sure?", remote: true %>
+          </li>
+        <% end %>
+        </ul>
       </div>
     </div>
     <div class="span7">

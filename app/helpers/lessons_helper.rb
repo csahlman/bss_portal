@@ -30,6 +30,10 @@ module LessonsHelper
 # </div>
   end
 
+  # def formatted_lesson(lesson, semester)
+  #   content_tag :li, "#{lesson.summary} #{lesson.dates_by_semester(semester)}"
+  # end
+
   def signup_link(user, lesson)
     if user.lessons.include?(lesson)
       lesson_user = current_user.lesson_users.where(lesson_id: lesson.id).last
