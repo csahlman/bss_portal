@@ -31,6 +31,7 @@ class Admin::LessonsController < Admin::BaseController
 
   def show
     @lesson = Lesson.find(params[:id])
+    @semester = Semester.find(params[:semester_id])
   end
 
   def index
@@ -38,6 +39,7 @@ class Admin::LessonsController < Admin::BaseController
   end
 
   def edit
+    @semester = Semester.find(params[:semester_id])
     @lesson = Lesson.find(params[:id])
   end
 

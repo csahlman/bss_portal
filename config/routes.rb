@@ -10,7 +10,6 @@ BssNewPortal::Application.routes.draw do
   end
   resources :users, except: [ :edit, :update, :show ]
 
-  resources :lesson_users, only: [ :create, :destroy ]
   resources :signups, only: [ :create, :destroy ]
 
   controller :sessions do
@@ -41,7 +40,6 @@ BssNewPortal::Application.routes.draw do
     #   member { put :mercury_update }
     # end
     get '', to: 'dashboard#show', as: '/'
-    resources :lesson_tracks, only: [ :update, :create, :destroy ]
   end
 
   get 'tracks/:track_name', to: 'tracks#show', as: :track_name

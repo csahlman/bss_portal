@@ -62,7 +62,7 @@ module LessonsHelper
     links = ""
     lessons.each do |lesson|
       if lesson.tracks.include?(track)
-        links.concat link_to lesson.summary, admin_semester_lesson_path(@semester, lesson), 
+        links.concat link_to lesson.summary, admin_semester_lesson_path(semester, lesson), 
           class: "lesson_#{lesson.id}"
         links += " | "
         links.concat link_to "delete ", [:admin, @semester, lesson], class: "lesson_#{lesson.id}",

@@ -1,8 +1,10 @@
-<h1><%= link_to "Edit #{@lesson.summary}", '/editor' + request.path, 
-  id: "edit_link" %></h1>
+<h1><%= link_to "Edit Description", '/editor' + request.path, 
+  id: "edit_link" %><br>
+  <%= link_to "Edit the rest", edit_admin_semester_lesson_path(@semester, @lesson) %>
+</h1>
+
 
 
 <span id="new_lesson" data-mercury="full">
 <%= raw @lesson.description %>
-
 </span>
