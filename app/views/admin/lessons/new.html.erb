@@ -253,6 +253,7 @@
   </div>' />
     <%= f.association :tracks, include_blank: false, 
       label: "Tracks: You can include multiple" %>
+    <%= f.association :images, as: :file, label: "Upload an image" %>
     <%= f.input :save_template %>
     <%= f.button :submit %>
   <% end %>    

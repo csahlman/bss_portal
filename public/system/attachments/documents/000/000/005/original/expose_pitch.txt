@@ -1,0 +1,20 @@
+Hi I'm Charlie Sahlman and I build web apps.
+
+I graduated from Colgate University with a degree in Economics, then went into
+a career as a professional poker player.  Poker taught me a lot about dealing with 
+large ups and downs on a regular basis, and being a self starter.
+
+I started working with ruby on rails in January of this year, and have loved growing
+as a developer.  I really enjoy working on the full stack, integrating front end skills
+like html5 and javascript with backend talents like rails.  
+
+I'm a hard worker, relentless about continuing to grow my skillset by learning new technologies
+in my offtime.  I'm humble, and realize that no matter how much I learn, I'll always be able
+to continue to grow, and also hope to one day be able to give back some of the skills I
+have learned to new developers.  
+
+I'm looking for a fun group of passionate people who are willing to help me learn, 
+and who can benefit from the energy that I bring on a daily basis.  I'm really excited
+to be a part of that team.
+
+If this sounds like something you might be interested in, come talk to me.

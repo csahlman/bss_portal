@@ -15,6 +15,9 @@
 class Lesson < ActiveRecord::Base
   attr_accessible  :description, :learning_materials, :summary
 
+  has_many :attachments
+  has_many :images
+
   has_many :lesson_tracks, dependent: :destroy
   has_many :tracks, through: :lesson_tracks
 
@@ -31,6 +34,7 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :summary
   validates_presence_of :short_description
   validates_presence_of :days
+
 
   validates :tracks, presence: true  
 
@@ -54,7 +58,8 @@ class Lesson < ActiveRecord::Base
     self.summary = clone.summary
     self.description = clone.description
     self.save_template = params_hash[:save_template]
-    self.tracks = clone.tracks    
+    self.tracks = clone.tracks
+    self.images = clone.images    
   end
 
   def set_parameters(params_hash)
@@ -62,6 +67,16 @@ class Lesson < ActiveRecord::Base
     self.summary = params_hash[:summary]
     self.description = params_hash[:description]
     self.save_template = params_hash[:save_template]
+    if params_hash[:image_ids]
+      image = self.images.new
+      image.picture = params_hash[:image_ids]
+      self.images << image
+    end
+    if params_hash[:attachment_ids]
+      attachment = self.attachments.new
+      attachment.document = params_hash[:attachment_ids]
+      self.attachments << attachment
+    end
   end
 
   def add_user(user)

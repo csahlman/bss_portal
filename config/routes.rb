@@ -33,7 +33,10 @@ BssNewPortal::Application.routes.draw do
     end
     resources :tracks 
     resources :semesters do
-      resources :lessons
+      resources :lessons do
+        resources :attachments
+        resources :images
+      end
       resources :days
     end
     # resources :lessons do

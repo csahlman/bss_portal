@@ -1,14 +1,20 @@
 <h1><%= link_to "Edit #{@lesson.summary}", '/editor' + request.path, 
   id: "edit_link" %></h1>
 
+<%= link_to "Edit Images", admin_semester_lesson_images_path(@semester, @lesson) %><br>
+<%= link_to "Edit Attachments", admin_semester_lesson_attachments_path(@semester, @lesson) %>
+
 <%= simple_form_for [:admin, @semester, @lesson] do |f| %>
   <%= f.input :summary, label: "This is the name of the link on the main page" %>
   <%= f.input :short_description, label: "This is the description for the modal" %>
-  <%= f.association :days, label: "Days: You can select multiple",
+  <%= f.association :tracks, label: "Tracks: You can select multiple",
     :input_html => { :class => 'days'} %>
   <%= f.hidden_field :description, value: @lesson.description %>
   <%= f.association :days, label: "Days: You can select multiple",
         :input_html => { :class => 'days'} %>
   <%= f.input :save_template %>
+  <%= f.association :images, as: :file %>
+  <%= f.association :attachments, as: :file %>
   <%= f.button :submit %> 
 <% end %>
+

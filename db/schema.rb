@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228184923) do
+ActiveRecord::Schema.define(:version => 20121229125414) do
+
+  create_table "attachments", :force => true do |t|
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.integer  "lesson_id"
+  end
 
   create_table "day_lessons", :force => true do |t|
     t.integer  "day_id"
@@ -26,6 +36,16 @@ ActiveRecord::Schema.define(:version => 20121228184923) do
     t.datetime "updated_at",  :null => false
     t.integer  "day_value"
     t.integer  "semester_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "lesson_id"
   end
 
   create_table "lesson_days", :force => true do |t|

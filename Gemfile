@@ -37,6 +37,8 @@ gem 'simple_form'
 
 gem 'mercury-rails'
 
+gem "paperclip"
+
 # gem 'devise'
 
 # To use ActiveModel has_secure_password
