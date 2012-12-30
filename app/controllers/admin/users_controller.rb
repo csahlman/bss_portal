@@ -19,9 +19,14 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def index
-    @to_reinstutute = User.requested_recover
-    @inactive = User.inactive
-    # paginate this?
+    if params[:lesson_id]
+      @lesson = Lesson.find(params[:lesson_id])
+      @users = @lesson.users
+    else
+      @to_reinstutute = User.requested_recover
+      @inactive = User.inactive
+      # paginate this?
+    end
   end
 
   def destroy

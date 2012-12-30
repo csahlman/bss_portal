@@ -25,6 +25,7 @@ BssNewPortal::Application.routes.draw do
     post 'recover_account' => :create
   end
 
+  resources :class_signups, only: [ :create, :destroy ]
 
   namespace :admin do
     resources :pages do 

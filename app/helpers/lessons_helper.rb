@@ -67,7 +67,7 @@ module LessonsHelper
         links += " | "
         links.concat link_to "delete ", [:admin, @semester, lesson], class: "lesson_#{lesson.id}",
           method: :delete, confirm: "Are you sure?", remote: true  
-        links += "(#{lesson.users.count})<br>"  
+        links += link_to("(#{lesson.users.count})", admin_users_path(lesson_id: lesson.id)) 
       end
     end
     links.html_safe

@@ -40,6 +40,24 @@ class Lesson < ActiveRecord::Base
 
   scope :saved, where(save_template: true)
 
+  def add_instructor(user)
+    lesson_users.each do |lesson_user|
+      if lesson_user.assigned? && lesson_user.user_id != user.id
+        lesson_user.update_attribute(:assigned, false)
+      elsif lesson_user.user_id = user.id
+        lesson_user.update_attribute(:assigned, true)
+      end
+    end
+  end
+
+  def remove_instructor(user)
+    lesson_users.where(assigned: true).last.update_attribute(:assigned, false)
+  end
+
+  def assigned?
+    lesson_users.where(assigned: true).any? ? true : false
+  end
+
   def dates_by_semester(semester)
     dates = self.days.where(semester_id: semester.id)
     if dates.length > 1

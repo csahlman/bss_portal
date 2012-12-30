@@ -1,3 +1,12 @@
+<% if params[:lesson_id] %>
+<ul>
+  <% @users.each do |user| %>
+    <li><%= link_to user.name, [:admin, user] %> | 
+      <%= link_to "Assign User This Class", class_signups_path(user_id: user.id, 
+        lesson_id: @lesson.id), method: :post %></li>
+  <% end %>
+</ul>
+<% else %>
 <h2>Create a new user</h2>
 
 <%= simple_form_for [:admin, User.new] do |f| %>
@@ -31,3 +40,4 @@
     </li>
   <% end %>
 </ul>
+<% end %>
