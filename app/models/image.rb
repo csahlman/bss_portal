@@ -14,9 +14,9 @@
 
 class Image < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :picture
   belongs_to :lesson
-  
+
+  attr_accessible :picture
   has_attached_file :picture
 
   validates_attachment :picture, :presence => true,

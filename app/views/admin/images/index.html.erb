@@ -2,7 +2,7 @@
 <%= link_to "Back to edit", [:edit, :admin, @semester, @lesson] %>
 
 <%= simple_form_for [:admin, @semester, @lesson, Image.new] do |f| %>
-  <%= f.input :image, as: :file, label: "Upload new image" %>
+  <%= f.input :picture, as: :file, label: "Upload new image" %>
   <%= f.button :submit %>
 <% end %>
 

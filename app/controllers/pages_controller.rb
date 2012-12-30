@@ -8,4 +8,9 @@ class PagesController < ApplicationController
     @semester = Semester.includes(days: :lessons).first  
   end
 
+  def index
+    @semester = Semester.first
+    @lesson = Lesson.last
+  end
+
 end

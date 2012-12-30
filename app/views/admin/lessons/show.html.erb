@@ -3,14 +3,23 @@
   <%= link_to "Edit the rest", edit_admin_semester_lesson_path(@semester, @lesson) %>
 </h1>
 
-<% @lesson.images.each do |image| %>
-  <%= image_tag image.picture.url %>
-<% end %>
-
-<% @lesson.attachments.each do |attachment| %>
-  <%= link_to attachment.document_file_name, attachment.document.url %>
-<% end %>
+<div class="span12">
+  <h1><%= @lesson.summary %> | <%= @semester.name %> <%= @semester.location %></h1>
+</div>
 
 <span id="new_lesson" data-mercury="full">
 <%= raw @lesson.description %>
 </span>
+
+<div class="span4">
+  <h3>Previous learning materials</h3>
+  <% @lesson.attachments.each do |attachment| %>
+    <%= link_to attachment.document_file_name, attachment.document.url %><br>
+  <% end %>
+  <h3>Previous student work</h3>
+    <p>Placeholder for student work</p>
+  <h3>Images (carasoul of some sort later)</h3>
+  <% @lesson.images.each do |image| %>
+    <%= image_tag image.picture.url %>
+  <% end %>
+</div>

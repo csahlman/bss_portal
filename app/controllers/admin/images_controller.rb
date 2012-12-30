@@ -6,10 +6,17 @@ class Admin::ImagesController < Admin::BaseController
     @images = @lesson.images
   end
 
-  def update
+
+  def create
     @lesson = Lesson.find(params[:lesson_id])
     @semester = Semester.find(params[:semester_id])
-    @image = Image.find(params[:id])
+    @image = @lesson.images.new(params[:image])
+    if @image.save
+      redirect_to admin_semester_lesson_images_path(@semester, @lesson),
+        flash: { success: "Created image" }
+    else
+      render 'index'
+    end
   end
 
   def destroy

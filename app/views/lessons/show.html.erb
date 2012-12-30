@@ -1,8 +1,25 @@
 <h1><%= link_to "Edit #{@lesson.summary}", '/editor/admin/semesters/' + @semester.id.to_s + '/lessons/' + @lesson.id.to_s, 
   id: "edit_link" if user_signed_in? && current_user.admin %></h1>
 
-<% if user_signed_in? && !current_user.admin? %>
-  <%= link_to signups_path(lesson_id: @lesson.id) %>
+<% if user_signed_in? %>
+  <h3><%= link_to "Sign up to teach", signups_path(lesson_id: @lesson.id), 
+    method: :post %></h3>
 <% end %>
 
-<%= raw @lesson.description %>
+<div class="row-fluid">
+
+  <%= raw @lesson.description %>
+
+  <div class="span4">
+    <h3>Previous learning materials</h3>
+    <% @lesson.attachments.each do |attachment| %>
+      <%= link_to attachment.document_file_name, attachment.document.url %><br>
+    <% end %>
+    <h3>Previous student work</h3>
+      <p>Placeholder for student work</p>
+    <h3>Images (carasoul of some sort later)</h3>
+    <% @lesson.images.each do |image| %>
+      <%= image_tag image.picture.url %>
+    <% end %>
+  </div>
+</div>

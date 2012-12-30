@@ -1,0 +1,22 @@
+.btn{ 
+  background-image: none;
+    .opacity(100);
+    .box-shadow(none); 
+    border-radius: 0;
+    background-color: #3BA4DB;
+    }
+
+div.rounded {
+    .border-radius( 5px );
+}
+
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+.btn:hover{
+  background-color: #2f83af;
+}
+

@@ -23,6 +23,10 @@ body {
   }
 }
 
+li {
+  list-style: none;
+}
+
 
 .row-fluid {
   .span3 {
@@ -54,4 +58,16 @@ body {
 
 .modal {
   color: black;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.border-right {
+  border-right: 1px solid black;
+}
+
+.border-left {
+  border-left: 1px solid black;
 }

@@ -1,0 +1,38 @@
+lessons should have dates, day 1/2/3 which also have dates
+
+- user sign up 
+  admin creates email/name
+  user can then sign up with token sent in email
+  time out after 7 days
+  instructor can sign up for classes
+  view what classes they've signed up for
+  can check off box both on page for lesson and main page
+
+-How to host student created assets/instructor created assets
+  i.e. powerpoint slides
+
+
+-clicking link on main page reveals modal with 
+  name
+  summary
+  images
+  previous instructors
+
+-back end for Will
+  User with company
+  AND company with users (how many bluefin signed up)
+  View of specific class with instructors that have signed up to teach
+  Once you've assigned a teacher that class goes away on the front side,
+    no longer selectable
+  Click on person on admin: 
+    has company, 
+    count of selected
+    List of days selected
+  Once will selects person, they get email saying you're teaching that day
+    -they then get access to create their own agenda  
+
+- lower on priority
+  semester/location
+  admin access for specific semester/locations
+  ability to send emails just for that
+  consistent repository to be cloned, outliers in other cities

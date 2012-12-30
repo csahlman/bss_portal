@@ -4,6 +4,8 @@ BssNewPortal::Application.routes.draw do
 
   mount Mercury::Engine => '/'
 
+  get 'pages/index'
+
   resources :tracks, only: [ :show, :index ]
   resources :semesters do  
     resources :lessons, only: [ :show, :index ]
