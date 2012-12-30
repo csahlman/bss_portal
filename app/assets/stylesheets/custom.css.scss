@@ -7,6 +7,22 @@ body {
   }
 }
 
+#main-table {
+  th {
+    width: 21%;
+    .table-day {
+      width: 16%;
+    }
+  }
+  tr {
+    width: 21%;
+    .table-day {
+      width: 16%;
+    }
+  }
+}
+
+
 .navbar {
   color: #EFECCA;
   .nav > li > a {

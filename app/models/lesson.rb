@@ -27,6 +27,10 @@ class Lesson < ActiveRecord::Base
   has_many :users, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
 
+  has_many :teachers, class_name: :user, through: :lesson_teachers,
+    foreign_key: :user_id
+  has_many :lesson_teachers, dependent: :destroy
+
   # has_many :photos or something
 
   # has_many :learning_materials
@@ -48,6 +52,10 @@ class Lesson < ActiveRecord::Base
         lesson_user.update_attribute(:assigned, true)
       end
     end
+  end
+
+  def teachers
+    
   end
 
   def remove_instructor(user)

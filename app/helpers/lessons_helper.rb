@@ -5,34 +5,22 @@ module LessonsHelper
     lessons.each do |lesson|
       html_to_return += '<div id="modal_' + lesson.id.to_s + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       html_to_return += '<div class="modal-header">'
-      html_to_return += '<h3>' + lesson.summary + '</h3></div>'
+      if lesson.assigned?
+        html_to_return += '<h1>Being taught by ' + format_users(lesson.teachers) + '</h1>'
+        html_to_return += '<h3>' + lesson.summary + '</h3></div>'
+      end
       # html_to_return += '</div>'
       html_to_return += '<div class="modal-body">'
       html_to_return += '<p>' + lesson.short_description + '</p>'
       html_to_return += '</div>'
       html_to_return += '<div class="modal-footer">'
-      html_to_return += link_to("Learn More", [semester, lesson], class: 'btn btn-primary') + 
-          link_to("Sign up to teach", signups_path(lesson_id: lesson.id), class: 'btn btn-success', method: :post)
+      html_to_return += link_to("Learn More", [semester, lesson], class: 'btn btn-primary') 
+      html_to_return += link_to("Sign up to teach", signups_path(lesson_id: lesson.id), class: 'btn btn-success', method: :post) unless lesson.assigned?
       html_to_return += '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div></div>'
     end
     raw html_to_return.html_safe
-#     <div id="myModalex" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-#   <div class="modal-header">
-#     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><small>x</small></button>
-#     <center><p class="lead" id="myModalLabel">Class name</p></center>
-#   </div>
-#   <div class="modal-body">
-#     <p>Info paragraph</p>
-#   </div>
-#   <div class="modal-footer">
-#     <button class="btn btn-primary">Learn more ></button>
-#   </div>
-# </div>
   end
 
-  # def formatted_lesson(lesson, semester)
-  #   content_tag :li, "#{lesson.summary} #{lesson.dates_by_semester(semester)}"
-  # end
 
   def signup_link(user, lesson)
     if user.lessons.include?(lesson)
@@ -49,6 +37,7 @@ module LessonsHelper
     links = ""
     lessons.each do |lesson|
       lesson.tracks.count > 1 ? css_class = "btn-success" : css_class = "btn-primary"
+      lesson.assigned? ? css_class = "btn-danger" : css_class
       if lesson.tracks.include?(track)
         links.concat link_to lesson.summary, "#modal_#{lesson.id}", class: "btn btn-block #{css_class}",
           data: { toggle: 'modal' }

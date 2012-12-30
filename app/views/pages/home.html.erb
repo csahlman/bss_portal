@@ -21,9 +21,9 @@
     </div>
   </div>
   <div class="row-fluid">
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="main-table">
       <thead>
-        <th>Day/Date</th>
+        <th class="table-day">Day/Date</th>
         <th>Development</th>
         <th>Product</th>
         <th>Marketing</th>
@@ -32,7 +32,7 @@
     <% @semester.days.each do |day| %>  
       <%= create_modals day.lessons, @semester %>
       <tr>
-        <td>Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
+        <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
         <td><%= display_classes day.lessons, @development %></td>
         <td><%= display_classes day.lessons, @product %></td>
         <td><%= display_classes day.lessons, @marketing %></td>
