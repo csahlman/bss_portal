@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
   has_many :lessons, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
 
+  # has_many :confirmed_lessons, class_name: "Lesson", 
+  #   through: :lesson_teachers
+  # has_many :lesson_teachers, dependent: :destroy
+
   scope :inactive, -> { where("expiration_time <= :now", now: Time.zone.now) } 
   scope :requested_recover, where(request_recover: true).order('name ASC')
   
