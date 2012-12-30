@@ -29,6 +29,14 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def index
+    
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

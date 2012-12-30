@@ -5,17 +5,15 @@ module LessonsHelper
     lessons.each do |lesson|
       html_to_return += '<div id="modal_' + lesson.id.to_s + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       html_to_return += '<div class="modal-header">'
-      if lesson.assigned?
-        html_to_return += '<h1>Being taught by ' + format_users(lesson.teachers) + '</h1>'
-        html_to_return += '<h3>' + lesson.summary + '</h3></div>'
-      end
+        # html_to_return += '<h1>Being taught by ' + format_users(lesson.teachers) + '</h1>'
+      html_to_return += '<h3>' + lesson.summary + '</h3></div>'
       # html_to_return += '</div>'
       html_to_return += '<div class="modal-body">'
       html_to_return += '<p>' + lesson.short_description + '</p>'
       html_to_return += '</div>'
       html_to_return += '<div class="modal-footer">'
       html_to_return += link_to("Learn More", [semester, lesson], class: 'btn btn-primary') 
-      html_to_return += link_to("Sign up to teach", signups_path(lesson_id: lesson.id), class: 'btn btn-success', method: :post) unless lesson.assigned?
+      html_to_return += link_to("Sign up to teach", signups_path(lesson_id: lesson.id), class: 'btn btn-success', method: :post)
       html_to_return += '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div></div>'
     end
     raw html_to_return.html_safe

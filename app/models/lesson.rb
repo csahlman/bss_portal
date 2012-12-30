@@ -54,9 +54,6 @@ class Lesson < ActiveRecord::Base
     end
   end
 
-  def teachers
-    
-  end
 
   def remove_instructor(user)
     lesson_users.where(assigned: true).last.update_attribute(:assigned, false)
