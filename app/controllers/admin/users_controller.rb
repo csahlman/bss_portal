@@ -23,7 +23,7 @@ class Admin::UsersController < Admin::BaseController
       @lesson = Lesson.find(params[:lesson_id])
       @users = @lesson.users
     else
-      @to_reinstutute = User.requested_recover
+      @to_reinstitute = User.requested_recover
       @inactive = User.inactive
       # paginate this?
     end
@@ -33,9 +33,6 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
   end
 
-  def index
-    
-  end
 
   def destroy
     @user = User.find(params[:id])

@@ -1,43 +1,43 @@
 <% if params[:lesson_id] %>
-<ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.name, [:admin, user] %> | 
-      <%= link_to "Assign User This Class", class_signups_path(user_id: user.id, 
-        lesson_id: @lesson.id), method: :post %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= link_to user.name, [:admin, user] %> | 
+        <%= link_to "Assign User This Class", class_signups_path(user_id: user.id, 
+          lesson_id: @lesson.id), method: :post %></li>
+    <% end %>
+  </ul>
 <% else %>
-<h2>Create a new user</h2>
+  <h2>Create a new user</h2>
 
-<%= simple_form_for [:admin, User.new] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :company %>
-  <%= f.input :email %>
-  <%= f.button :submit, "Create User" %>
-<% end %>
-
-<h2>Users that have explicitly requested reauthorization:</h2>
-
-<ul>
-  <% @to_reinstutute.each do |user| %>
-    <li>
-      <%= link_to user.name, user %>: 
-      <%= link_to "Make Active", make_active_admin_user_path(user),
-        method: :put, id: "user_#{user.id}", remote: true %>
-    </li>
+  <%= simple_form_for [:admin, User.new] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :company %>
+    <%= f.input :email %>
+    <%= f.button :submit, "Create User" %>
   <% end %>
-</ul>
+
+  <h2>Users that have explicitly requested reauthorization:</h2>
+
+  <ul>
+    <% @to_reinstitute.each do |user| %>
+      <li>
+        <%= link_to user.name, user %>: 
+        <%= link_to "Make Active", make_active_admin_user_path(user),
+          method: :put, id: "user_#{user.id}", remote: true %>
+      </li>
+    <% end %>
+  </ul>
 
 
-<h2>Users that have expired:</h2>
+  <h2>Users that have expired:</h2>
 
-<ul>
-  <% @inactive.each do |user| %>
-    <li>
-      <%= link_to user.name, user %>: 
-      <%= link_to "Make Active", make_active_admin_user(user),
-        method: :put, id: "user_#{user.id}", remote: true %>
-    </li>
-  <% end %>
-</ul>
+  <ul>
+    <% @inactive.each do |user| %>
+      <li>
+        <%= link_to user.name, user %>: 
+        <%= link_to "Make Active", make_active_admin_user(user),
+          method: :put, id: "user_#{user.id}", remote: true %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
