@@ -10,6 +10,9 @@ BssNewPortal::Application.routes.draw do
   resources :semesters do  
     resources :lessons, only: [ :show, :index ]
   end
+
+  resources :users, only: [ :edit, :update ]
+
   resources :users, except: [ :edit, :update, :show ]
 
   resources :signups, only: [ :create, :destroy ]
