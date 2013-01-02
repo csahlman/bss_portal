@@ -1,0 +1,11 @@
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email %>
+  <%= f.input :name %>
+  <%= f.input :company, label: "Company (please only touch if you have changed companies)" %>
+  <%= f.input :linked_in %>
+  <%= f.input :facebook %>
+  <%= f.input :twitter %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.button :submit %>
+<% end %>
