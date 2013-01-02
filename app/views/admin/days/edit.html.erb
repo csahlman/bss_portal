@@ -1,0 +1,6 @@
+<%= simple_form_for [:admin, @semester, @day] do |f| %>
+  <%= f.input :day_value %>
+  <%= f.input :date, as: :string, :input_html => { :class => 'jquery-ui-date'} %>
+  <%= f.input :date, :as => :hidden, :input_html => { :id => 'recorded-at-alt'} %>
+  <%= f.button :submit %>  
+<% end %>
