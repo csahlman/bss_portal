@@ -22,6 +22,8 @@ class Admin::UsersController < Admin::BaseController
     if params[:lesson_id]
       @lesson = Lesson.find(params[:lesson_id])
       @users = @lesson.users
+    elsif params[:company]
+      @users = User.where(company: params[:company])
     else
       @to_reinstitute = User.requested_recover
       @inactive = User.inactive

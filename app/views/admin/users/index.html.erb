@@ -1,10 +1,21 @@
 <% if params[:lesson_id] %>
+  <h1>Users for <%= @lesson.summary %></h1>
   <ul>
     <% @users.each do |user| %>
       <li><%= link_to user.name, [:admin, user] %> | 
+        <%= link_to user.company, admin_users_path(company: user.company) %> | 
         <%= admin_signups_link(user, @lesson) %></li>
     <% end %>
   </ul>
+<% elsif params[:company] %>
+  <h1>Users for <%= params[:company] %></h1>
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= link_to user.name, [:admin, user] %> | 
+        <%= link_to user.company, admin_users_path(company: user.company) %>
+      </li>  
+    <% end %>
+  </ul>  
 <% else %>
   <h2>Create a new user</h2>
 
