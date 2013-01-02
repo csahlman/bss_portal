@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230075925) do
+ActiveRecord::Schema.define(:version => 20130102130111) do
 
   create_table "attachments", :force => true do |t|
     t.datetime "created_at",            :null => false
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20121230075925) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "assigned",   :default => false
+    t.boolean  "confirmed",  :default => false
   end
 
   create_table "lessons", :force => true do |t|
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20121230075925) do
     t.integer  "lesson_day_id"
     t.text     "short_description"
     t.boolean  "save_template",     :default => false
+    t.boolean  "assigned",          :default => false
   end
 
   create_table "semesters", :force => true do |t|
@@ -117,11 +119,13 @@ ActiveRecord::Schema.define(:version => 20121230075925) do
     t.boolean  "admin",                  :default => false
     t.string   "name"
     t.string   "company"
-    t.boolean  "guest",                  :default => false
     t.string   "remember_token"
     t.string   "password_digest"
     t.boolean  "request_recover",        :default => false
     t.datetime "expiration_time"
+    t.string   "linked_in"
+    t.string   "facebook"
+    t.string   "twitter"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

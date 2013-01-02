@@ -8,6 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  assigned   :boolean          default(FALSE)
+#  confirmed  :boolean          default(FALSE)
 #
 
 class LessonUser < ActiveRecord::Base

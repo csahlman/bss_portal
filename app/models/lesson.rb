@@ -10,6 +10,7 @@
 #  lesson_day_id     :integer
 #  short_description :text
 #  save_template     :boolean          default(FALSE)
+#  assigned          :boolean          default(FALSE)
 #
 
 class Lesson < ActiveRecord::Base
@@ -54,6 +55,9 @@ class Lesson < ActiveRecord::Base
     end
   end
 
+  def multiple_teachers?
+    lesson_users.where('lesson_id = ? AND assigned = ?', self.id, true).length > 1
+  end
 
   def remove_instructor(user)
     lesson_users.where(assigned: true).last.update_attribute(:assigned, false)

@@ -17,11 +17,13 @@
 #  admin                  :boolean          default(FALSE)
 #  name                   :string(255)
 #  company                :string(255)
-#  guest                  :boolean          default(FALSE)
 #  remember_token         :string(255)
 #  password_digest        :string(255)
 #  request_recover        :boolean          default(FALSE)
 #  expiration_time        :datetime
+#  linked_in              :string(255)
+#  facebook               :string(255)
+#  twitter                :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -44,6 +46,11 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   has_secure_password
+
+  def assigned_to_teach?(lesson)
+    LessonUser.where("user_id = ? AND lesson_id = ? AND assigned = ?",
+      self.id, lesson.id, true).any?
+  end
 
   def set_user_attributes(user_hash)
     self.email = user_hash[:email]

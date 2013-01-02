@@ -1,3 +1,10 @@
+<h1>Semesters (click to see/edit lessons)</h1>
+<ul>
+<% @semesters.each do |semester| %>
+  <li><%= link_to semester.to_s, [:admin, semester] %></li>
+<% end %>
+</ul>
+
 <%= link_to "Manage Tracks", '#' %><br>
 <%#= link_to "Manage Lessons", admin_lessons_path %>
 <%= link_to "Manage Users", admin_users_path %><br>

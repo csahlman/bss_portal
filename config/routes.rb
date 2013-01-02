@@ -34,6 +34,7 @@ BssNewPortal::Application.routes.draw do
     resources :users do 
       put 'make_active', on: :member
     end
+    resources :signups, only: [ :create, :destroy ]
     resources :tracks 
     resources :semesters do
       resources :lessons do

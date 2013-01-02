@@ -37,7 +37,8 @@ module LessonsHelper
       lesson.tracks.count > 1 ? css_class = "btn-success" : css_class = "btn-primary"
       lesson.assigned? ? css_class = "btn-danger" : css_class
       if lesson.tracks.include?(track)
-        links.concat link_to lesson.summary, "#modal_#{lesson.id}", class: "btn btn-block #{css_class}",
+        links.concat link_to (truncate lesson.summary, length: 30, omission: '...'), 
+          "#modal_#{lesson.id}", class: "btn btn-block #{css_class}",
           data: { toggle: 'modal' }
         links.concat "<br>"
       end
@@ -55,9 +56,24 @@ module LessonsHelper
         links.concat link_to "delete ", [:admin, @semester, lesson], class: "lesson_#{lesson.id}",
           method: :delete, confirm: "Are you sure?", remote: true  
         links += link_to("(#{lesson.users.count})", admin_users_path(lesson_id: lesson.id)) 
+        links += '<br>'
       end
     end
     links.html_safe
+  end
+
+  def admin_signups_link(user, lesson)
+    link = ""
+    if user.assigned_to_teach?(lesson)
+      link += link_to "Unassign this User", admin_signup_path(lesson, user_id: user.id,
+        lesson_id: lesson.id), id: "assign_#{user.id}", method: :delete, 
+        confirm: "Are you sure?", remote: true
+    else
+      link += link_to "Assign User This Class", admin_signups_path(user_id: user.id,
+        lesson_id: lesson.id), id: "assign_#{user.id}", method: :post, 
+        confirm: "Are you sure? This will send an email", remote: true
+    end
+    link.html_safe
   end
 
   # def build_admin_table_body(semester, num_days)
