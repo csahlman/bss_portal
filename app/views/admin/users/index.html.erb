@@ -12,6 +12,9 @@
     <%= f.input :name %>
     <%= f.input :company %>
     <%= f.input :email %>
+    <%= f.input :linked_in %>
+    <%= f.input :facebook %>
+    <%= f.input :twitter %>
     <%= f.button :submit, "Create User" %>
   <% end %>
 
@@ -34,7 +37,7 @@
     <% @inactive.each do |user| %>
       <li>
         <%= link_to user.name, user %>: 
-        <%= link_to "Make Active", make_active_admin_user(user),
+        <%= link_to "Make Active", make_active_admin_user_path(user),
           method: :put, id: "user_#{user.id}", remote: true %>
       </li>
     <% end %>

@@ -55,7 +55,10 @@ class User < ActiveRecord::Base
   def set_user_attributes(user_hash)
     self.email = user_hash[:email]
     self.name = user_hash[:name]
-    self.company = user_hash[:company] 
+    self.company = user_hash[:company]
+    self.linked_in = user_hash[:linked_in]
+    self.facebook = user_hash[:facebook]
+    self.twitter = user_hash[:twitter] 
   end
 
   def set_expiration_time

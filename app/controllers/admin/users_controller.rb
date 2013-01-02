@@ -10,7 +10,7 @@ class Admin::UsersController < Admin::BaseController
     @user.set_expiration_time
     @password = @user.set_random_password
     if @user.save
-      # UserMailer.first_login(@user, @password).deliver
+      UserMailer.first_login(@user, @password).deliver
       # send an email using delayed job
       redirect_to admin_path, flash: { success: "created user" }
     else
