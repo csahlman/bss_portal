@@ -13,6 +13,10 @@ class LessonTrack < ActiveRecord::Base
   belongs_to :lesson
   belongs_to :track
 
+  amoeba do 
+    enable
+  end
+
 
   def to_label
     day_value.to_s

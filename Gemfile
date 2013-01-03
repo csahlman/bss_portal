@@ -41,6 +41,8 @@ gem "paperclip"
 gem 'delayed_job_active_record'
 gem "daemons"
 
+gem 'amoeba'
+
 # gem 'devise'
 
 # To use ActiveModel has_secure_password

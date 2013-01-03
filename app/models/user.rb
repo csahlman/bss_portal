@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  amoeba do 
+    enable
+  end
+  
   def assigned_to_teach?(lesson)
     LessonUser.where("user_id = ? AND lesson_id = ? AND assigned = ?",
       self.id, lesson.id, true).any?

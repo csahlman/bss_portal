@@ -41,11 +41,13 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :summary
   validates_presence_of :short_description
   validates_presence_of :days
-
-
   validates :tracks, presence: true  
 
   scope :saved, where(save_template: true)
+
+  amoeba do 
+    enable
+  end
 
   def add_instructor(user)
     lesson_users.each do |lesson_user|
