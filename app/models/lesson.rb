@@ -28,6 +28,8 @@ class Lesson < ActiveRecord::Base
   has_many :users, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
 
+  has_many :objectives, dependent: :destroy
+
   # has_many :teachers, class_name: "User", 
   #   through: :lesson_teachers
   # has_many :lesson_teachers, dependent: :destroy
