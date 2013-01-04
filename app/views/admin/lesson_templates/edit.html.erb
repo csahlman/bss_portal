@@ -27,7 +27,8 @@
     </div>
     <h1>Add Objectives</h1>
     <%= simple_form_for [:admin, @lesson_template, Objective.new], remote: true do |f| %>
-
+      <%= f.input :objective %>
+      <%= f.button :submit %>
     <% end %>
     </div>
   </div>

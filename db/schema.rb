@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(:version => 20130104114105) do
     t.integer  "lesson_template_id"
   end
 
-  create_table "cloned_lesson_users", :force => true do |t|
-    t.integer  "lesson_clone_id"
-    t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "day_lessons", :force => true do |t|
     t.integer  "day_id"
     t.integer  "lesson_id"
@@ -78,15 +71,6 @@ ActiveRecord::Schema.define(:version => 20130104114105) do
     t.datetime "picture_updated_at"
     t.integer  "lesson_id"
     t.integer  "lesson_template_id"
-  end
-
-  create_table "lesson_clones", :force => true do |t|
-    t.integer  "lesson_id"
-    t.string   "summary"
-    t.text     "description"
-    t.text     "short_description"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
   end
 
   create_table "lesson_days", :force => true do |t|

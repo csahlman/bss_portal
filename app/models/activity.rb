@@ -11,4 +11,5 @@
 
 class Activity < ActiveRecord::Base
   belongs_to :period
+  
 end

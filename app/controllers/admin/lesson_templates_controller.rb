@@ -16,7 +16,7 @@ class Admin::LessonTemplatesController < Admin::BaseController
   end
 
   def edit
-    @lesson_template = LessonTemplate.find(params[:id])
+    @lesson_template = LessonTemplate.includes(periods: :activities).find(params[:id])
   end
 
   def update

@@ -1,4 +1,4 @@
 <%= simple_form_for [:admin, @period, Activity.new], remote: true do |f| %>
-  <%= f.input :activity %>
+  <%= f.input :activity, as: :string %>
   <%= f.button :submit, "Add Activity" %>
 <% end %>

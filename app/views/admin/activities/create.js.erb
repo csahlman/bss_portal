@@ -1,0 +1,3 @@
+$('.new_activity').remove();
+$('#period_li_<%= @period.id %>').append('<%= j render @activity %>');
+$('#period_li_<%= @period.id %>').insertAfter('<%= j render "admin/periods/new_activity_link", period: @period %>');
