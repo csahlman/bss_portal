@@ -17,6 +17,9 @@
         <%= f.input :picture, as: :file, label: "Upload an image" %>
         <%= f.button :submit %>
       <% end %>
+      <ul id="images">
+        <%= render @lesson_template.images %>
+      </ul>
     </div>
     <div class="span5">
     <h1>Add Periods</h1>
