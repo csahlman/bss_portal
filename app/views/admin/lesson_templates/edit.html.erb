@@ -1,6 +1,6 @@
 <div class="span12">
   <div class="row-fluid">
-    <div class="span6">
+    <div class="span2">
     <h1>Edit Current</h1>
     <%= simple_form_for [:admin, @lesson_template], remote: true do |f| %>
       <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
@@ -11,7 +11,14 @@
       <%= f.button :submit, "Update" %>
     <% end %>
     </div>
-    <div class="span6">
+    <div class="span5">
+      <h1>Images</h1>
+      <%= simple_form_for [:admin, @lesson_template, Image.new] do |f| %>
+        <%= f.input :picture, as: :file, label: "Upload an image" %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+    <div class="span5">
     <h1>Add Periods</h1>
     <%= simple_form_for [:admin, @lesson_template, Period.new], remote: true do |f| %>
       <%= f.input :start_time, collection: Period::VALID_TIMES, include_blank: false %>      
@@ -30,6 +37,9 @@
       <%= f.input :objective %>
       <%= f.button :submit %>
     <% end %>
+    <ul id="objectives">
+      <%= render @lesson_template.objectives %>
+    </ul>
     </div>
   </div>
 </div>

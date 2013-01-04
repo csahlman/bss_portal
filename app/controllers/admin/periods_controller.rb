@@ -8,4 +8,9 @@ class Admin::PeriodsController < Admin::BaseController
     @period.save!
   end
 
+  def destroy
+    @period = Period.find(params[:id])
+    @period.destroy
+  end
+
 end

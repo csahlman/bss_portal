@@ -34,6 +34,8 @@ BssNewPortal::Application.routes.draw do
     resources :lesson_templates do
       resources :objectives
       resources :periods
+      resources :images
+      resources :attachments
     end
 
     resources :periods do 

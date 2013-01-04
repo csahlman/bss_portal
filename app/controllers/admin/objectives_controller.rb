@@ -12,4 +12,9 @@ class Admin::ObjectivesController < Admin::BaseController
     @objective.save!
   end
 
+  def destroy
+    @objective = Objective.find(params[:id])
+    @objective.destroy
+  end
+
 end
