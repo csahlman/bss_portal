@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104111147) do
+ActiveRecord::Schema.define(:version => 20130104114105) do
 
   create_table "activities", :force => true do |t|
     t.text     "activity"
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(:version => 20130104111147) do
   end
 
   create_table "lesson_templates", :force => true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.string   "start_time"
+    t.string   "end_time"
     t.string   "title"
     t.text     "overview"
     t.datetime "created_at", :null => false
@@ -155,8 +155,8 @@ ActiveRecord::Schema.define(:version => 20130104111147) do
   end
 
   create_table "periods", :force => true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.string   "start_time"
+    t.string   "end_time"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "lesson_id"

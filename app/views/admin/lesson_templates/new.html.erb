@@ -1,0 +1,11 @@
+<div class="span12">
+  <h1>Create a New Template</h1>
+  <%= simple_form_for [:admin, LessonTemplate.new] do |f| %>
+    <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+    <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+    <%= f.input :title %>
+    <%= f.input :overview %>
+    <%= f.association :tracks, value: Track.all %>
+    <%= f.button :submit, "Continue on next page" %>
+  <% end %>
+</div>
