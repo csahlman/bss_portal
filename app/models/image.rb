@@ -10,11 +10,13 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  lesson_id            :integer
+#  lesson_template_id   :integer
 #
 
 class Image < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :lesson
+  belongs_to :lesson_template
 
   attr_accessible :picture
   has_attached_file :picture

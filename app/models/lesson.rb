@@ -14,7 +14,6 @@
 #
 
 class Lesson < ActiveRecord::Base
-  attr_accessible  :description, :learning_materials, :summary
 
   has_many :attachments
   has_many :images
@@ -28,6 +27,8 @@ class Lesson < ActiveRecord::Base
   has_many :users, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
 
+  has_many :periods, dependent: :destroy
+
   has_many :objectives, dependent: :destroy
 
   # has_many :teachers, class_name: "User", 
@@ -38,10 +39,7 @@ class Lesson < ActiveRecord::Base
 
   # has_many :learning_materials
 
-  validates_presence_of :summary
-  validates_presence_of :short_description
-  validates_presence_of :days
-  validates_presence_of :tracks
+  validates_presence_of :days, :tracks
 
   scope :saved, where(save_template: true)
 

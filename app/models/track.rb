@@ -13,7 +13,10 @@ class Track < ActiveRecord::Base
   attr_accessible :description, :name
 
   has_many :lessons, through: :lesson_tracks
-  has_many :lesson_tracks
+  has_many :lesson_tracks, dependent: :destroy
+
+  has_many :lesson_templates, through: :lesson_template_tracks
+  has_many :lesson_template_tracks, dependent: :destroy
 
   amoeba do 
     enable

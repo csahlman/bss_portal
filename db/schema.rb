@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104102938) do
+ActiveRecord::Schema.define(:version => 20130104111147) do
+
+  create_table "activities", :force => true do |t|
+    t.text     "activity"
+    t.integer  "period_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "attachments", :force => true do |t|
     t.datetime "created_at",            :null => false
@@ -21,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130104102938) do
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
     t.integer  "lesson_id"
+    t.integer  "lesson_template_id"
   end
 
   create_table "cloned_lesson_users", :force => true do |t|
@@ -69,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20130104102938) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.integer  "lesson_id"
+    t.integer  "lesson_template_id"
   end
 
   create_table "lesson_clones", :force => true do |t|
@@ -91,6 +100,22 @@ ActiveRecord::Schema.define(:version => 20130104102938) do
     t.integer  "user_id"
     t.integer  "lesson_id"
     t.boolean  "confirmed"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "lesson_template_tracks", :force => true do |t|
+    t.integer  "lesson_template_id"
+    t.integer  "track_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "lesson_templates", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "title"
+    t.text     "overview"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -127,6 +152,15 @@ ActiveRecord::Schema.define(:version => 20130104102938) do
     t.integer  "lesson_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "periods", :force => true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "lesson_id"
+    t.integer  "lesson_template_id"
   end
 
   create_table "semesters", :force => true do |t|

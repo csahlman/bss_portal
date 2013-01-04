@@ -1,15 +1,14 @@
 # == Schema Information
 #
-# Table name: objectives
+# Table name: activities
 #
 #  id         :integer          not null, primary key
-#  objective  :string(255)
-#  lesson_id  :integer
+#  activity   :text
+#  period_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Objective < ActiveRecord::Base
-  belongs_to :lesson
-  belongs_to :lesson_template
+class Activity < ActiveRecord::Base
+  belongs_to :period
 end
