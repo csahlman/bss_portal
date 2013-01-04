@@ -23,7 +23,7 @@ class LessonTemplate < ActiveRecord::Base
   has_many :tracks, through: :lesson_template_tracks
   has_many :lesson_template_tracks, dependent: :destroy
 
-  validates_presence_of :tracks, :periods, :objectives
+  validates_presence_of :tracks
 
   VALID_TIMES = %w[BeforeHours 9:00AM 9:15AM 9:30AM 9:45AM 10:00AM 10:15AM 10:30AM 10:45AM 
     11:00AM 11:15AM 11:30AM 11:45AM 12:00PM 12:15PM 12:30PM 12:45PM 1:00PM 1:15PM
@@ -36,6 +36,9 @@ class LessonTemplate < ActiveRecord::Base
     self.end_time = params_hash[:end_time]
     self.title = params_hash[:title]
     self.overview = params_hash[:overview]
+    track_ids = params_hash[:track_ids].map { |id| id.to_i }
+    track_ids.delete(0)
+    self.tracks = Track.find(track_ids)
   end
 
 end

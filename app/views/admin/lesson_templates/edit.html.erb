@@ -1,0 +1,34 @@
+<div class="span12">
+  <div class="row-fluid">
+    <div class="span6">
+    <h1>Edit Current</h1>
+    <%= simple_form_for [:admin, @lesson_template], remote: true do |f| %>
+      <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+      <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+      <%= f.input :title %>
+      <%= f.input :overview %>
+      <%= f.association :tracks, value: Track.all %>
+      <%= f.button :submit, "Update" %>
+    <% end %>
+    </div>
+    <div class="span6">
+    <h1>Add Periods</h1>
+    <%= simple_form_for [:admin, @lesson_template, Period.new], remote: true do |f| %>
+      <%= f.input :start_time, collection: Period::VALID_TIMES, include_blank: false %>      
+      <%= f.input :end_time, collection: Period::VALID_TIMES, include_blank: false %>
+      <%= f.button :submit, "Create time period" %>
+    <% end %>
+    <div id="periods">
+      <ul>
+        <% @lesson_template.periods.each do |period| %>
+          <%= render 'admin/periods/new_activity_link', period: period %>
+        <% end %>
+      </ul>
+    </div>
+    <h1>Add Objectives</h1>
+    <%= simple_form_for [:admin, @lesson_template, Objective.new], remote: true do |f| %>
+
+    <% end %>
+    </div>
+  </div>
+</div>

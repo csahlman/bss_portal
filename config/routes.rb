@@ -31,7 +31,14 @@ BssNewPortal::Application.routes.draw do
   resources :class_signups, only: [ :create, :destroy ]
 
   namespace :admin do
-    resources :lesson_templates
+    resources :lesson_templates do
+      resources :objectives
+      resources :periods
+    end
+
+    resources :periods do 
+      resources :activities
+    end
     resources :pages do 
       get 'template', on: :collection
     end

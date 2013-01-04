@@ -1,0 +1,5 @@
+<li>
+  Period: <%= period.to_s %> | 
+  <%= link_to "add activity", new_admin_period_activity_path(period), 
+    id: "period_#{period.id}", remote: true %>
+</li>
