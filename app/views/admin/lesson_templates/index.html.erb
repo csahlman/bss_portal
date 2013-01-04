@@ -1,0 +1,11 @@
+<h1><%= link_to "Create a New Template", new_admin_lesson_template_path %></h1>
+
+<h2>Existing templates</h2>
+<ul>
+<% @lesson_templates.each do |lesson| %>
+  <li id="lesson_template_<%= lesson.id %>"><%= link_to lesson.title, [:admin, lesson] %> | 
+    <%= link_to "Edit", [:edit, :admin, lesson] %> |
+    <%= link_to "Delete", [:admin, lesson], method: :delete, confirm: "Are you sure?",
+      remote: true %></li>
+<% end %>
+</ul>

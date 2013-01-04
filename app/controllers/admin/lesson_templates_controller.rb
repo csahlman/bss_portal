@@ -23,4 +23,17 @@ class Admin::LessonTemplatesController < Admin::BaseController
     @lesson_template = LessonTemplate.find(params[:id])
   end
 
+  def index
+    @lesson_templates = LessonTemplate.all
+  end
+
+  def destroy
+    @lesson_template = LessonTemplate.find(params[:id])
+    @lesson_template.destroy
+  end
+
+  def show
+    @lesson_template = LessonTemplate.includes(:images, :attachments, periods: :activities).find(params[:id])
+  end
+
 end

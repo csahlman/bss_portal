@@ -76,6 +76,14 @@ module LessonsHelper
     link.html_safe
   end
 
+  def track_names lesson_template
+    tracks = ""
+    lesson_template.tracks.each do |track|
+      tracks += "#{track.name} "
+    end
+    tracks
+  end
+
   # def build_admin_table_body(semester, num_days)
   #   table_body = ''
   #   num_days.times do |day|

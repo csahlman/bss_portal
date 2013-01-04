@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104114105) do
+ActiveRecord::Schema.define(:version => 20130104205516) do
 
   create_table "activities", :force => true do |t|
     t.text     "activity"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(:version => 20130104114105) do
     t.datetime "document_updated_at"
     t.integer  "lesson_id"
     t.integer  "lesson_template_id"
+  end
+
+  create_table "cloned_lesson_users", :force => true do |t|
+    t.integer  "lesson_clone_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "day_lessons", :force => true do |t|
@@ -71,6 +78,15 @@ ActiveRecord::Schema.define(:version => 20130104114105) do
     t.datetime "picture_updated_at"
     t.integer  "lesson_id"
     t.integer  "lesson_template_id"
+  end
+
+  create_table "lesson_clones", :force => true do |t|
+    t.integer  "lesson_id"
+    t.string   "summary"
+    t.text     "description"
+    t.text     "short_description"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "lesson_days", :force => true do |t|
@@ -134,8 +150,9 @@ ActiveRecord::Schema.define(:version => 20130104114105) do
   create_table "objectives", :force => true do |t|
     t.string   "objective"
     t.integer  "lesson_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "lesson_template_id"
   end
 
   create_table "periods", :force => true do |t|

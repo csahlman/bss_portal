@@ -1,0 +1,25 @@
+<div class="span8">
+  <h1><%= @lesson_template.title %> | <%= track_names @lesson_template %></h1>
+  <div class="row-fluid">
+    <div class="span4">
+      <h3>Overview</h3>
+      <p><%= @lesson_template.overview %></p>
+      <h3>Objectives</h3>
+      <ul>
+        <% @lesson_template.objectives.each do |objective| %>
+          <li><%= objective.objective %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="span4">
+
+    </div>
+  </div>
+</div>
+<div class="span4">
+  <div class="well sidebar-nav">
+    <% @lesson_template.periods.each do |period| %>
+        
+    <% end %>
+  </div><!--/.well -->
+</div><!--/span-->
