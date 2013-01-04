@@ -56,6 +56,14 @@ class User < ActiveRecord::Base
       self.id, lesson.id, true).any?
   end
 
+  def teaching_ids
+    self.lesson_users.where(confirmed: true).map(&:lesson_id).uniq
+  end
+
+  def teaching?(lesson_id)
+    self.teaching_ids.include?(lesson_id)
+  end
+
   def set_user_attributes(user_hash)
     self.email = user_hash[:email]
     self.name = user_hash[:name]
@@ -70,7 +78,7 @@ class User < ActiveRecord::Base
   end
 
   def set_random_password
-    random_password = (0...8).map{65.+(rand(26)).chr}.join
+    random_password = (0...10).map{65.+(rand(26)).chr}.join
     self.password = random_password
     self.password_confirmation = random_password
     random_password

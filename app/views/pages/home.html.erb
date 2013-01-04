@@ -1,61 +1,26 @@
 <div class="span12">
-  <div class="row-fluid">
-    <div class="span4">
-      <div class="hero-unit">
-        <h4>Signed up to teach:</h4>
-        <ul>
-        <% current_user.lessons.each do |lesson| %>
-          <li id="user_lesson_<%= lesson.id %>">
-            <%= link_to "#{lesson.summary} #{lesson.dates_by_semester(@semester)}", [@semester, lesson] %> | 
-            <%= link_to "withdraw", signup_path(lesson), method: :delete,
-              confirm: "Are you sure?", remote: true %>
-          </li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-    <div class="span7">
-      <div class="hero-unit">
-        <h1><%= @semester.name %> | <%= @semester.location %></h1>
-      </div>
-    </div>
+  <div class="hero-unit">
+    <h1>Welcome to Boston Startup School's Teacher Portal</h1>
+    <p>Please ensure that your 
+      <%= link_to "profile information", edit_user_path(current_user) %>
+      is correct, choose the semester you are interested in, and sign up for those classes 
+      in which you are interested.  You will be notified within a week via email 
+      what classes you have been assigned, and then will be able to edit the curriculum. 
+    </p>
   </div>
   <div class="row-fluid">
-    <table class="table table-bordered" id="main-table">
-    <% if params[:track] %>
-      <thead>
-        <th class="table-day">Day/Date</th>
-        <th><%= params[:track] %></th>
-      </thead>
-      <% @semester.days.each do |day| %>
-        <%= create_modals day.lessons, @semester %>  
-        <tr>
-          <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
-          <td><%= display_classes day.lessons, @track %></td>
-        </tr>
-      <% end %>      
-    <% else %>  
-        <thead>
-          <th class="table-day">Day/Date</th>
-          <th>Development</th>
-          <th>Product</th>
-          <th>Marketing</th>
-          <th>Sales</th>
-        </thead>
-      <% @semester.days.each do |day| %>  
-        <%= create_modals day.lessons, @semester %>
-        <tr>
-          <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
-          <td><%= display_classes day.lessons, @development %></td>
-          <td><%= display_classes day.lessons, @product %></td>
-          <td><%= display_classes day.lessons, @marketing %></td>
-          <td><%= display_classes day.lessons, @sales %></td>
-        </tr>
-      <% end %>
-    <% end %>
-    </table>
+    <div class="span6">
+      <h3>Choose Semester: </h3>
+      <ul>
+        <% @semesters.each do |semester| %>
+        <li><%= link_to semester.to_s, semester %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="span6">
+      <ul>
+        
+      </ul>
+    </div>
   </div>
 </div>
-
-
-
