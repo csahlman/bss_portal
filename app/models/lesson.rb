@@ -53,7 +53,7 @@ class Lesson < ActiveRecord::Base
     lesson_users.each do |lesson_user|
       if lesson_user.assigned? && lesson_user.user_id != user.id
         lesson_user.update_attribute(:assigned, false)
-      elsif lesson_user.user_id = user.id
+      elsif lesson_user.user_id == user.id
         lesson_user.update_attribute(:assigned, true)
       end
     end
