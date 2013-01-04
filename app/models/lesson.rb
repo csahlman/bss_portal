@@ -41,7 +41,7 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :summary
   validates_presence_of :short_description
   validates_presence_of :days
-  validates :tracks, presence: true  
+  validates_presence_of :tracks
 
   scope :saved, where(save_template: true)
 
