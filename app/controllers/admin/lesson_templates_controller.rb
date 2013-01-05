@@ -16,11 +16,13 @@ class Admin::LessonTemplatesController < Admin::BaseController
   end
 
   def edit
-    @lesson_template = LessonTemplate.includes(periods: :activities).find(params[:id])
+    @lesson_template = LessonTemplate.includes(:images, :attachments, :objectives, periods: :activities).find(params[:id])
   end
 
   def update
     @lesson_template = LessonTemplate.find(params[:id])
+    @lesson_template.set_attributes(params[:lesson_template])
+    @lesson_template.save!
   end
 
   def index

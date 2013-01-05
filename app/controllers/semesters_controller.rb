@@ -12,4 +12,5 @@ class SemestersController < ApplicationController
     end
   end
 
+
 end

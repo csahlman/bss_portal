@@ -7,11 +7,20 @@
       <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
       <%= f.input :title %>
       <%= f.input :overview %>
+      <%= f.input :day_value %>
       <%= f.association :tracks, value: Track.all %>
       <%= f.button :submit, "Update" %>
     <% end %>
     </div>
     <div class="span5">
+      <h1>Attachments</h1>
+      <%= simple_form_for [:admin, @lesson_template, Attachment.new] do |f| %>
+        <%= f.input :document, as: :file, label: "Upload Attachment" %>
+        <%= f.button :submit %>
+      <% end %>
+      <ul id="attachments">
+        <%= render @lesson_template.attachments %>
+      </ul>
       <h1>Images</h1>
       <%= simple_form_for [:admin, @lesson_template, Image.new] do |f| %>
         <%= f.input :picture, as: :file, label: "Upload an image" %>

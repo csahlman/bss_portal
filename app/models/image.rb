@@ -19,7 +19,7 @@ class Image < ActiveRecord::Base
   belongs_to :lesson_template
 
   attr_accessible :picture
-  has_attached_file :picture
+  has_attached_file :picture, styles: { thumb: ["50x50#"], mid: ["100x100#"], large: ["300x300#"] }
 
   validates_attachment :picture, :presence => true,
     :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/gif", "image/png"] },

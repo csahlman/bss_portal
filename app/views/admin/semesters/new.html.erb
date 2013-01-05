@@ -1,0 +1,13 @@
+<h1>Create a new semester</h1>
+
+
+<%= simple_form_for [:admin, Semester.new] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :location %>
+  <%= f.input :start_date, as: :string, :input_html => { :class => 'jquery-ui-date'} %>
+  <%= f.input :start_date, :as => :hidden, :input_html => { :id => 'recorded-at-alt'} %>
+  <%= f.input :end_date, as: :string, :input_html => { :class => 'jquery-ui-end'} %>
+  <%= f.input :end_date, :as => :hidden, :input_html => { :id => 'recorded-at-end'} %>  
+  <%= f.input :public %>
+  <%= f.button :submit %>
+<% end %>

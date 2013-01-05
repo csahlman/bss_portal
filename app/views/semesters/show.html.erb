@@ -14,12 +14,12 @@
         </tr>
       <% end %>      
     <% else %>  
-        <thead>
-          <th class="table-day">Day/Date</th>
-          <% @tracks.each do |track| %>
-          <th><%= track.name %></th>
-          <% end %>
-        </thead>
+      <thead>
+        <th class="table-day">Day/Date</th>
+        <% @tracks.each do |track| %>
+        <th><%= track.name %></th>
+        <% end %>
+      </thead>
       <% @semester.days.each do |day| %>  
         <%= create_modals day.lessons, @semester %>
         <tr>

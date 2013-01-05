@@ -22,4 +22,9 @@ $(function() {
     altField: "#recorded-at-alt",
     altFormat: "yy-mm-dd"
   });
+
+  $('.jquery-ui-end').datepicker({
+    altField: "#recorded-at-end",
+    altFormat: "yy-mm-dd"
+  });
 });

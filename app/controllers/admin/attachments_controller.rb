@@ -7,15 +7,28 @@ class Admin::AttachmentsController < Admin::BaseController
   end
 
   def create
-    @lesson = Lesson.find(params[:lesson_id])
-    @semester = Semester.find(params[:semester_id])
-    @attachment = @lesson.attachments.new(params[:attachment])
-    if @attachment.save
-      redirect_to admin_semester_lesson_attachments_path(@semester, @lesson),
-        flash: { success: "Created attachment" }
+    if params[:lesson_id]
+      @lesson = Lesson.find(params[:lesson_id])
+      @semester = Semester.find(params[:semester_id])
+      @attachment = @lesson.attachments.new(params[:attachment])
+      if @attachment.save
+        redirect_to admin_semester_lesson_attachments_path(@semester, @lesson),
+          flash: { success: "Created attachment" }
+      else
+        render 'index'
+      end
     else
-      render 'index'
+      @lesson_template = LessonTemplate.find(params[:lesson_template_id])
+      @attachment = @lesson_template.attachments.new(params[:attachment])
+      if @attachment.save
+        redirect_to [:edit, :admin, @lesson_template], flash: { success: "Created Attachment" }
+      else
+        render 'edit'
+      end
     end
+    
+    
+    
   end
 
   def update

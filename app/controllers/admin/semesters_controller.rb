@@ -12,4 +12,31 @@ class Admin::SemestersController < Admin::BaseController
     @sales = Track.find_by_name("Sales")
   end
 
+  def new
+    
+  end
+
+  def create
+    @semester = Semester.new(params[:semester])
+    if @semester.save
+      redirect_to [:edit, :admin, @semester], flash: { success: "Created semester" }
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @semester = Semester.find(params[:id])
+    @tracks = Track.all
+  end
+
+  def update
+    
+  end
+
+  def destroy
+    
+  end
+
+
 end

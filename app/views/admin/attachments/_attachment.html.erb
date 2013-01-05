@@ -1,0 +1,4 @@
+<li id="attachment_<%= attachment.id %>">
+  <%= link_to attachment.document_file_name, attachment.document.url %> | 
+<%= link_to "delete", [:admin, attachment.lesson_template, attachment], method: :delete,
+  confirm: "Sure?", remote: true %></li>

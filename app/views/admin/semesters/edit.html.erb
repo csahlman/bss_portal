@@ -1,0 +1,31 @@
+<h1>Creating days will prepopulate the date with lessons 
+  cloned from templates marked as default</h1>
+
+<%= simple_form_for [:admin, @semester, Day.new] do |f| %>
+  <%= f.input :day_value %>
+  <%= f.input :date, as: :string, :input_html => { :class => 'jquery-ui-date'} %>
+  <%= f.input :date, :as => :hidden, :input_html => { :id => 'recorded-at-alt'} %>
+  <%= f.button :submit %>
+<% end %>
+
+<div class="span12">
+  <div class="row-fluid">
+    <table class="table table-bordered">
+      <thead>
+        <th class="table-day">Day/Date</th>
+        <% @tracks.each do |track| %>
+        <th><%= track.name %></th>
+        <% end %>
+      </thead>
+      <% @semester.days.each do |day| %>  
+        <tr>
+          <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
+          <% @tracks.each do |track| %>
+            <td><%= display_classes day.lessons, track %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>

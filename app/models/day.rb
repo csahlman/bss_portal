@@ -28,5 +28,11 @@ class Day < ActiveRecord::Base
   def to_s
     "#{day_value} | #{date.strftime("%Y-%m-%d")}"
   end
+
+  def populate_lessons(lesson_templates)
+    lesson_templates.each do |template|
+      lesson = template.create_lesson_clone
+    end
+  end
   
 end

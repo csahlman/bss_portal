@@ -5,7 +5,12 @@ class Admin::DaysController < Admin::BaseController
     @day = @semester.days.new
     @day.date = params[:day][:date]
     @day.day_value = params[:day][:day_value]
-    @day.save!
+    if @day.save
+      @day.populate_lessons(LessonTemplate.where(day_value: @day.day_value))
+      redirect_to [:edit, :admin, @semester], flash: { success: "Created Day" }
+    else
+      render 'edit'
+    end
   end
 
   def destroy
