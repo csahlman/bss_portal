@@ -27,6 +27,8 @@ class LessonTemplate < ActiveRecord::Base
 
   validates_presence_of :tracks, :overview, :day_value, :title, :start_time, :end_time
 
+  default_scope order('day_value ASC')
+
   VALID_TIMES = %w[BeforeHours 9:00AM 9:15AM 9:30AM 9:45AM 10:00AM 10:15AM 10:30AM 10:45AM 
     11:00AM 11:15AM 11:30AM 11:45AM 12:00PM 12:15PM 12:30PM 12:45PM 1:00PM 1:15PM
     1:30PM 1:45PM 2:00PM 2:15PM 2:30PM 2:45PM 3:00PM 3:15PM 3:30PM 3:45PM 4:00PM
@@ -44,8 +46,5 @@ class LessonTemplate < ActiveRecord::Base
     self.tracks = Track.find(track_ids)
   end
 
-  def create_lesson_clone
-    
-  end
 
 end

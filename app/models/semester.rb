@@ -17,10 +17,6 @@ class Semester < ActiveRecord::Base
 
   has_many :days, dependent: :destroy
 
-  def populate_lessons
-    
-  end
-
   def to_s
     "#{self.name} #{self.location}"
   end

@@ -6,7 +6,7 @@ module LessonsHelper
       html_to_return += '<div id="modal_' + lesson.id.to_s + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
       html_to_return += '<div class="modal-header">'
         # html_to_return += '<h1>Being taught by ' + format_users(lesson.teachers) + '</h1>'
-      html_to_return += '<h3>' + lesson.summary + '</h3></div>'
+      html_to_return += '<h3>' + lesson.title + '</h3></div>'
       # html_to_return += '</div>'
       html_to_return += '<div class="modal-body">'
       html_to_return += '<p>' + lesson.short_description + '</p>'
@@ -37,7 +37,7 @@ module LessonsHelper
       lesson.tracks.count > 1 ? css_class = "btn-success" : css_class = "btn-primary"
       lesson.assigned? ? css_class = "btn-danger" : css_class
       if lesson.tracks.include?(track)
-        links.concat link_to (truncate lesson.summary, length: 30, omission: '...'), 
+        links.concat link_to (truncate lesson.title, length: 30, omission: '...'), 
           "#modal_#{lesson.id}", class: "btn btn-block #{css_class}",
           data: { toggle: 'modal' }
         links.concat "<br>"
@@ -50,7 +50,7 @@ module LessonsHelper
     links = ""
     lessons.each do |lesson|
       if lesson.tracks.include?(track)
-        links.concat link_to lesson.summary, admin_semester_lesson_path(semester, lesson), 
+        links.concat link_to lesson.title, admin_semester_lesson_path(semester, lesson), 
           class: "lesson_#{lesson.id}"
         links += " | "
         links.concat link_to "delete ", [:admin, @semester, lesson], class: "lesson_#{lesson.id}",
@@ -98,7 +98,7 @@ module LessonsHelper
   #   links = ''
   #   if lessons.any?
   #     lessons.each do |lesson|
-  #       links.concat link_to lesson.summary, lesson
+  #       links.concat link_to lesson.title, lesson
   #       links.concat '<br>'
   #     end
   #   end
@@ -114,7 +114,7 @@ module LessonsHelper
         
   #     end
   #     link_string.concat "<div id='lesson_#{lesson.id}'>"
-  #     link_string.concat( link_to lesson.summary, [:admin, lesson], 
+  #     link_string.concat( link_to lesson.title, [:admin, lesson], 
   #        class: "lesson_link" )
   #     link_string.concat link_to "  (delete)", admin_lesson_path(lesson), method: :delete,
   #       id: "delete_#{lesson.id}", confirm: "Confirm deletion", remote: true  

@@ -2,7 +2,7 @@
 
 <div class="row-fluid">
   <div class="span8">
-  <h1><%= link_to "Edit #{@lesson.summary}", '/editor' + request.path, 
+  <h1><%= link_to "Edit #{@lesson.title}", '/editor' + request.path, 
     id: "edit_link" %></h1>
 
   <%= link_to "Edit Images", admin_semester_lesson_images_path(@semester, @lesson) %><br>

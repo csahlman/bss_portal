@@ -27,6 +27,7 @@ class Admin::LessonTemplatesController < Admin::BaseController
 
   def index
     @lesson_templates = LessonTemplate.all
+    @day_values = @lesson_templates.map(&:day_value).uniq
   end
 
   def destroy

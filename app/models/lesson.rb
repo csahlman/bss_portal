@@ -2,15 +2,15 @@
 #
 # Table name: lessons
 #
-#  id                :integer          not null, primary key
-#  summary           :string(255)
-#  description       :text
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  lesson_day_id     :integer
-#  short_description :text
-#  save_template     :boolean          default(FALSE)
-#  assigned          :boolean          default(FALSE)
+#  id            :integer          not null, primary key
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  lesson_day_id :integer
+#  assigned      :boolean          default(FALSE)
+#  start_time    :string(255)
+#  end_time      :string(255)
+#  title         :string(255)
+#  overview      :text
 #
 
 class Lesson < ActiveRecord::Base
@@ -39,12 +39,30 @@ class Lesson < ActiveRecord::Base
 
   # has_many :learning_materials
 
-  validates_presence_of :days, :tracks
+  validates_presence_of :tracks
 
-  scope :saved, where(save_template: true)
+  # scope :saved, where(save_template: true)
 
   amoeba do 
     enable
+  end
+
+  def self.create_clone(template)
+    new_lesson = Lesson.new do |lesson|
+      lesson.start_time = template.start_time
+      lesson.end_time = template.end_time
+      lesson.title = template.title
+      lesson.overview = template.overview
+      lesson.tracks = template.tracks
+      lesson.objectives = template.objectives
+      lesson.periods = template.periods
+      lesson.attachments = template.attachments
+      lesson.images = template.images
+      # self.objectives = template.objectives
+      # self.periods = template.periods
+    end  
+    new_lesson.save!
+    new_lesson
   end
 
   def add_instructor(user)
@@ -84,7 +102,7 @@ class Lesson < ActiveRecord::Base
 
   def set_cloned_parameters(params_hash, clone)
     self.short_description = clone.short_description
-    self.summary = clone.summary
+    self.title = clone.title
     self.description = clone.description
     self.save_template = params_hash[:save_template]
     self.tracks = clone.tracks
@@ -93,7 +111,7 @@ class Lesson < ActiveRecord::Base
 
   def set_parameters(params_hash)
     self.short_description = params_hash[:short_description]
-    self.summary = params_hash[:summary]
+    self.title = params_hash[:summary]
     self.description = params_hash[:description]
     self.save_template = params_hash[:save_template]
     if params_hash[:image_ids]

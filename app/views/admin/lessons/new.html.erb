@@ -75,7 +75,7 @@
     <%= simple_form_for [:admin, @semester, Lesson.new] do |f| %>
     <select class="select required" id="lesson_day_ids" name="lesson[lesson_id]" required="required" size="5">
     <% @templates.each do |lesson| %>
-      <option value="<%= lesson.id.to_s %>"><%= lesson.summary %></option>
+      <option value="<%= lesson.id.to_s %>"><%= lesson.title %></option>
     <% end %>  
     </select>
       <%= f.association :days, label: "Days: You can select multiple",

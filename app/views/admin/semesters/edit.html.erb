@@ -21,7 +21,7 @@
         <tr>
           <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
           <% @tracks.each do |track| %>
-            <td><%= display_classes day.lessons, track %></td>
+            <td><%= admin_display_classes day.lessons, track, @semester %></td>
           <% end %>
         </tr>
       <% end %>

@@ -31,8 +31,10 @@ class Day < ActiveRecord::Base
 
   def populate_lessons(lesson_templates)
     lesson_templates.each do |template|
-      lesson = template.create_lesson_clone
+      lesson = Lesson.create_clone(template)
+      self.lessons << lesson
     end
+    save!
   end
   
 end
