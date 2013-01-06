@@ -1,0 +1,3 @@
+<li id="objective_<%= objective.id %>"><%= objective.objective %> | 
+<%= link_to "delete", teachers_lesson_objective_path(objective.lesson, objective),
+  method: :delete, confirm: "Sure?", remote: true %></li>
