@@ -1,8 +1,36 @@
 <h1>Portal for <%= @user.name %></h1>
 
-<h3>You have been assigned to teach the following classes</h3>
+<% if @assigned_to_teach.any? %>
 
-<p>Please confirm </p>
+  <h3>You have been assigned to teach the following classes</h3>
 
-<%  %>
+  <p>Please confirm these classes</p>
+
+  <% @assigned_to_teach.each do |lesson_user| %>
+    <div id="confirmations_<%= lesson_user.id %>">
+    <strong><%= lesson_user.lesson.title %> : 
+      <%= pluralize ((lesson_user.assigned_at_expiration - Time.now)/3600).to_i, "hour" %> remaining. 
+    </strong>
+    <%= link_to "Confirm", confirmations_path(lesson_id: lesson_user.lesson_id, 
+      user_id: lesson_user.user_id), method: :post, id: "confirm_#{lesson_user.id}",
+      class: "btn btn-success", confirm: "Confirm? You will need to email the admin
+      to undo this", remote: true %>
+    <%= link_to "Withdraw", withdrawals_path(lesson_id: lesson_user.lesson_id, 
+      user_id: lesson_user.user_id), method: :post, confirm: "Are you positive?",
+      class: "btn btn-danger", id: "withdraw_#{lesson_user.id}", remote: true %>
+    </div>
+  <% end %>
+
+<% end %>
+
+<% if @teaching_lessons.any? %>
+  <h3>You are scheduled to teach the following: </h3>
+
+  <% @teaching_lessons.each do |lesson| %>
+    <%= lesson.title %> | <%= lesson.start_time %>-<%= lesson.end_time %> 
+    <strong>Day <%= lesson.days.first.to_s %></strong><br>
+    <%= link_to "Edit Curriculum", '#' %><br>
+  <% end %>
+<% end %>
+
 

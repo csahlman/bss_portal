@@ -47,10 +47,6 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  amoeba do 
-    enable
-  end
-
   def interested_in_teaching
     teaching_lessons = []
     lesson_users.where(assigned: false).each do |lesson_user|
@@ -69,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def teaching_ids
-    self.lesson_users.where(confirmed: true).map(&:lesson_id)
+    self.lesson_users.where(confirmed: true).map(&:lesson_id).uniq
   end
 
   def teaching?(lesson_id)

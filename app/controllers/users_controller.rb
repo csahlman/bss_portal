@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    @assigned_to_teach = @user.assigned_to_teach
+    @teaching_lessons = Lesson.find(@user.teaching_ids)
   end
 
   private
