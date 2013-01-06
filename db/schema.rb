@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106152057) do
+ActiveRecord::Schema.define(:version => 20130106211345) do
 
   create_table "activities", :force => true do |t|
     t.text     "activity"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(:version => 20130106152057) do
     t.string   "title"
     t.text     "overview"
     t.integer  "lesson_template_id"
+    t.boolean  "final"
   end
 
   create_table "objectives", :force => true do |t|

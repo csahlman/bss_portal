@@ -11,6 +11,7 @@
 #  title              :string(255)
 #  overview           :text
 #  lesson_template_id :integer
+#  final              :boolean
 #
 
 class Lesson < ActiveRecord::Base
