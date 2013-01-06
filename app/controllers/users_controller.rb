@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
+  before_filter :must_be_self_or_admin
+
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     @user.set_user_attributes(params[:user])
     if @user.save
       redirect_to root_path, flash: { success: "Updated successfully" }
@@ -13,5 +13,17 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  def show
+    
+  end
+
+  private
+
+    def must_be_self_or_admin
+      @user = User.find(params[:id])
+      redirect_to root_path, flash: { error: "You can't access that page" } unless
+        current_user == @user || current_user.admin?
+    end
 
 end

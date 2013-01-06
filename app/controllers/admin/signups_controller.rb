@@ -3,19 +3,16 @@ class Admin::SignupsController < Admin::BaseController
   def create
     @user = User.find(params[:user_id])
     @lesson = Lesson.find(params[:lesson_id])
-    @lesson_user = LessonUser.where('lesson_id = ? AND user_id = ?', params[:lesson_id],  params[:user_id]).last
+    @lesson_user = @user.lesson_users.find_by_lesson_id(@lesson.id)
     @lesson_user.update_attribute(:assigned, true) if @lesson_user
-    @lesson.update_attribute(:assigned, true)
+    UserMailer.delay.confirm_teaching(@user, @lesson)
   end
 
   def destroy
     @user = User.find(params[:user_id])
     @lesson = Lesson.find(params[:lesson_id])
     @lesson_user = @user.lesson_users.where(lesson_id: @lesson.id).last
-    @lesson_user.update_attribute(:assigned, false)
-    unless @lesson.multiple_teachers?
-      @lesson.update_attribute(:assigned, false)
-    end
+    @lesson_user.update_attribute(:assigned, false) if @lesson_user
   end
 
 end

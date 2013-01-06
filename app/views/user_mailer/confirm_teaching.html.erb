@@ -1,0 +1,12 @@
+<h1>Hello <%= @user.name %>, you have been assigned to teach <%= @lesson.title %></h1>
+<h2>The class will be held on <%= @lesson.days.first.date.strftime("%Y-%m-%d") %>
+ from <%= @lesson.start_time %>-<%= @lesson.end_time %></h2>
+
+<p>
+  Please sign into your account portal to confirm this.  If you do not confirm in the next 36 hours
+  we will assign this class to someone else.  
+
+  <%= link_to "Account Portal", user_url(@user) %>
+
+  We thank you for your participation in Boston Startup School.
+</p>

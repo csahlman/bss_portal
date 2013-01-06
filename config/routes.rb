@@ -13,9 +13,12 @@ BssNewPortal::Application.routes.draw do
 
   resources :users, only: [ :edit, :update ]
 
-  resources :users, except: [ :edit, :update, :show ]
+  resources :users, only: [ :edit, :update, :show ]
 
   resources :signups, only: [ :create, :destroy ]
+
+  resources :confirmations, only: [ :create ]
+  resources :withdrawals, only: [ :create ]
 
   controller :sessions do
     get 'sign_in' => :new

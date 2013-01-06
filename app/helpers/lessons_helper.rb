@@ -13,7 +13,7 @@ module LessonsHelper
       html_to_return += '</div>'
       html_to_return += '<div class="modal-footer">'
       html_to_return += link_to("Learn More", [semester, lesson], class: 'btn btn-primary') 
-      html_to_return += link_to("Sign up to teach", signups_path(lesson_id: lesson.id), class: 'btn btn-success', method: :post)
+      html_to_return += link_to("Sign up to teach", signups_path(lesson_id: lesson.id, semester_id: semester.id), class: 'btn btn-success', method: :post)
       html_to_return += '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div></div>'
     end
     raw html_to_return.html_safe

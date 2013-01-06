@@ -50,14 +50,26 @@ class User < ActiveRecord::Base
   amoeba do 
     enable
   end
+
+  def interested_in_teaching
+    teaching_lessons = []
+    lesson_users.where(assigned: false).each do |lesson_user|
+      teaching_lessons << lesson_user.lesson
+    end
+    teaching_lessons
+  end
   
   def assigned_to_teach?(lesson)
     LessonUser.where("user_id = ? AND lesson_id = ? AND assigned = ?",
       self.id, lesson.id, true).any?
   end
 
+  def assigned_to_teach
+    lesson_users.where(assigned: true).where(confirmed: false)
+  end
+
   def teaching_ids
-    self.lesson_users.where(confirmed: true).map(&:lesson_id).uniq
+    self.lesson_users.where(confirmed: true).map(&:lesson_id)
   end
 
   def teaching?(lesson_id)
