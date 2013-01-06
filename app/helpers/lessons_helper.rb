@@ -9,7 +9,7 @@ module LessonsHelper
       html_to_return += '<h3>' + lesson.title + '</h3></div>'
       # html_to_return += '</div>'
       html_to_return += '<div class="modal-body">'
-      html_to_return += '<p>' + lesson.short_description + '</p>'
+      html_to_return += '<p>' + lesson.overview + '</p>'
       html_to_return += '</div>'
       html_to_return += '<div class="modal-footer">'
       html_to_return += link_to("Learn More", [semester, lesson], class: 'btn btn-primary') 
@@ -59,6 +59,7 @@ module LessonsHelper
         links += '<br>'
       end
     end
+    # links += link_to "Add from template", new_admin_lesson_template_path(semester_id: semester.id)
     links.html_safe
   end
 
@@ -84,44 +85,14 @@ module LessonsHelper
     tracks
   end
 
-  # def build_admin_table_body(semester, num_days)
-  #   table_body = ''
-  #   num_days.times do |day|
-  #     table_body += '<tr>'
-  #     table_body += td_for_admin(semester.lesson_tracks.)
+  def default_link lesson_template
+    if lesson_template.default?
+      link_to "Remove Default", toggle_default_admin_lesson_template_path(lesson_template),
+        id: "toggle_#{lesson_template.id}", method: :post, remote: true 
+    else
+      link_to "Make Default", toggle_default_admin_lesson_template_path(lesson_template),
+        id: "toggle_#{lesson_template.id}", method: :post, remote: true
+    end
+  end
 
-  #   end
-  #   table_body.html_safe
-  # end
-
-  # def lesson_link(lessons)
-  #   links = ''
-  #   if lessons.any?
-  #     lessons.each do |lesson|
-  #       links.concat link_to lesson.title, lesson
-  #       links.concat '<br>'
-  #     end
-  #   end
-  #   links.html_safe
-  # end
-
-  # def lesson_or_create_link(lesson_day, track_id)
-  #   lessons = lesson_day.lessons
-  #   link_string = ''
-  #   lessons.each do |lesson|
-  #     tracks = lesson.tracks
-  #     if tracks.map(&:id).include?(track_id)
-        
-  #     end
-  #     link_string.concat "<div id='lesson_#{lesson.id}'>"
-  #     link_string.concat( link_to lesson.title, [:admin, lesson], 
-  #        class: "lesson_link" )
-  #     link_string.concat link_to "  (delete)", admin_lesson_path(lesson), method: :delete,
-  #       id: "delete_#{lesson.id}", confirm: "Confirm deletion", remote: true  
-  #     link_string.concat "<br></div>"
-  #   end
-  #   link_string.concat link_to "(add new)", 
-  #     new_admin_lesson_path(track_id: track_id, lesson_day_id: lesson_day.id)
-  #   link_string.html_safe
-  # end
 end

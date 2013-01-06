@@ -7,7 +7,7 @@ class Admin::DaysController < Admin::BaseController
     @day.day_value = params[:day][:day_value]
     if @day.save
       @day.populate_lessons(LessonTemplate.where(day_value: @day.day_value))
-      redirect_to [:edit, :admin, @semester], flash: { success: "Created Day" }
+      redirect_to [:admin, @semester], flash: { success: "Created Day" }
     else
       render 'edit'
     end

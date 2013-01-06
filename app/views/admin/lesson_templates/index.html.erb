@@ -3,9 +3,13 @@
 <h2>Existing templates</h2>
 <ul>
 <% @lesson_templates.each do |lesson| %>
-  <li id="lesson_template_<%= lesson.id %>"><%= link_to lesson.title, [:admin, lesson] %> | 
+  <li id="lesson_template_<%= lesson.id %>">
+    <strong>Day <%= lesson.day_value %></strong> | 
+    <%= link_to lesson.title, [:admin, lesson] %> <%= track_names lesson %> | 
     <%= link_to "Edit", [:edit, :admin, lesson] %> |
     <%= link_to "Delete", [:admin, lesson], method: :delete, confirm: "Are you sure?",
-      remote: true %></li>
+      remote: true %> | 
+    <%= default_link lesson %>
+  </li>
 <% end %>
 </ul>

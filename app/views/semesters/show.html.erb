@@ -1,36 +1,43 @@
 <div class="span12">
   <div class="row-fluid">
-    <table class="table table-bordered" id="main-table">
-    <% if params[:track] %>
-      <thead>
-        <th class="table-day">Day/Date</th>
-        <th><%= params[:track] %></th>
-      </thead>
-      <% @semester.days.each do |day| %>
-        <%= create_modals day.lessons, @semester %>  
-        <tr>
-          <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
-          <td><%= display_classes day.lessons, @track %></td>
-        </tr>
-      <% end %>      
-    <% else %>  
-      <thead>
-        <th class="table-day">Day/Date</th>
-        <% @tracks.each do |track| %>
-        <th><%= track.name %></th>
-        <% end %>
-      </thead>
-      <% @semester.days.each do |day| %>  
-        <%= create_modals day.lessons, @semester %>
-        <tr>
-          <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
+    <div class="span9">
+      <table class="table table-bordered" id="main-table">
+      <% if params[:track] %>
+        <thead>
+          <th class="table-day">Day/Date</th>
+          <th><%= params[:track] %></th>
+        </thead>
+        <% @semester.days.each do |day| %>
+          <%= create_modals day.lessons, @semester %>  
+          <tr>
+            <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
+            <td><%= display_classes day.lessons, @track %></td>
+          </tr>
+        <% end %>      
+      <% else %>  
+        <thead>
+          <th class="table-day">Day/Date</th>
           <% @tracks.each do |track| %>
-            <td><%= display_classes day.lessons, track %></td>
+          <th><%= track.name %></th>
           <% end %>
-        </tr>
+        </thead>
+        <% @semester.days.each do |day| %>  
+          <%= create_modals day.lessons, @semester %>
+          <tr>
+            <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
+            <% @tracks.each do |track| %>
+              <td><%= display_classes day.lessons, track %></td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-    </table>
+      </table>
+    </div>
+    <div class="span3">
+      <div class="sidebar-nav well">
+        Placeholder for signed up classes
+      </div>
+    </div>
   </div>
 </div>
 

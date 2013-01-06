@@ -25,6 +25,8 @@ class LessonTemplate < ActiveRecord::Base
   has_many :tracks, through: :lesson_template_tracks
   has_many :lesson_template_tracks, dependent: :destroy
 
+  has_many :lessons
+
   validates_presence_of :tracks, :overview, :day_value, :title, :start_time, :end_time
 
   default_scope order('day_value ASC')

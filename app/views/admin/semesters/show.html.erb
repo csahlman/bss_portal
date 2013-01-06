@@ -1,10 +1,19 @@
-<h1><%= @semester.name %> | <%= @semester.location %>
+<h1><%= @semester.name %> | <%= @semester.location %> 
+  <%= @semester.public? ? "(Public)" : "(Private)" %>
 <small><%= link_to "Edit", edit_admin_semester_path(@semester) %></small>
 </h1>
 
-<%= link_to "Add new lesson", new_admin_semester_lesson_path(@semester) %><br>
+<h3>Creating days will prepopulate the date with lessons 
+  cloned from templates marked as default</h3>
 
+<%= simple_form_for [:admin, @semester, Day.new] do |f| %>
+  <%= f.input :day_value %>
+  <%= f.input :date, as: :string, :input_html => { :class => 'jquery-ui-date'} %>
+  <%= f.input :date, :as => :hidden, :input_html => { :id => 'recorded-at-alt'} %>
+  <%= f.button :submit %>
+<% end %>
 
+<%= link_to "Create New Templates", new_admin_lesson_template_path %><br>
 <%= link_to "Back", admin_semesters_path %>
 
 <div class="row-fluid">

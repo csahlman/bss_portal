@@ -13,7 +13,7 @@
 class Day < ActiveRecord::Base
   belongs_to :semester
 
-  has_many :lessons, through: :day_lessons
+  has_many :lessons, through: :day_lessons, dependent: :destroy
   has_many :day_lessons, dependent: :destroy
 
   validates_presence_of :date

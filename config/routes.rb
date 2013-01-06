@@ -32,6 +32,7 @@ BssNewPortal::Application.routes.draw do
 
   namespace :admin do
     resources :lesson_templates do
+      post :toggle_default, on: :member
       resources :objectives
       resources :periods
       resources :images

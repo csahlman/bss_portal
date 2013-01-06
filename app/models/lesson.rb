@@ -2,15 +2,15 @@
 #
 # Table name: lessons
 #
-#  id            :integer          not null, primary key
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  lesson_day_id :integer
-#  assigned      :boolean          default(FALSE)
-#  start_time    :string(255)
-#  end_time      :string(255)
-#  title         :string(255)
-#  overview      :text
+#  id                 :integer          not null, primary key
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  assigned           :boolean          default(FALSE)
+#  start_time         :string(255)
+#  end_time           :string(255)
+#  title              :string(255)
+#  overview           :text
+#  lesson_template_id :integer
 #
 
 class Lesson < ActiveRecord::Base
@@ -30,6 +30,8 @@ class Lesson < ActiveRecord::Base
   has_many :periods, dependent: :destroy
 
   has_many :objectives, dependent: :destroy
+
+  belongs_to :lesson_template
 
   # has_many :teachers, class_name: "User", 
   #   through: :lesson_teachers
@@ -53,6 +55,7 @@ class Lesson < ActiveRecord::Base
       lesson.end_time = template.end_time
       lesson.title = template.title
       lesson.overview = template.overview
+      lesson.lesson_template_id = template.id
       lesson.tracks = template.tracks
       lesson.objectives = template.objectives
       lesson.periods = template.periods

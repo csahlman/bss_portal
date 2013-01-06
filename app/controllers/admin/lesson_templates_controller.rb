@@ -39,4 +39,9 @@ class Admin::LessonTemplatesController < Admin::BaseController
     @lesson_template = LessonTemplate.includes(:images, :attachments, periods: :activities).find(params[:id])
   end
 
+  def toggle_default
+    @lesson_template = LessonTemplate.find(params[:id])
+    @lesson_template.toggle!(:default)
+  end
+
 end

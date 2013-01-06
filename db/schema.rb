@@ -11,11 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105130020) do
+ActiveRecord::Schema.define(:version => 20130106122442) do
 
   create_table "activities", :force => true do |t|
     t.text     "activity"
     t.integer  "period_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "admin_lessons", :force => true do |t|
+    t.integer  "admin_id"
+    t.integer  "lesson_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -139,14 +146,14 @@ ActiveRecord::Schema.define(:version => 20130105130020) do
   end
 
   create_table "lessons", :force => true do |t|
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.integer  "lesson_day_id"
-    t.boolean  "assigned",      :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "assigned",           :default => false
     t.string   "start_time"
     t.string   "end_time"
     t.string   "title"
     t.text     "overview"
+    t.integer  "lesson_template_id"
   end
 
   create_table "objectives", :force => true do |t|

@@ -1,12 +1,8 @@
 class PagesController < ApplicationController
 
   def home
-    @semesters = Semester.all
+    @semesters = Semester.public
   end
 
-  def index
-    @semester = Semester.first
-    @lesson = Lesson.last
-  end
 
 end

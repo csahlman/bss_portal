@@ -17,6 +17,8 @@ class Semester < ActiveRecord::Base
 
   has_many :days, dependent: :destroy
 
+  scope :public, where(public: true)
+
   def to_s
     "#{self.name} #{self.location}"
   end
