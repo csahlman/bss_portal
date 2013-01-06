@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
     lesson_users.where(assigned: true).where(confirmed: false)
   end
 
+  def confirmed_teacher?
+    self.lesson_users.where(confirmed: true).any?
+  end
+
   def teaching_ids
     self.lesson_users.where(confirmed: true).map(&:lesson_id).uniq
   end

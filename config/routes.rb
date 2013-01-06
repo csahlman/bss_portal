@@ -68,7 +68,16 @@ BssNewPortal::Application.routes.draw do
 
   namespace :teachers do 
     # namespace for teacher edits
-    resources :lessons, only: [ :edit, :update, :show ]
+    resources :lessons, only: [ :edit, :update, :show ] do
+      resources :attachments
+      resources :images
+      resources :periods
+      resources :objectives
+    end
+
+    resources :periods do 
+      resources :activities
+    end
   end
 
   get 'tracks/:track_name', to: 'tracks#show', as: :track_name
