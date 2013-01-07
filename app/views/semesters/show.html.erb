@@ -33,6 +33,7 @@
       <% end %>
       </table>
     </div>
+    <% if current_user.interested_in_teaching.any? %>
     <div class="span3">
       <div class="sidebar-nav well">
         <ul>
@@ -47,6 +48,7 @@
         </ul>
       </div>
     </div>
+    <% end %>
   </div>
 </div>
 
