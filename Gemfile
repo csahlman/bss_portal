@@ -40,6 +40,7 @@ gem 'mercury-rails'
 gem "paperclip"
 gem 'delayed_job_active_record'
 gem "daemons"
+gem 'acts_as_list'
 
 # gem 'amoeba'
 

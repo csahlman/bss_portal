@@ -1,5 +1,7 @@
 <li id="period_li_<%= period.id %>">
-  Period: <%= period.to_s %> | 
+  Period: <%= period.to_s %>
+  <%= decrement_link "period", period.id, period.lesson_template.id %> 
+  <%= increment_link "period", period.id, period.lesson_template.id %>  | 
   <%= link_to "delete", [:admin, period.lesson_template, period], method: :delete, 
     confirm: "Sure?", remote: true %> | 
   <%= link_to "add activity", new_admin_period_activity_path(period), 

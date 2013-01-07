@@ -18,9 +18,9 @@ class LessonTemplate < ActiveRecord::Base
   has_many :attachments
   has_many :images
 
-  has_many :objectives, dependent: :destroy
+  has_many :objectives, order: 'position', dependent: :destroy
 
-  has_many :periods, dependent: :destroy
+  has_many :periods, order: 'position', dependent: :destroy
 
   has_many :tracks, through: :lesson_template_tracks
   has_many :lesson_template_tracks, dependent: :destroy
@@ -29,7 +29,7 @@ class LessonTemplate < ActiveRecord::Base
 
   validates_presence_of :tracks, :overview, :day_value, :title, :start_time, :end_time
 
-  default_scope order('day_value ASC')
+  scope :days, order('day_value ASC')
 
   VALID_TIMES = %w[BeforeHours 9:00AM 9:15AM 9:30AM 9:45AM 10:00AM 10:15AM 10:30AM 10:45AM 
     11:00AM 11:15AM 11:30AM 11:45AM 12:00PM 12:15PM 12:30PM 12:45PM 1:00PM 1:15PM

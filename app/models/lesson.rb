@@ -28,23 +28,13 @@ class Lesson < ActiveRecord::Base
   has_many :users, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
 
-  has_many :periods, dependent: :destroy
+  has_many :periods, order: 'position', dependent: :destroy
 
-  has_many :objectives, dependent: :destroy
+  has_many :objectives, order: 'position', dependent: :destroy
 
   belongs_to :lesson_template
 
-  # has_many :teachers, class_name: "User", 
-  #   through: :lesson_teachers
-  # has_many :lesson_teachers, dependent: :destroy
-
-  # has_many :photos or something
-
-  # has_many :learning_materials
-
   validates_presence_of :tracks
-
-  # scope :saved, where(save_template: true)
 
   VALID_TIMES = %w[BeforeHours 9:00AM 9:15AM 9:30AM 9:45AM 10:00AM 10:15AM 10:30AM 10:45AM 
     11:00AM 11:15AM 11:30AM 11:45AM 12:00PM 12:15PM 12:30PM 12:45PM 1:00PM 1:15PM

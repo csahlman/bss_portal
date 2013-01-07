@@ -8,9 +8,13 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  lesson_template_id :integer
+#  position           :integer
 #
 
 class Objective < ActiveRecord::Base
   belongs_to :lesson
   belongs_to :lesson_template
+
+  acts_as_list :scope => :lesson_template
+
 end

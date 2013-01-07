@@ -6,6 +6,8 @@ BssNewPortal::Application.routes.draw do
 
   get 'pages/index'
 
+
+
   resources :tracks, only: [ :show, :index ]
   resources :semesters, only: [ :show, :index ] do  
     resources :lessons, only: [ :show, :index ]
@@ -34,6 +36,10 @@ BssNewPortal::Application.routes.draw do
   resources :class_signups, only: [ :create, :destroy ]
 
   namespace :admin do
+
+    resource :decrement_list, only: [ :create ]
+    resource :increment_list, only: [ :create ]
+
     resources :lesson_templates do
       post :toggle_default, on: :member
       resources :objectives

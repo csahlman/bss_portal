@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106211345) do
+ActiveRecord::Schema.define(:version => 20130107153252) do
 
   create_table "activities", :force => true do |t|
     t.text     "activity"
     t.integer  "period_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
 
   create_table "attachments", :force => true do |t|
@@ -143,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20130106211345) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "lesson_template_id"
+    t.integer  "position"
   end
 
   create_table "periods", :force => true do |t|
@@ -152,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20130106211345) do
     t.datetime "updated_at",         :null => false
     t.integer  "lesson_id"
     t.integer  "lesson_template_id"
+    t.integer  "position"
   end
 
   create_table "semesters", :force => true do |t|

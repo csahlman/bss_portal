@@ -9,12 +9,17 @@
 #  updated_at         :datetime         not null
 #  lesson_id          :integer
 #  lesson_template_id :integer
+#  position           :integer
 #
 
 class Period < ActiveRecord::Base
-  has_many :activities
+
+  has_many :activities, order: 'position', dependent: :destroy
+
   belongs_to :lesson
-  belongs_to :lesson_template
+  belongs_to :lesson_template  
+
+  acts_as_list :scope => :lesson_template
 
   VALID_TIMES = %w[BeforeHours 9:00AM 9:15AM 9:30AM 9:45AM 10:00AM 10:15AM 10:30AM 10:45AM 
     11:00AM 11:15AM 11:30AM 11:45AM 12:00PM 12:15PM 12:30PM 12:45PM 1:00PM 1:15PM

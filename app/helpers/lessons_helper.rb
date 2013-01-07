@@ -95,4 +95,14 @@ module LessonsHelper
     end
   end
 
+  def increment_link(type, id, lesson_template_id)
+    link_to '(+)', admin_increment_list_path(list_type: type, id: id, 
+      lesson_id: lesson_template_id), method: :post
+  end
+
+  def decrement_link(type, id, lesson_template_id)
+    link_to '(-)', admin_decrement_list_path(list_type: type, id: id, 
+      lesson_id: lesson_template_id), method: :post
+  end
+
 end
