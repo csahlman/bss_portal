@@ -11,4 +11,9 @@ class Admin::ActivityListItemsController < Admin::BaseController
     @list_item.save!
   end
 
+  def destroy
+    @list_item = ActivityListItem.find(params[:id])
+    @list_item.destroy
+  end
+
 end

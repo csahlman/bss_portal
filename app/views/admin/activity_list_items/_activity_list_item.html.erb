@@ -1,3 +1,5 @@
-<li>
-  <%= activity_list_item.list_item %>
+<li id="list_item_<%= activity_list_item.id %>">
+  <%= activity_list_item.list_item %> | 
+  <%= link_to 'delete', [:admin, activity_list_item.activity, activity_list_item],
+   method: :delete, remote: true %>
 </li>
