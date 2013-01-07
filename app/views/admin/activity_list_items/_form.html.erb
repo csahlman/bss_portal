@@ -1,0 +1,4 @@
+<%= simple_form_for [:admin, @activity, ActivityListItem.new], remote: true do |f| %>
+  <%= f.input :list_item %>
+  <%= f.button :submit %>
+<% end %>

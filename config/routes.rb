@@ -37,6 +37,10 @@ BssNewPortal::Application.routes.draw do
 
   namespace :admin do
 
+    resources :activities do 
+      resources :activity_list_items, only: [ :new, :create ]
+    end
+
     resource :decrement_list, only: [ :create ]
     resource :increment_list, only: [ :create ]
 
