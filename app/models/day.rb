@@ -19,9 +19,6 @@ class Day < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :day_value
 
-  amoeba do 
-    enable
-  end
 
   default_scope order('day_value ASC')
 

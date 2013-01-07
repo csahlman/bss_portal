@@ -16,7 +16,4 @@ class LessonUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
 
-  amoeba do 
-    enable
-  end
 end

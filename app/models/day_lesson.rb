@@ -15,7 +15,5 @@ class DayLesson < ActiveRecord::Base
   belongs_to :day
   belongs_to :lesson
 
-  amoeba do 
-    enable
-  end
+
 end
