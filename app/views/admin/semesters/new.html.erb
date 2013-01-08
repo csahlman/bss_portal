@@ -1,4 +1,6 @@
-<%= content_for(:header) %>
+<%= content_for(:header) do %>
+  <h1>Create New Semester</h1>
+<% end %>
 
 <div class="widget-box">
   <div class="widget-title">
@@ -13,9 +15,8 @@
       <%= f.input :end_date, as: :string, :input_html => { :class => 'jquery-ui-end'} %>
       <%= f.input :end_date, :as => :hidden, :input_html => { :id => 'recorded-at-end'} %>  
       <%= f.input :public %>
-      <%= f.button :submit %>
+      <%= f.button :wrapped_button, "Submit" %>
     <% end %>
 
   </div>
 </div>
-<h1>Create a new semester</h1>

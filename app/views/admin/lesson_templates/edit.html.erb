@@ -1,17 +1,72 @@
-<div class="span12">
-  <div class="row-fluid">
-    <div class="span2">
-    <h1>Edit Current</h1>
-    <%= simple_form_for [:admin, @lesson_template], remote: true do |f| %>
-      <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
-      <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
-      <%= f.input :title %>
-      <%= f.input :overview %>
-      <%= f.input :day_value %>
-      <%= f.association :tracks, value: Track.all %>
-      <%= f.button :submit, "Update" %>
-    <% end %>
+<%= content_for(:header) do %>
+  <h1>Edit: <%= @lesson_template.title %> <strong>Day <%= @lesson_template.day_value %></strong> 
+   <%= link_to "(View)", [:admin, @lesson_template] %></h1>
+<% end %>
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="widget-box">
+      <div class="widget-title">
+        <h5>Current Template Info</h5>
+      </div>
+      <div class="widget-content nopadding">
+        <%= simple_form_for [:admin, @lesson_template], html: { class: "form-horizontal" },
+           remote: true do |f| %>
+          <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+          <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+          <%= f.input :title %>
+          <%= f.input :overview, input_html: { rows: 13 } %>
+          <%= f.input :day_value %>
+          <%= f.association :tracks, value: Track.all %>
+          <%= f.button :wrapped_button, "Update" %>
+        <% end %>
+      </div>
     </div>
+  </div>
+  <div class="span6">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Add Periods</h5>
+          </div>
+          <div class="widget-content">
+            <%= simple_form_for [:admin, @lesson_template, Period.new], 
+              html: { class: "form-horizontal" },remote: true do |f| %>
+              <%= f.input :start_time, collection: Period::VALID_TIMES, include_blank: false %>      
+              <%= f.input :end_time, collection: Period::VALID_TIMES, include_blank: false %>
+              <%= f.button :wrapped_button, "Create time period" %>
+            <% end %>
+            <div id="periods">
+              <ul class="site-stats">
+                <% @lesson_template.periods.each do |period| %>
+                  <%= render 'admin/periods/new_activity_link', period: period %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="widget-box">
+        <div class="widget-title">
+          <h5>Add Objectives</h5>
+        </div>
+        <div class="widget-content">
+          <%= simple_form_for [:admin, @lesson_template, Objective.new], 
+              html: { class: "form-horizontal" }, remote: true do |f| %>
+            <%= f.input :objective %>
+            <%= f.button :wrapped_button %>
+          <% end %>
+          <ul id="objectives" class="site-stats">
+            <%= render @lesson_template.objectives %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <div class="span5">
       <h1>Attachments</h1>
       <%= simple_form_for [:admin, @lesson_template, Attachment.new] do |f| %>
@@ -30,28 +85,3 @@
         <%= render @lesson_template.images %>
       </ul>
     </div>
-    <div class="span5">
-    <h1>Add Periods</h1>
-    <%= simple_form_for [:admin, @lesson_template, Period.new], remote: true do |f| %>
-      <%= f.input :start_time, collection: Period::VALID_TIMES, include_blank: false %>      
-      <%= f.input :end_time, collection: Period::VALID_TIMES, include_blank: false %>
-      <%= f.button :submit, "Create time period" %>
-    <% end %>
-    <div id="periods">
-      <ul>
-        <% @lesson_template.periods.each do |period| %>
-          <%= render 'admin/periods/new_activity_link', period: period %>
-        <% end %>
-      </ul>
-    </div>
-    <h1>Add Objectives</h1>
-    <%= simple_form_for [:admin, @lesson_template, Objective.new], remote: true do |f| %>
-      <%= f.input :objective %>
-      <%= f.button :submit %>
-    <% end %>
-    <ul id="objectives">
-      <%= render @lesson_template.objectives %>
-    </ul>
-    </div>
-  </div>
-</div>
