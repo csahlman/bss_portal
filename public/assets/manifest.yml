@@ -137,6 +137,8 @@
 !binary "YXBwbGljYXRpb24vaW5kZXguY3Nz": application-b3e3aa9ac6d9d2b4f8161e2452dd39fa.css
 !binary "bWVyY3VyeS5jc3M=": mercury-0ab959ca80f06d319d4f78cd17c02e50.css
 !binary "bWVyY3VyeS9pbmRleC5jc3M=": mercury-0ab959ca80f06d319d4f78cd17c02e50.css
+!binary "dW5pY29ybi5ibHVlLmNzcw==": unicorn.blue-207c6d8d3c1eeec474c102e9f8ba1a78.css
+!binary "dW5pY29ybi9pbmRleC5ibHVlLmNzcw==": unicorn.blue-207c6d8d3c1eeec474c102e9f8ba1a78.css
 mercury/button.png: mercury/button-1761c70e8456d8ddae4e0caca3a58c21.png
 mercury/button/index.png: mercury/button-1761c70e8456d8ddae4e0caca3a58c21.png
 mercury/close.png: mercury/close-4020eb2f764665b733d1a59209b73dd9.png
@@ -194,8 +196,6 @@ mercury/toolbar/primary/user.png: mercury/toolbar/primary/user-cc89e14e7345b953b
 mercury/toolbar/primary/user/index.png: mercury/toolbar/primary/user-cc89e14e7345b953bae231dd63353540.png
 mercury/toolbar/snippets/buttons.png: mercury/toolbar/snippets/buttons-7c1a61a1617e6d8be4ce6f78f0e961c7.png
 mercury/toolbar/snippets/buttons/index.png: mercury/toolbar/snippets/buttons-7c1a61a1617e6d8be4ce6f78f0e961c7.png
-!binary "anF1ZXJ5LTEuNy5qcw==": jquery-1.7-9f784d5a46aaf6840f0b08f346115028.js
-!binary "anF1ZXJ5LTEvaW5kZXguNy5qcw==": jquery-1.7-9f784d5a46aaf6840f0b08f346115028.js
 fontawesome-webfont.eot: fontawesome-webfont-86a6da438b901860c3a54e21f9098bf8.eot
 fontawesome-webfont/index.eot: fontawesome-webfont-86a6da438b901860c3a54e21f9098bf8.eot
 fontawesome-webfont.svg: fontawesome-webfont-c3f3594758768fbb43eae746d18b3b50.svg
