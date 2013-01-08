@@ -1,4 +1,4 @@
-<div class="span12">
+<div class="span10 well">
   <h1>Create a New Template</h1>
   <%= simple_form_for [:admin, LessonTemplate.new] do |f| %>
     <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>

@@ -11,12 +11,15 @@
 #  picture_updated_at   :datetime
 #  lesson_id            :integer
 #  lesson_template_id   :integer
+#  user_id              :integer
 #
 
 class Image < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :lesson
   belongs_to :lesson_template
+
+  belongs_to :user
 
   attr_accessible :picture
   has_attached_file :picture, styles: { thumb: ["50x50#"], mid: ["100x100#"], large: ["300x300#"] }

@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
   has_many :lessons, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
 
+  has_one :image, dependent: :destroy
+
   # has_many :confirmed_lessons, class_name: "Lesson", 
   #   through: :lesson_teachers
   # has_many :lesson_teachers, dependent: :destroy
@@ -56,8 +58,7 @@ class User < ActiveRecord::Base
   end
   
   def assigned_to_teach?(lesson)
-    LessonUser.where("user_id = ? AND lesson_id = ? AND assigned = ?",
-      self.id, lesson.id, true).any?
+    lesson_users.where('lesson_id = ? AND assigned = ?', lesson.id, true).any?
   end
 
   def assigned_to_teach
@@ -65,11 +66,11 @@ class User < ActiveRecord::Base
   end
 
   def confirmed_teacher?
-    self.lesson_users.where(confirmed: true).any?
+    lesson_users.where(confirmed: true).any?
   end
 
   def teaching_ids
-    self.lesson_users.where(confirmed: true).map(&:lesson_id).uniq
+    lesson_users.where(confirmed: true).map(&:lesson_id).uniq
   end
 
   def teaching?(lesson_id)

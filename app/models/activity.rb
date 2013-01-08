@@ -8,7 +8,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  position   :integer
-#  parent_id  :integer
 #
 
 class Activity < ActiveRecord::Base
