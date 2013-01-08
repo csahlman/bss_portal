@@ -133,8 +133,10 @@
 !binary "YXBwbGljYXRpb24vaW5kZXguanM=": application-7d9acaafd5f4c7339fff25727b8383dd.js
 !binary "bWVyY3VyeS5qcw==": mercury-babeea2c02bea94a1dd85107e2e900bc.js
 !binary "bWVyY3VyeS9pbmRleC5qcw==": mercury-babeea2c02bea94a1dd85107e2e900bc.js
-!binary "YXBwbGljYXRpb24uY3Nz": application-dbbc53d489b5d1890d0bf488a572d65b.css
-!binary "YXBwbGljYXRpb24vaW5kZXguY3Nz": application-dbbc53d489b5d1890d0bf488a572d65b.css
+!binary "YXBwbGljYXRpb24tYWRtaW4uY3Nz": application-admin-dbbc53d489b5d1890d0bf488a572d65b.css
+!binary "YXBwbGljYXRpb24tYWRtaW4vaW5kZXguY3Nz": application-admin-dbbc53d489b5d1890d0bf488a572d65b.css
+!binary "YXBwbGljYXRpb24uY3Nz": application-b3e3aa9ac6d9d2b4f8161e2452dd39fa.css
+!binary "YXBwbGljYXRpb24vaW5kZXguY3Nz": application-b3e3aa9ac6d9d2b4f8161e2452dd39fa.css
 !binary "bWVyY3VyeS5jc3M=": mercury-0ab959ca80f06d319d4f78cd17c02e50.css
 !binary "bWVyY3VyeS9pbmRleC5jc3M=": mercury-0ab959ca80f06d319d4f78cd17c02e50.css
 mercury/button.png: mercury/button-1761c70e8456d8ddae4e0caca3a58c21.png
