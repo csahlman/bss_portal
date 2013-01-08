@@ -16,6 +16,7 @@
 //= require jquery.ui.datepicker
 //= require twitter/bootstrap
 //= require_self
+//= require_tree .
 
 $(function() {
   $('.jquery-ui-date').datepicker({
