@@ -5,21 +5,59 @@
 
 <div class="row-fluid">
   <div class="span6">
-    <div class="widget-box">
-      <div class="widget-title">
-        <h5>Current Template Info</h5>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Current Template Info</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <%= simple_form_for [:admin, @lesson_template], html: { class: "form-horizontal" },
+               remote: true do |f| %>
+              <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+              <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+              <%= f.input :title %>
+              <%= f.input :overview, input_html: { rows: 13 } %>
+              <%= f.input :day_value %>
+              <%= f.association :tracks, value: Track.all %>
+              <%= f.button :wrapped_button, "Update" %>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="widget-content nopadding">
-        <%= simple_form_for [:admin, @lesson_template], html: { class: "form-horizontal" },
-           remote: true do |f| %>
-          <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
-          <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
-          <%= f.input :title %>
-          <%= f.input :overview, input_html: { rows: 13 } %>
-          <%= f.input :day_value %>
-          <%= f.association :tracks, value: Track.all %>
-          <%= f.button :wrapped_button, "Update" %>
-        <% end %>
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Manage Attachments</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <%= simple_form_for [:admin, @lesson_template, Attachment.new], 
+              html: { class: "form-horizontal"} do |f| %>
+              <%= f.input :document, as: :file, label: "Upload Attachment" %>
+              <%= f.button :wrapped_button %>
+            <% end %>
+            <ul id="attachments">
+              <%= render @lesson_template.attachments %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <h5>Manage Images</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <%= simple_form_for [:admin, @lesson_template, Image.new],
+            html: { class: "form-horizontal"} do |f| %>
+            <%= f.input :picture, as: :file, label: "Upload an image" %>
+            <%= f.button :wrapped_button %>
+          <% end %>
+          <ul id="images">
+            <%= render @lesson_template.images %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -65,23 +103,3 @@
     </div>
   </div>
 </div>
-
-
-    <div class="span5">
-      <h1>Attachments</h1>
-      <%= simple_form_for [:admin, @lesson_template, Attachment.new] do |f| %>
-        <%= f.input :document, as: :file, label: "Upload Attachment" %>
-        <%= f.button :submit %>
-      <% end %>
-      <ul id="attachments">
-        <%= render @lesson_template.attachments %>
-      </ul>
-      <h1>Images</h1>
-      <%= simple_form_for [:admin, @lesson_template, Image.new] do |f| %>
-        <%= f.input :picture, as: :file, label: "Upload an image" %>
-        <%= f.button :submit %>
-      <% end %>
-      <ul id="images">
-        <%= render @lesson_template.images %>
-      </ul>
-    </div>

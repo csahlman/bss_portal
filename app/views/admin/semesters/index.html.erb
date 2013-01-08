@@ -2,9 +2,11 @@
   <h1>All Semesters</h1>
 <% end %>
 
-<h1>All Semesters</h1>
+
+<h3><%= link_to "Add New", new_admin_semester_path %></h3>
 <ul>
   <% @semesters.each do |semester| %>
-  <li><%= link_to "#{semester.name} | #{semester.location}", [:admin, semester] %></li>
+  <li><%= link_to "#{semester.name} | #{semester.location}", [:admin, semester] %> 
+    | <%= link_to "Edit", edit_admin_semester_path(semester) %></li>
   <% end %>
 </ul>
