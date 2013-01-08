@@ -1,13 +1,46 @@
-<h1>Semesters (click to see/edit lessons)</h1>
-<ul>
-<% @semesters.each do |semester| %>
-  <li><%= link_to semester.to_s, [:admin, semester] %></li>
+<%= content_for :header do %>
+  <h1>Dashboard</h1>
 <% end %>
-</ul>
-
-<%= link_to "Manage Lesson Templates", admin_lesson_templates_path %><br>
-<%= link_to "Manage Tracks", '#' %><br>
-<%#= link_to "Manage Lessons", admin_lessons_path %>
-<%= link_to "Manage Users", admin_users_path %><br>
-<%= link_to "Manage Semesters", admin_semesters_path %>
-
+<div class="row-fluid">
+  <div class="span6">
+    <div class="widget-box">
+      <div class="widget-title">
+        <h5>Current Semesters</h5>
+        <span title="<%= @current_semesters.count %> current" class="label label-info tip-left">
+          <%= @current_semesters.count %>
+        </span>
+      </div>
+      <div class="widget-content">
+        <h3><%= link_to "Add Semester", new_admin_semester_path %></h3>
+        <ul class="site-stats">
+          <% @current_semesters.each do |semester| %>
+            <li>
+              <strong><%= link_to semester.name, [:admin, semester] %> | </strong>
+              <small><%= semester.location %></small>
+            </li>
+          <% end %>
+        </ul>
+      </div>        
+    </div>
+  </div>  
+  <div class="span6">
+    <div class="widget-box">
+      <div class="widget-title">
+        <h5>Previous Semesters</h5>
+        <span title="<%= @old_semesters.count %> current" class="label label-info tip-left">
+          <%= @old_semesters.count %>
+        </span>
+      </div>
+      <div class="widget-content">
+        <ul class="site-stats">
+          <% @old_semesters.each do |semester| %>
+            <li>
+              <strong><%= link_to semester.name, [:admin, semester] %> | </strong>
+              <small><%= semester.location %></small>
+            </li>
+          <% end %>
+        </ul>
+      </div>        
+    </div>  
+  </div>
+</div>

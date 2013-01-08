@@ -18,6 +18,8 @@ class Semester < ActiveRecord::Base
   has_many :days, dependent: :destroy
 
   scope :public, where(public: true)
+  scope :old, -> { where("end_date <= :now", now: Time.zone.now) }
+  scope :current, -> { where("end_date >= :now", now: Time.zone.now )}
 
   def to_s
     "#{self.name} #{self.location}"
