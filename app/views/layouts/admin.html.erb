@@ -11,7 +11,7 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
     <![endif]-->
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "application-admin", :media => "all" %>
 
 
   </head>
@@ -27,16 +27,16 @@
   </div>
   <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav btn-group">
-      <li class="btn btn-inverse" ><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
+      <li class="btn btn-inverse" ><a title= href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
       <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a class="sAdd" title="" href="#">new message</a></li>
-          <li><a class="sInbox" title="" href="#">inbox</a></li>
-          <li><a class="sOutbox" title="" href="#">outbox</a></li>
-          <li><a class="sTrash" title="" href="#">trash</a></li>
+          <li><a class="sAdd" title= href="#">new message</a></li>
+          <li><a class="sInbox" title= href="#">inbox</a></li>
+          <li><a class="sOutbox" title= href="#">outbox</a></li>
+          <li><a class="sTrash" title= href="#">trash</a></li>
         </ul>
       </li>
-      <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
+      <li class="btn btn-inverse"><a title= href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
       <li class="btn btn-inverse"><%= link_to raw('<i class="icon icon-share-alt"></i> <span class="text">Logout</span>'), logout_path, method: :delete %></li>
     </ul>
   </div>
