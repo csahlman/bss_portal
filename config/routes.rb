@@ -68,6 +68,7 @@ BssNewPortal::Application.routes.draw do
     resources :signups, only: [ :create, :destroy ]
     resources :tracks 
     resources :semesters do
+      post :populate, on: :member
       resources :lessons do
         resources :attachments
         resources :images

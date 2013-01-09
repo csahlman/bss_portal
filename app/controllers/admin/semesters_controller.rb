@@ -35,5 +35,11 @@ class Admin::SemestersController < Admin::BaseController
     
   end
 
+  def populate
+    @semester = Semester.find(params[:id])
+    @semester.populate_all
+    redirect_to [:edit, :admin, @semester]
+  end
+
 
 end
