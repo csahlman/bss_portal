@@ -48,5 +48,8 @@ class LessonTemplate < ActiveRecord::Base
     self.tracks = Track.find(track_ids)
   end
 
+  def to_s
+    "#{title} - Day #{day_value}"
+  end
 
 end
