@@ -45,6 +45,7 @@ class LessonTemplate < ActiveRecord::Base
     self.title = params_hash[:title]
     self.overview = params_hash[:overview]
     self.day_value = params_hash[:day_value]
+    self.default = params_hash[:default]
     track_ids = params_hash[:track_ids].map { |id| id.to_i }
     track_ids.delete(0)
     self.tracks = Track.find(track_ids)
