@@ -52,6 +52,8 @@ BssNewPortal::Application.routes.draw do
       resources :attachments
     end
 
+    resources :lessons, only: [:show]
+
     resources :periods do 
       resources :activities
     end

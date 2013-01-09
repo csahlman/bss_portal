@@ -47,6 +47,14 @@ li {
   list-style: none;
 }
 
+#activities li {
+  list-style-type: circle; 
+}  
+
+#list-items li {
+  list-style-type: square;
+}
+
 
 // .row-fluid {
 //   .span3 {

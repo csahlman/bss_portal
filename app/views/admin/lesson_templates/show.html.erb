@@ -1,30 +1,81 @@
-<div class="span8">
-  <h1><%= @lesson_template.title %> | <%= track_names @lesson_template %> | 
-    <%= link_to "Edit", [:edit, :admin, @lesson_template] %></h1>
-  <div class="row-fluid">
-    <div class="span4">
-      <h3>Overview</h3>
-      <p><%= @lesson_template.overview %></p>
-      <h3>Objectives</h3>
-      <ul>
-        <% @lesson_template.objectives.each do |objective| %>
-          <li><%= objective.objective %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="span4">
-      <h1>Images</h1>
-      <h1>Course work</h1>
+<%= content_for(:header) do %>
+  <h1><%= @lesson_template.title %> <strong>Day <%= @lesson_template.day_value %></strong>
+  ( <%= track_names @lesson_template %>) <%= link_to "Edit", [:edit, :admin, @lesson_template] %>
+<% end %>
+
+<div class="widget-box">
+  <div class="widget-title">
+    <h5>Current Template</h5>
+  </div>
+  <div class="widget-content">
+    <div class="row-fluid">
+      <div class="span6 well">
+        <h3>High Level Overview</h3>
+        <p><%= @lesson_template.overview %></p>
+
+        <h3>Objectives</h3>
+        <h5>At the end of the day, students should be able to</h5>
+        <ul id="objectives" class="site-stats">
+          <%= render @lesson_template.objectives %>
+        </ul>
+      </div>
+      <div class="span6 well">
+        <div id="periods">
+          <h3>Schedule <%= @lesson_template.start_time %> - <%= @lesson_template.end_time %></h3>
+          <ul>
+            <% @lesson_template.periods.each do |period| %>
+              <%= render 'admin/periods/new_activity_link', period: period %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<div class="span4">
-  <div class="well sidebar-nav">
-    <h3><%= @lesson_template.start_time %> - <%= @lesson_template.end_time %></h3>
-    <ul>
-    <% @lesson_template.periods.each do |period| %>
-      <%= render period %>    
-    <% end %>
-    </ul>
-  </div><!--/.well -->
-</div><!--/span-->
+<div class="widget-box">
+  <div class="widget-title">
+    <h5>Deployed as the Following Lessons</h5>
+  </div>
+  <div class="widget-content">
+    <div class="row-fluid">
+      <div class="span4 well">
+        <h3>Lessons</h3>
+        <ul id="lessons" class="site-stats">
+          <% @lesson_template.lessons.each do |lesson| %>
+            <li><%= link_to "#{lesson.title} #{lesson.days.first.to_s}", [:admin, lesson] %>
+              <%= lesson.final? ? "(FINAL)" : "(awaiting approval)" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="span8 well">
+        <h3>Information About Lesson</h3>
+       
+      </div>
+    </div>
+  </div>
+</div>
+<div class="widget-box">
+  <div class="widget-title">
+    <h5>Attachments and Images</h5>
+  </div>
+  <div class="widget-content">
+    <div class="row-fluid">
+      <div class="span4 well">
+        <h3>Attachments</h3>
+        <ul id="attachments" class="site-stats">
+          <%= render @lesson_template.attachments %>
+        </ul>
+      </div>
+      <div class="span8 well">
+        <h3>Images</h3>
+        <ul class="thumbnails">
+          <% @lesson_template.images.each do |image| %>
+          <li class="span2">
+            <%= image_tag image.picture.url(:large) %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

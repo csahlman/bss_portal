@@ -7,7 +7,7 @@
   <%= link_to "add subitem", new_admin_activity_activity_list_item_path(activity), 
     remote: true %>
 
-  <ul>
+  <ul id="list-items">
     <%= render activity.activity_list_items %>
   </ul>
 </li>
