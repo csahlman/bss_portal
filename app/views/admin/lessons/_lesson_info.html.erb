@@ -1,0 +1,11 @@
+<% if @lesson.users.any? %>
+<h3>Users Interested</h3>
+
+<ul class="site-stats">
+  <% @lesson.users.each do |user| %>
+  <li><%= link_to user.name, [:admin, user] %></li>
+  <% end %>
+</ul>
+<% else %>
+<h3>No Users Interested</h3>
+<% end %>

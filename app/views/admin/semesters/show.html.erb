@@ -2,13 +2,9 @@
   <h1>
     <%= @semester.name %> | <%= @semester.location %> 
     <%= @semester.public? ? "(Public)" : "(Private)" %>
+    <small><%= link_to "Edit", edit_admin_semester_path(@semester) %></small>
   </h1>
 <% end %>
-
-<h1><%= @semester.name %> | <%= @semester.location %> 
-  <%= @semester.public? ? "(Public)" : "(Private)" %>
-<small><%= link_to "Edit", edit_admin_semester_path(@semester) %></small>
-</h1>
 
 <h3>Creating days will prepopulate the date with lessons 
   cloned from templates marked as default</h3>

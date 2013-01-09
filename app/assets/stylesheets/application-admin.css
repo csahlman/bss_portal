@@ -15,5 +15,5 @@
  *= require select2
  *= require unicorn.main
  *= require unicorn.blue
- *= require custom
+ *= require custom_admin
  */

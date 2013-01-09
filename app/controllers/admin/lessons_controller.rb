@@ -30,8 +30,15 @@ class Admin::LessonsController < Admin::BaseController
   end
 
   def show
-    @lesson = Lesson.find(params[:id])
-    @semester = Semester.find(params[:semester_id])
+    respond_to do |f|
+      @lesson = Lesson.find(params[:id])
+      if params[:semester_id]
+        @semester = Semester.find(params[:semester_id]) if params[:semester_id]
+        f.html
+      else
+        f.js
+      end
+    end
   end
 
   def index
@@ -71,6 +78,10 @@ class Admin::LessonsController < Admin::BaseController
   def destroy
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
+  end
+
+  def lesson_info
+    @lesson = Lesson.includes(:users).find(params[:id])
   end
 
 
