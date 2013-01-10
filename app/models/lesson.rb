@@ -88,7 +88,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def remove_instructor(user)
-    lesson_users.where(assigned: true).last.update_attribute(:assigned, false)
+    lesson_users.where('user_id = ? AND assigned = ?', user.id, true).last.update_attribute(:assigned, false)
   end
 
   def assigned?

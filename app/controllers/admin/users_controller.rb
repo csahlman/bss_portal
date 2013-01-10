@@ -27,10 +27,19 @@ class Admin::UsersController < Admin::BaseController
     elsif params[:company]
       @users = User.where(company: params[:company])
     else
-      @users = User.all
+      @users = User.ordered_by_email.paginate(page: params[:page], per_page: 30)
       @to_reinstitute = User.requested_recover
       @inactive = User.inactive
-      # paginate this?
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.set_user_attributes(params[:user])
+    if @user.save
+      redirect_to [:admin, @user], flash: { success: "Updated User" }
+    else
+      # render 'edit'
     end
   end
 

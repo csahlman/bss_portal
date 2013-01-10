@@ -42,6 +42,8 @@ gem 'delayed_job_active_record'
 gem "daemons"
 gem 'acts_as_list'
 
+gem 'bootstrap-will_paginate'
+
 # gem 'amoeba'
 
 # gem 'devise'

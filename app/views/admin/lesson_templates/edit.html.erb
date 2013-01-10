@@ -12,10 +12,12 @@
             <h5>Current Template Info</h5>
           </div>
           <div class="widget-content nopadding">
-            <%= simple_form_for [:admin, @lesson_template], html: { class: "form-horizontal" },
-               remote: true do |f| %>
-              <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
-              <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, include_blank: false %>
+            <%= simple_form_for [:admin, @lesson_template], 
+              html: { class: "form-horizontal" }, remote: true do |f| %>
+              <%= f.input :start_time, collection: LessonTemplate::VALID_TIMES, 
+                include_blank: false %>
+              <%= f.input :end_time, collection: LessonTemplate::VALID_TIMES, 
+                include_blank: false %>
               <%= f.input :title %>
               <%= f.input :overview, input_html: { rows: 13 } %>
               <%= f.input :day_value %>

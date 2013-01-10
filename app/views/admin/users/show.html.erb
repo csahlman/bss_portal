@@ -2,17 +2,33 @@
   <h1><%= @user.name %></h1>
 <% end %>
 
-<h1>
-  <%= @user.name %><br>
-  <%= @user.email %><br>
-  <%= @user.company %><br>
-</h1>
-<% if @user.image %>
-  <%= image_tag @user.image.picture.url(:large) %>
-<% else %>
-<h2>No Picture</h2>
-<% end %>
-<p>Placeholder info about classes they're signed up to potentially teach,
-ones they have accepted.  Create links to company and potentially some stuff
-to do with account management.  Maybe soft delete?</p>
-
+<div class="row-fluid">
+  <div class="span8">
+    <div class="widget-title">
+      <h5><%= @user.name %></h5>
+    </div>
+    <div class="widget-content">
+      <ul class="site-stats">
+        <li><%= @user.email %></li>
+        <li><%= link_to @user.company, admin_users_path(company: @user.company) %></li>
+        <li><%= @user.linked_in ? link_to("Linked In", @user.linked_in) : "No Linked In" %></li>
+        <li><%= @user.twitter ? link_to("Twitter", @user.twitter) : "No Twitter" %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="widget-title">
+      <h5>Profile Picture</h5>
+    </div>
+    <div class="widget-content">
+      <% if @user.image %>
+        <%= image_tag @user.image.picture.url(:large) if @user.image %>
+      <% else %>
+        <%= simple_form_for [:admin, @user] do |f| %>
+          <%= f.input :image, as: :file, label: "Upload an image" %>
+          <%= f.button :wrapped_button %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

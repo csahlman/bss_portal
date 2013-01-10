@@ -19,6 +19,8 @@ class Day < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :day_value
 
+  after_destroy :delete_associated_lessons
+
 
   default_scope order('day_value ASC')
 
@@ -30,11 +32,18 @@ class Day < ActiveRecord::Base
   def populate_lessons(lesson_templates)
     lesson_templates.each do |template|
       unless self.lessons.map(&:lesson_template_id).include?(template.id)
-        lesson = Lesson.create_clone(template)
-        self.lessons << lesson
+        lesson = Lesson.create_clone(template, self)
       end
     end
     save!
   end
+
+  private
+
+    def delete_associated_lessons
+      lessons.each do |lesson|
+        lesson.destroy
+      end
+    end
 
 end
