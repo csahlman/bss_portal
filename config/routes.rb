@@ -52,7 +52,9 @@ BssNewPortal::Application.routes.draw do
       resources :attachments
     end
 
-    resources :lessons, only: [:show]
+    resources :lessons, only: [ :show ] do 
+      get 'lesson_info', on: :member
+    end
 
     resources :periods do 
       resources :activities
@@ -66,6 +68,7 @@ BssNewPortal::Application.routes.draw do
     resources :signups, only: [ :create, :destroy ]
     resources :tracks 
     resources :semesters do
+      post :populate, on: :member
       resources :lessons do
         resources :attachments
         resources :images

@@ -22,16 +22,19 @@ class Day < ActiveRecord::Base
 
   default_scope order('day_value ASC')
 
+
   def to_s
     "#{day_value} | #{date.strftime("%Y-%m-%d")}"
   end
 
   def populate_lessons(lesson_templates)
     lesson_templates.each do |template|
-      lesson = Lesson.create_clone(template)
-      self.lessons << lesson
+      unless self.lessons.map(&:lesson_template_id).include?(template.id)
+        lesson = Lesson.create_clone(template)
+        self.lessons << lesson
+      end
     end
     save!
   end
-  
+
 end

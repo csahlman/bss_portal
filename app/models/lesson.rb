@@ -43,7 +43,15 @@ class Lesson < ActiveRecord::Base
     4:15PM 4:30PM 4:45PM 5:00PM 5:15PM 5:30PM 5:45PM 6:00PM 6:15PM 6:30PM 6:45PM
     7:00PM 7:15PM 7:30PM 7:45PM 8:00PM 8:15PM 8:30PM 8:45PM 9:00PM AfterHours]
 
-  def self.create_clone(template)
+  def day_id=(id)
+    id
+  end
+
+  def day_id
+    
+  end
+
+  def self.create_clone(template, day = nil)
     new_lesson = Lesson.new do |lesson|
       lesson.start_time = template.start_time
       lesson.end_time = template.end_time
@@ -55,6 +63,9 @@ class Lesson < ActiveRecord::Base
       lesson.periods = template.periods
       lesson.attachments = template.attachments
       lesson.images = template.images
+      if day
+        lesson.days = [day]
+      end
       # self.objectives = template.objectives
       # self.periods = template.periods
     end  

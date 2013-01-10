@@ -9,29 +9,25 @@ class Admin::LessonsController < Admin::BaseController
   def create
     @lesson = Lesson.new
     @semester = Semester.find(params[:semester_id])
-    if params[:lesson][:lesson_id]
-      @cloned = Lesson.find(params[:lesson][:lesson_id])
-      @lesson.set_cloned_parameters(params[:lesson], @cloned)
-    else
-      @lesson.set_parameters(params[:lesson])
-      track_ids = params[:lesson][:track_ids].map { |id| id.to_i }
-      track_ids.delete(0)
-      @tracks = Track.find(track_ids)
-      @lesson.tracks = @tracks
-    end
-    day_ids = params[:lesson][:day_ids].map { |id| id.to_i }
-    day_ids.delete(0)
-    @days = Day.find(day_ids)
-    # this is a bug with rails 
-    @lesson.days = @days
+    @lesson_template = LessonTemplate.find(params[:lesson][:lesson_template_id])
+    @day_id = params[:lesson][:day_id]
+    @day = Day.find(@day_id)
+    @lesson = Lesson.create_clone(@lesson_template, @day)
     # @lesson.add_date(params[:lesson][:date])
     @lesson.save!
-    redirect_to admin_semester_lesson_path(@semester, @lesson)
+    redirect_to edit_admin_semester_path(@semester)
   end
 
   def show
-    @lesson = Lesson.find(params[:id])
-    @semester = Semester.find(params[:semester_id])
+    respond_to do |f|
+      @lesson = Lesson.find(params[:id])
+      if params[:semester_id]
+        @semester = Semester.find(params[:semester_id]) if params[:semester_id]
+        f.html
+      else
+        f.js
+      end
+    end
   end
 
   def index
@@ -71,6 +67,10 @@ class Admin::LessonsController < Admin::BaseController
   def destroy
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
+  end
+
+  def lesson_info
+    @lesson = Lesson.includes(:users).find(params[:id])
   end
 
 

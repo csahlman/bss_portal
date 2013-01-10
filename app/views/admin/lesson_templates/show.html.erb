@@ -39,17 +39,19 @@
   <div class="widget-content">
     <div class="row-fluid">
       <div class="span4 well">
-        <h3>Lessons</h3>
+        <h3>Lessons (click to view info)</h3>
         <ul id="lessons" class="site-stats">
           <% @lesson_template.lessons.each do |lesson| %>
-            <li><%= link_to "#{lesson.title} #{lesson.days.first.to_s}", [:admin, lesson] %>
+            <li><%= link_to "#{lesson.title} #{lesson.days.first.to_s}", 
+              lesson_info_admin_lesson_path(lesson), remote: true %>
               <%= lesson.final? ? "(FINAL)" : "(awaiting approval)" %></li>
           <% end %>
         </ul>
       </div>
       <div class="span8 well">
         <h3>Information About Lesson</h3>
-       
+        <div id="lesson-info">
+        </div>
       </div>
     </div>
   </div>

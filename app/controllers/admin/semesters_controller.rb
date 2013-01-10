@@ -6,10 +6,7 @@ class Admin::SemestersController < Admin::BaseController
 
   def show
     @semester = Semester.includes(days: :lessons).find(params[:id])
-    @development = Track.find_by_name("Development")
-    @product = Track.find_by_name("Product")
-    @marketing = Track.find_by_name("Marketing")
-    @sales = Track.find_by_name("Sales")
+    @tracks = Track.all
   end
 
   def new
@@ -36,6 +33,12 @@ class Admin::SemestersController < Admin::BaseController
 
   def destroy
     
+  end
+
+  def populate
+    @semester = Semester.find(params[:id])
+    @semester.populate_all
+    redirect_to [:edit, :admin, @semester]
   end
 
 

@@ -20,6 +20,7 @@
               <%= f.input :overview, input_html: { rows: 13 } %>
               <%= f.input :day_value %>
               <%= f.association :tracks, value: Track.all %>
+              <%= f.input :default %>
               <%= f.button :wrapped_button, "Update" %>
             <% end %>
           </div>

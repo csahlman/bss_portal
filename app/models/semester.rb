@@ -24,4 +24,11 @@ class Semester < ActiveRecord::Base
   def to_s
     "#{self.name} #{self.location}"
   end
+
+  def populate_all
+    self.days.each do |day|
+      day.populate_lessons(LessonTemplate.default.where(day_value: day.day_value))
+    end
+  end
+
 end

@@ -2,13 +2,9 @@
   <h1>
     <%= @semester.name %> | <%= @semester.location %> 
     <%= @semester.public? ? "(Public)" : "(Private)" %>
+    <small><%= link_to "Edit", edit_admin_semester_path(@semester) %></small>
   </h1>
 <% end %>
-
-<h1><%= @semester.name %> | <%= @semester.location %> 
-  <%= @semester.public? ? "(Public)" : "(Private)" %>
-<small><%= link_to "Edit", edit_admin_semester_path(@semester) %></small>
-</h1>
 
 <h3>Creating days will prepopulate the date with lessons 
   cloned from templates marked as default</h3>
@@ -39,10 +35,9 @@
         | <%= link_to "edit", [:edit, :admin, @semester, day] %> | 
          <%= link_to "delete", [:admin, @semester, day], method: :delete,
              confirm: "Are you sure?", remote: true %></td>
-        <td><%= admin_display_classes day.lessons, @development, @semester %></td>
-        <td><%= admin_display_classes day.lessons, @product, @semester %></td>
-        <td><%= admin_display_classes day.lessons, @marketing, @semester %></td>
-        <td><%= admin_display_classes day.lessons, @sales, @semester %></td>
+        <% @tracks.each do |track| %> 
+          <td><%= admin_display_classes day.lessons, track, @semester %></td>
+        <% end %>    
       </tr>
     <% end %>
     </table>
