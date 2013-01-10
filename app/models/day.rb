@@ -32,7 +32,8 @@ class Day < ActiveRecord::Base
   def populate_lessons(lesson_templates)
     lesson_templates.each do |template|
       unless self.lessons.map(&:lesson_template_id).include?(template.id)
-        lesson = Lesson.create_clone(template, self)
+        lesson = Lesson.create_clone(template)
+        lessons << lesson
       end
     end
     save!

@@ -22,7 +22,7 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_tracks, dependent: :destroy
   has_many :tracks, through: :lesson_tracks
 
-  has_many :days, through: :day_lessons
+  belongs_to :day
   has_many :day_lessons, dependent: :destroy
 
   has_many :users, through: :lesson_users
@@ -63,9 +63,9 @@ class Lesson < ActiveRecord::Base
       lesson.periods = template.periods
       lesson.attachments = template.attachments
       lesson.images = template.images
-      if day
-        lesson.days = [day]
-      end
+      # if day
+      #   lesson.day = day
+      # end
       # self.objectives = template.objectives
       # self.periods = template.periods
     end  

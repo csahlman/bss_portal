@@ -13,7 +13,7 @@ class DayLesson < ActiveRecord::Base
   attr_accessible :day_id, :lesson_id
 
   belongs_to :day
-  belongs_to :lesson
+  belongs_to :lesson, dependent: :destroy
 
 
 end
