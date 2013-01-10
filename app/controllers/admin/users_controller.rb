@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::BaseController
 
   def new
-    
+    @user = User.new
   end
 
   def create
@@ -10,7 +10,8 @@ class Admin::UsersController < Admin::BaseController
     @user.set_expiration_time
     @password = @user.set_random_password
     if @user.save
-      UserMailer.delay.first_login(@user, @password)
+      # @user.create_image!(picture: params[:user][:image])
+      # UserMailer.delay.first_login(@user, @password)
       # send an email using delayed job
       redirect_to admin_path, flash: { success: "created user" }
     else
@@ -19,12 +20,14 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def index
+    @user = User.new
     if params[:lesson_id]
       @lesson = Lesson.find(params[:lesson_id])
       @users = @lesson.users
     elsif params[:company]
       @users = User.where(company: params[:company])
     else
+      @users = User.all
       @to_reinstitute = User.requested_recover
       @inactive = User.inactive
       # paginate this?

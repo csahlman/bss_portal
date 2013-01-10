@@ -23,16 +23,27 @@
 <% else %>
   <h2>Create a new user</h2>
 
-  <%= simple_form_for [:admin, User.new], html: { class: "form-horizontal" } do |f| %>
+  <%= simple_form_for [:admin, @user], html: { class: "form-horizontal" } do |f| %>
+    <%= render 'shared/error_explanation', object: @user %>
     <%= f.input :name %>
     <%= f.input :company %>
     <%= f.input :email, as: :string %>
     <%= f.input :linked_in %>
     <%= f.input :facebook %>
     <%= f.input :twitter %>
-    <%= f.button :submit, "Create User" %>
+    <%= f.input :image, as: :file %>
+    <%= f.button :wrapped_button, "Create User" %>
   <% end %>
 
+
+
+  <h1>All Users</h1>
+
+  <ul>
+  <% @users.each do |user| %>
+    <li><%= link_to user.name, [:admin, user] %>, <%= user.email %></li>
+  <% end %>
+  </ul>
   <% if @to_reinstitute.any? %>
   <h2>Users that have explicitly requested reauthorization:</h2>
 

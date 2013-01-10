@@ -1,9 +1,17 @@
+<%= content_for(:header) do %>
+  <h1><%= @user.name %></h1>
+<% end %>
+
 <h1>
   <%= @user.name %><br>
   <%= @user.email %><br>
-  <%= @user.company %>
+  <%= @user.company %><br>
 </h1>
-
+<% if @user.image %>
+  <%= image_tag @user.image.picture.url(:large) %>
+<% else %>
+<h2>No Picture</h2>
+<% end %>
 <p>Placeholder info about classes they're signed up to potentially teach,
 ones they have accepted.  Create links to company and potentially some stuff
 to do with account management.  Maybe soft delete?</p>

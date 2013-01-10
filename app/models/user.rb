@@ -83,7 +83,8 @@ class User < ActiveRecord::Base
     self.company = user_hash[:company]
     self.linked_in = user_hash[:linked_in]
     self.facebook = user_hash[:facebook]
-    self.twitter = user_hash[:twitter] 
+    self.twitter = user_hash[:twitter]
+    self.build_image(picture: user_hash[:image])
   end
 
   def set_expiration_time
