@@ -42,7 +42,7 @@
         <h3>Lessons (click to view info)</h3>
         <ul id="lessons" class="site-stats">
           <% @lesson_template.lessons.each do |lesson| %>
-            <li><%= link_to "#{lesson.title} #{lesson.days.first.to_s}", 
+            <li><%= link_to "#{lesson.title} #{lesson.day.to_s}", 
               lesson_info_admin_lesson_path(lesson), remote: true %>
               <%= lesson.final? ? "(FINAL)" : "(awaiting approval)" %></li>
           <% end %>

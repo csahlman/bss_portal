@@ -13,13 +13,11 @@
 class Day < ActiveRecord::Base
   belongs_to :semester
 
-  has_many :lessons, through: :day_lessons, dependent: :destroy
-  has_many :day_lessons, dependent: :destroy
+  has_many :lessons, dependent: :destroy
+  # has_many :day_lessons, dependent: :destroy
 
   validates_presence_of :date
   validates_presence_of :day_value
-
-  after_destroy :delete_associated_lessons
 
 
   default_scope order('day_value ASC')
@@ -39,12 +37,5 @@ class Day < ActiveRecord::Base
     save!
   end
 
-  private
-
-    def delete_associated_lessons
-      lessons.each do |lesson|
-        lesson.destroy
-      end
-    end
 
 end

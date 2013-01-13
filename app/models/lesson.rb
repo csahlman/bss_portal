@@ -12,6 +12,7 @@
 #  overview           :text
 #  lesson_template_id :integer
 #  final              :boolean
+#  day_lesson_id      :integer
 #
 
 class Lesson < ActiveRecord::Base
@@ -23,7 +24,7 @@ class Lesson < ActiveRecord::Base
   has_many :tracks, through: :lesson_tracks
 
   belongs_to :day
-  has_many :day_lessons, dependent: :destroy
+  # has_many :day_lessons, dependent: :destroy
 
   has_many :users, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
