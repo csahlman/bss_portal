@@ -12,7 +12,7 @@
 #  overview           :text
 #  lesson_template_id :integer
 #  final              :boolean
-#  day_lesson_id      :integer
+#  day_id             :integer
 #
 
 class Lesson < ActiveRecord::Base
@@ -44,13 +44,13 @@ class Lesson < ActiveRecord::Base
     4:15PM 4:30PM 4:45PM 5:00PM 5:15PM 5:30PM 5:45PM 6:00PM 6:15PM 6:30PM 6:45PM
     7:00PM 7:15PM 7:30PM 7:45PM 8:00PM 8:15PM 8:30PM 8:45PM 9:00PM AfterHours]
 
-  def day_id=(id)
-    id
-  end
+  # def day_id=(id)
+  #   id
+  # end
 
-  def day_id
+  # def day_id
     
-  end
+  # end
 
   def self.create_clone(template, day = nil)
     new_lesson = Lesson.new do |lesson|
@@ -64,9 +64,9 @@ class Lesson < ActiveRecord::Base
       lesson.periods = template.periods
       lesson.attachments = template.attachments
       lesson.images = template.images
-      # if day
-      #   lesson.day = day
-      # end
+      if day
+        lesson.day = day
+      end
       # self.objectives = template.objectives
       # self.periods = template.periods
     end  
