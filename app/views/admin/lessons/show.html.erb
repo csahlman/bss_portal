@@ -1,25 +1,59 @@
-<h1><%= link_to "Edit Description", '/editor' + request.path, 
-  id: "edit_link" %><br>
-  <%= link_to "Edit the rest", edit_admin_semester_lesson_path(@semester, @lesson) %>
-</h1>
+<%= content_for(:header) do %>
+  <h1><%= @lesson.title %> <strong>Day <%= @lesson.lesson_template.day_value %></strong>
+  ( <%= track_names @lesson %>) <%= link_to "Edit", [:edit, :admin, @semester, @lesson] %>
+<% end %>
 
-<div class="span12">
-  <h1><%= @lesson.title %> | <%= @semester.name %> <%= @semester.location %></h1>
+<div class="widget-box">
+  <div class="widget-title">
+    <h5>Current Template</h5>
+  </div>
+  <div class="widget-content">
+    <div class="row-fluid">
+      <div class="span6 well">
+        <h3>High Level Overview</h3>
+        <p><%= @lesson.overview %></p>
+
+        <h3>Objectives</h3>
+        <h5>At the end of the day, students should be able to</h5>
+        <ul id="objectives" class="site-stats">
+          <%= render @lesson.objectives %>
+        </ul>
+      </div>
+      <div class="span6 well">
+        <div id="periods">
+          <h3>Schedule <%= @lesson.start_time %> - <%= @lesson.end_time %></h3>
+          <ul>
+            <% @lesson.periods.each do |period| %>
+              <%= render 'admin/periods/new_activity_link', period: period %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<span id="new_lesson" data-mercury="full">
-<%= raw @lesson.description %>
-</span>
-
-<div class="span4">
-  <h3>Previous learning materials</h3>
-  <% @lesson.attachments.each do |attachment| %>
-    <%= link_to attachment.document_file_name, attachment.document.url %><br>
-  <% end %>
-  <h3>Previous student work</h3>
-    <p>Placeholder for student work</p>
-  <h3>Images (carasoul of some sort later)</h3>
-  <% @lesson.images.each do |image| %>
-    <%= image_tag image.picture.url %>
-  <% end %>
+<div class="widget-box">
+  <div class="widget-title">
+    <h5>Attachments and Images</h5>
+  </div>
+  <div class="widget-content">
+    <div class="row-fluid">
+      <div class="span4 well">
+        <h3>Attachments</h3>
+        <ul id="attachments" class="site-stats">
+          <%= render @lesson.attachments %>
+        </ul>
+      </div>
+      <div class="span8 well">
+        <h3>Images</h3>
+        <ul class="thumbnails">
+          <% @lesson.images.each do |image| %>
+          <li class="span2">
+            <%= image_tag image.picture.url(:large) %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

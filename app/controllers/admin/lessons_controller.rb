@@ -19,15 +19,8 @@ class Admin::LessonsController < Admin::BaseController
   end
 
   def show
-    respond_to do |f|
-      @lesson = Lesson.find(params[:id])
-      if params[:semester_id]
-        @semester = Semester.find(params[:semester_id]) if params[:semester_id]
-        f.html
-      else
-        f.js
-      end
-    end
+    @semester = Semester.find(params[:semester_id])
+    @lesson = Lesson.includes(:attachments, :images, :users, :day).find(params[:id])
   end
 
   def index
