@@ -1,5 +1,5 @@
 <%= content_for(:header) do %>
-  <h1><%= @user.name %></h1>
+  <h1><%= @user.name %> <%= link_to "Edit", [:edit, :admin, @user] %></h1>
 <% end %>
 
 <div class="row-fluid">
@@ -11,8 +11,11 @@
       <ul class="site-stats">
         <li><%= @user.email %></li>
         <li><%= link_to @user.company, admin_users_path(company: @user.company) %></li>
-        <li><%= @user.linked_in ? link_to("Linked In", @user.linked_in) : "No Linked In" %></li>
-        <li><%= @user.twitter ? link_to("Twitter", @user.twitter) : "No Twitter" %></li>
+        <li><%= @user.linked_in.present? ? link_to("Linked In", @user.linked_in) : "No Linked In" %></li>
+        <li><%= @user.twitter.present? ? link_to("Twitter", @user.twitter) : "No Twitter" %></li>
+        <% if @user.description.present? %>
+        <li><%= @user.description %></li>
+        <% end %>
       </ul>
     </div>
   </div>

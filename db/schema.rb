@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113155430) do
+ActiveRecord::Schema.define(:version => 20130114172059) do
 
   create_table "activities", :force => true do |t|
     t.text     "activity"
@@ -226,8 +226,8 @@ ActiveRecord::Schema.define(:version => 20130113155430) do
     t.boolean  "request_recover",        :default => false
     t.datetime "expiration_time"
     t.string   "linked_in"
-    t.string   "facebook"
     t.string   "twitter"
+    t.text     "description"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

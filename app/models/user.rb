@@ -22,8 +22,8 @@
 #  request_recover        :boolean          default(FALSE)
 #  expiration_time        :datetime
 #  linked_in              :string(255)
-#  facebook               :string(255)
 #  twitter                :string(255)
+#  description            :text
 #
 
 class User < ActiveRecord::Base
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   scope :inactive, -> { where("expiration_time <= :now", now: Time.zone.now) } 
   scope :requested_recover, where(request_recover: true).order('name ASC')
 
-  scope :ordered_by_email, order('name ASC')
+  scope :ordered_by_name, order('name ASC')
   
   before_create :create_remember_token
 
@@ -85,9 +85,9 @@ class User < ActiveRecord::Base
     self.email = user_hash[:email] if user_hash[:email]
     self.name = user_hash[:name] if user_hash[:name]
     self.company = user_hash[:company] if user_hash[:company]
-    self.linked_in = user_hash[:linked_in] if user_hash[:linked_in]
-    self.facebook = user_hash[:facebook] if user_hash[:facebook]
+    self.linked_in = user_hash[:linked_in] if user_hash[:linked_in] 
     self.twitter = user_hash[:twitter] if user_hash[:twitter]
+    self.description = user_hash[:description] if user_hash[:description]
     if user_hash[:image]
       self.build_image(picture: user_hash[:image])
     elsif user_hash[:picture_url]

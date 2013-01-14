@@ -23,11 +23,11 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new
     if params[:lesson_id]
       @lesson = Lesson.find(params[:lesson_id])
-      @users = @lesson.users
+      @users = @lesson.users.sort_by(&:name)
     elsif params[:company]
       @users = User.where(company: params[:company])
     else
-      @users = User.ordered_by_email.paginate(page: params[:page], per_page: 30)
+      @users = User.ordered_by_name.paginate(page: params[:page], per_page: 30)
       @to_reinstitute = User.requested_recover
       @inactive = User.inactive
     end
@@ -39,11 +39,15 @@ class Admin::UsersController < Admin::BaseController
     if @user.save
       redirect_to [:admin, @user], flash: { success: "Updated User" }
     else
-      # render 'edit'
+      render 'edit'
     end
   end
 
   def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
     @user = User.find(params[:id])
   end
 

@@ -28,11 +28,11 @@
     <%= f.input :name %>
     <%= f.input :company %>
     <%= f.input :email, as: :string %>
+    <%= f.input :description %>
     <%= f.input :linked_in %>
-    <%= f.input :facebook %>
     <%= f.input :twitter %>
+    <%= f.input :picture_url, label: "Picture Url (if picture isn't local)", as: :string %>
     <%= f.input :image, as: :file %>
-    <%= f.input :picture_url, as: :string %>
     <%= f.button :wrapped_button, "Create User" %>
   <% end %>
 
@@ -44,7 +44,8 @@
   <%= will_paginate @users %>
     
   <% @users.each do |user| %>
-    <li><%= link_to user.name, [:admin, user] %>, <%= user.email %></li>
+    <li><%= link_to user.name, [:admin, user] %>, <%= user.email %> 
+      <%= link_to "(edit)", [:edit, :admin, user] %></li>
   <% end %>
   </ul>
   
