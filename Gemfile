@@ -38,7 +38,7 @@ gem 'simple_form'
 gem 'mercury-rails'
 
 gem "paperclip"
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1.3.4'
 
 gem 'delayed_job_active_record'
 gem "daemons"
