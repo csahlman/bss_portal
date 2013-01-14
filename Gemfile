@@ -38,6 +38,8 @@ gem 'simple_form'
 gem 'mercury-rails'
 
 gem "paperclip"
+gem 'aws-sdk'
+
 gem 'delayed_job_active_record'
 gem "daemons"
 gem 'acts_as_list'
