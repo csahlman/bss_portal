@@ -1,1 +1,2 @@
-$('#confirmations_<%= @lesson_user.id %>').remove();
+$('#lesson_user_<%= @lesson_user.id %>').remove();
+$('#assigned').append('<%= j confirmation_link @lesson_user %>')

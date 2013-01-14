@@ -105,4 +105,25 @@ module LessonsHelper
       lesson_id: lesson_template_id), method: :post
   end
 
+  def confirmation_link lesson_user
+    li_to_append = '<li id="lesson_user_' + lesson_user.id.to_s + '">'
+    li_to_append += link_to lesson_user.lesson.to_s, [:admin, lesson_user.lesson]
+    li_to_append += " | "
+    if lesson_user.confirmed?
+      li_to_append += link_to "Unassign", withdrawals_path(user_id: lesson_user.user_id, 
+        lesson_id: lesson_user.lesson_id), class: "btn btn-small btn-danger",
+        method: :post, confirm: "This will send an email", remote: true
+    else
+      li_to_append += link_to "Manually Confirm", confirmations_path(user_id: lesson_user.user_id, 
+        lesson_id: lesson_user.lesson_id), class: "btn btn-small btn-danger",
+        method: :post, confirm: "This will send an email", remote: true
+    end
+    li_to_append += " | "
+    li_to_append += link_to "Remove From User", admin_signup_path(user_id: lesson_user.user_id, 
+      lesson_id: lesson_user.lesson_id), method: :delete, class: "btn btn-success btn-small", 
+      confirm: "Are you sure?", remote: true
+    li_to_append += '</li>'
+    li_to_append.html_safe
+  end
+
 end

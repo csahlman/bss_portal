@@ -77,6 +77,10 @@ class User < ActiveRecord::Base
     lesson_users.where(confirmed: true).map(&:lesson_id).uniq
   end
 
+  def teaching
+    lesson_users.where(confirmed: true)
+  end
+
   def teaching?(lesson_id)
     self.teaching_ids.include?(lesson_id)
   end

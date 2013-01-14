@@ -19,7 +19,7 @@ BssNewPortal::Application.routes.draw do
 
   resources :signups, only: [ :create, :destroy ]
 
-  resources :confirmations, only: [ :create ]
+  resources :confirmations, only: [ :create, :destroy ]
   resources :withdrawals, only: [ :create ]
 
   controller :sessions do

@@ -33,6 +33,11 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+
   def update
     @user = User.find(params[:id])
     @user.set_user_attributes(params[:user])
@@ -46,11 +51,6 @@ class Admin::UsersController < Admin::BaseController
   def show
     @user = User.find(params[:id])
   end
-
-  def edit
-    @user = User.find(params[:id])
-  end
-
 
   def destroy
     @user = User.find(params[:id])

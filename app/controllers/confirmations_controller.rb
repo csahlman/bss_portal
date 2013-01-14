@@ -4,8 +4,13 @@ class ConfirmationsController < ApplicationController
   def create
     @lesson_user = @user.lesson_users.find_by_lesson_id(@lesson.id)
     @lesson_user.update_attribute(:confirmed, true) if @lesson_user
-    redirect_to @user, flash: { success: "Confirmed signup for #{@lesson.title}" }
+    # redirect_to @user, flash: { success: "Confirmed signup for #{@lesson.title}" }
   end 
+
+  def destroy
+    @lesson_user = @user.lesson_users.find_by_lesson_id(@lesson.id)
+    @lesson_user.update_attribute(:confirmed, false) if @lesson_user
+  end
 
   private
 
@@ -13,7 +18,7 @@ class ConfirmationsController < ApplicationController
       @user = User.find(params[:user_id])
       @lesson = Lesson.find(params[:lesson_id])
       redirect_to root_path, flash: { error: "You can't do that" } unless 
-        current_user == @user
+        current_user == @user || current_user.admin?
     end
 
 end
