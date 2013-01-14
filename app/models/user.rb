@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def to_s
+    "#{name} #{email}"
+  end
+
   def interested_in_teaching
     teaching_lessons = []
     lesson_users.where(assigned: false).each do |lesson_user|

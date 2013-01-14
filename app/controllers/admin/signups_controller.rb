@@ -12,8 +12,8 @@ class Admin::SignupsController < Admin::BaseController
 
   def destroy
     @user = User.find(params[:user_id])
-    @lesson = Lesson.find(params[:lesson_id])
-    @lesson_user = @user.lesson_users.where(lesson_id: @lesson.id).last
+    # @lesson = Lesson.find(params[:lesson_id])
+    @lesson_user = @user.lesson_users.where(lesson_id: params[:lesson_id]).last
     @lesson_user.destroy if @lesson_user
   end
 

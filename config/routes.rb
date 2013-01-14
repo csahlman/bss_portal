@@ -52,8 +52,12 @@ BssNewPortal::Application.routes.draw do
       resources :attachments
     end
 
-    resources :lessons, only: [ :show ] do 
+    resources :lessons do 
       get 'lesson_info', on: :member
+      resources :attachments
+      resources :images
+      resources :objectives
+      resources :periods
     end
 
     resources :periods do 
@@ -69,10 +73,7 @@ BssNewPortal::Application.routes.draw do
     resources :tracks 
     resources :semesters do
       post :populate, on: :member
-      resources :lessons do
-        resources :attachments
-        resources :images
-      end
+      
       resources :days
     end
     # resources :lessons do

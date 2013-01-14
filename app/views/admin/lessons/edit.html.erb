@@ -1,37 +1,119 @@
-<%= link_to "Back", admin_semester_lesson_path(@semester, @lesson) %>
+<%= content_for(:header) do %>
+  <h1>Edit: <%= @lesson.title %> <strong>Day <%= @lesson.day.day_value %></strong> 
+   <%= link_to "(View)", [:admin, @lesson] %></h1>
+<% end %>
 
 <div class="row-fluid">
-  <div class="span8">
-  <h1><%= link_to "Edit #{@lesson.title}", '/editor' + request.path, 
-    id: "edit_link" %></h1>
-
-  <%= link_to "Edit Images", admin_semester_lesson_images_path(@semester, @lesson) %><br>
-  <%= link_to "Edit Attachments", admin_semester_lesson_attachments_path(@semester, @lesson) %>
-
-  <%= simple_form_for [:admin, @semester, @lesson] do |f| %>
-    <%= f.input :summary, label: "This is the name of the link on the main page" %>
-    <%= f.input :short_description, label: "This is the description for the modal" %>
-    <%= f.association :tracks, label: "Tracks: You can select multiple",
-      :input_html => { :class => 'days'} %>
-    <%= f.hidden_field :description, value: @lesson.description %>
-    <%= f.association :days, label: "Days: You can select multiple",
-          :input_html => { :class => 'days'} %>
-    <%= f.input :save_template %>
-    <%= link_to "Edit Images", admin_semester_lesson_images_path(@semester, @lesson) %><br>
-    <%= link_to "Edit Attachments", admin_semester_lesson_attachments_path(@semester, @lesson) %><br>
-    <%= f.button :submit %> 
-  <% end %>
+  <div class="span6">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Current Template Info</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <%= simple_form_for [:admin, @lesson], 
+              html: { class: "form-horizontal" }, remote: true do |f| %>
+              <%= f.input :start_time, collection: Lesson::VALID_TIMES, 
+                include_blank: false %>
+              <%= f.input :end_time, collection: Lesson::VALID_TIMES, 
+                include_blank: false %>
+              <%= f.input :title %>
+              <%= f.input :overview, input_html: { rows: 13 } %>
+              <%= f.association :tracks, value: Track.all %>
+              <%= f.button :wrapped_button, "Update" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Manage Attachments</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <%= simple_form_for [:admin, @lesson, Attachment.new], 
+              html: { class: "form-horizontal"} do |f| %>
+              <%= f.input :document, as: :file, label: "Upload Attachment" %>
+              <%= f.button :wrapped_button %>
+            <% end %>
+            <ul id="attachments">
+              <%= render @lesson.attachments %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <h5>Manage Images</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <%= simple_form_for [:admin, @lesson, Image.new],
+            html: { class: "form-horizontal"} do |f| %>
+            <%= f.input :picture, as: :file, label: "Upload an image" %>
+            <%= f.button :wrapped_button %>
+          <% end %>
+          <ul id="images">
+            <%= render @lesson.images %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="span4">
-    <h2>Add a day</h2>
-    <%= simple_form_for [:admin, @semester, Day.new], remote: true do |f| %>
-      <%= f.input :day_value %>
-      <%= f.input :date, as: :string, :input_html => { :class => 'jquery-ui-date'} %>
-      <%= f.input :date, :as => :hidden, :input_html => { :id => 'recorded-at-alt'} %>
-      <%= f.button :submit %>
-    <% end %>
+  <div class="span6">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Assign User to Class</h5>
+          </div>
+          <div class="widget-content">
+            <%= form_tag '/admin/signups', html: { class: "form-horizontal" } do %>
+              <%= hidden_field_tag 'lesson_id', @lesson.id %>
+              <%= select_tag "user_id", 
+                options_from_collection_for_select(User.ordered_by_name, 'id', 'to_s') %>
+              <%= submit_tag %>
+            <% end %>
+          </div>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Add Periods</h5>
+          </div>
+          <div class="widget-content">
+            <%= simple_form_for [:admin, @lesson, Period.new], 
+              html: { class: "form-horizontal" },remote: true do |f| %>
+              <%= f.input :start_time, collection: Period::VALID_TIMES, include_blank: false %>      
+              <%= f.input :end_time, collection: Period::VALID_TIMES, include_blank: false %>
+              <%= f.button :wrapped_button, "Create time period" %>
+            <% end %>
+            <div id="periods">
+              <ul class="site-stats">
+                <% @lesson.periods.each do |period| %>
+                  <%= render 'admin/periods/new_activity_link', period: period %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="widget-box">
+        <div class="widget-title">
+          <h5>Add Objectives</h5>
+        </div>
+        <div class="widget-content">
+          <%= simple_form_for [:admin, @lesson, Objective.new], 
+              html: { class: "form-horizontal" }, remote: true do |f| %>
+            <%= f.input :objective %>
+            <%= f.button :wrapped_button %>
+          <% end %>
+          <ul id="objectives" class="site-stats">
+            <%= render @lesson.objectives %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-
-
 </div>

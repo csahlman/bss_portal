@@ -1,6 +1,8 @@
 <%= content_for(:header) do %>
   <h1><%= @lesson.title %> <strong>Day <%= @lesson.lesson_template.day_value %></strong>
-  ( <%= track_names @lesson %>) <%= link_to "Edit", [:edit, :admin, @semester, @lesson] %>
+  ( <%= track_names @lesson %>) 
+  <%= link_to "Edit", edit_admin_lesson_path(@lesson) %>
+  </h1>
 <% end %>
 
 <div class="widget-box">

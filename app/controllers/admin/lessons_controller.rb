@@ -19,7 +19,7 @@ class Admin::LessonsController < Admin::BaseController
   end
 
   def show
-    @semester = Semester.find(params[:semester_id])
+    @semester = Semester.find(params[:semester_id]) if params[:semester_id]
     @lesson = Lesson.includes(:attachments, :images, :users, :day).find(params[:id])
   end
 
@@ -28,7 +28,6 @@ class Admin::LessonsController < Admin::BaseController
   end
 
   def edit
-    @semester = Semester.find(params[:semester_id])
     @lesson = Lesson.find(params[:id])
   end
 

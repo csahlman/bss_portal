@@ -119,9 +119,9 @@ module LessonsHelper
         method: :post, confirm: "This will send an email", remote: true
     end
     li_to_append += " | "
-    li_to_append += link_to "Remove From User", admin_signup_path(user_id: lesson_user.user_id, 
-      lesson_id: lesson_user.lesson_id), method: :delete, class: "btn btn-success btn-small", 
-      confirm: "Are you sure?", remote: true
+    li_to_append += link_to "Remove From User", admin_signup_path(lesson_user, 
+      user_id: lesson_user.user_id, lesson_id: lesson_user.lesson_id), method: :delete, 
+      class: "btn btn-success btn-small", confirm: "Are you sure?", remote: true
     li_to_append += '</li>'
     li_to_append.html_safe
   end
