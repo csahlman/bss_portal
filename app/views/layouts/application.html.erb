@@ -98,7 +98,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-    <%= debug(params) if Rails.env.development? %>
+    <% if Rails.env.development? %>
+    <pre><%= params.inspect %></pre>
+    <% end %>
 
   </body>
 </html>
