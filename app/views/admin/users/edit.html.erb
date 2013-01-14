@@ -1,5 +1,5 @@
 <%= content_for(:header) do %>
-  <h1>Edit <%= @user.name %></h1>
+  <h1>Edit <%= @user.name %> <%= link_to "(Show)", [:admin, @user] %></h1>
 <% end %>
 
 <%= simple_form_for [:admin, @user], html: { class: "form-horizontal" } do |f| %>

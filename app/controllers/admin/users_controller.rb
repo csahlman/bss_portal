@@ -37,9 +37,9 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     @user.set_user_attributes(params[:user])
     if @user.save
-      redirect_to [:admin, @user], flash: { success: "Updated User" }
+      # redirect_to [:admin, @user], flash: { success: "Updated User" }
     else
-      render 'edit'
+      # render 'edit'
     end
   end
 

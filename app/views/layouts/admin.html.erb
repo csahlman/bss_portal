@@ -75,5 +75,6 @@
     </div>
     </div>
     <%= javascript_include_tag "application" %>
+    <pre><%= params.inspect if Rails.env.development? %></pre>
   </body>
 </html>

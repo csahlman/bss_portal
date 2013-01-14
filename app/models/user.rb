@@ -82,16 +82,16 @@ class User < ActiveRecord::Base
   end
 
   def set_user_attributes(user_hash)
-    self.email = user_hash[:email] if user_hash[:email]
-    self.name = user_hash[:name] if user_hash[:name]
-    self.company = user_hash[:company] if user_hash[:company]
-    self.linked_in = user_hash[:linked_in] if user_hash[:linked_in] 
-    self.twitter = user_hash[:twitter] if user_hash[:twitter]
-    self.description = user_hash[:description] if user_hash[:description]
-    if user_hash[:image]
+    self.email = user_hash[:email] if user_hash[:email].present?
+    self.name = user_hash[:name] if user_hash[:name].present?
+    self.company = user_hash[:company] if user_hash[:company].present?
+    self.linked_in = user_hash[:linked_in] if user_hash[:linked_in].present?
+    self.twitter = user_hash[:twitter] if user_hash[:twitter].present?
+    self.description = user_hash[:description] if user_hash[:description].present?
+    if user_hash[:image].present?
       self.build_image(picture: user_hash[:image])
-    elsif user_hash[:picture_url]
-      self.build_image(picture_url: user_hash[:picture_url])      
+    elsif user_hash[:picture_url].present?
+      self.build_image(picture_url: user_hash[:picture_url])
     end
   end
 
