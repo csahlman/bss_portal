@@ -27,6 +27,8 @@
 #
 
 class User < ActiveRecord::Base
+  attr_accessor :picture_url
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true
   validates :company, presence: true
@@ -86,7 +88,11 @@ class User < ActiveRecord::Base
     self.linked_in = user_hash[:linked_in] if user_hash[:linked_in]
     self.facebook = user_hash[:facebook] if user_hash[:facebook]
     self.twitter = user_hash[:twitter] if user_hash[:twitter]
-    self.build_image(picture: user_hash[:image]) if user_hash[:image]
+    if user_hash[:image]
+      self.build_image(picture: user_hash[:image])
+    elsif user_hash[:picture_url]
+      self.build_image(picture_url: user_hash[:picture_url])      
+    end
   end
 
   def set_expiration_time

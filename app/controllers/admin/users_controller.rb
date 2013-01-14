@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::BaseController
       # @user.create_image!(picture: params[:user][:image])
       # UserMailer.delay.first_login(@user, @password)
       # send an email using delayed job
-      redirect_to admin_path, flash: { success: "created user" }
+      redirect_to [:admin, @user], flash: { success: "created user" }
     else
       render 'new'
     end
