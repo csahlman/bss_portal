@@ -15,7 +15,7 @@
         <li><%= @user.twitter.present? ? 
           link_to(twitter_link(@user.twitter), twitter_link(@user.twitter)) : "No Twitter" %></li>
         <% if @user.description.present? %>
-        <li><%= @user.description %></li>
+        <li><%= simple_format @user.description %></li>
         <% end %>
       </ul>
     </div>
