@@ -1,5 +1,5 @@
 <%= content_for(:header) do %>
-  <h1><%= @lesson.title %> <strong>Day <%= @lesson.lesson_template.day_value %></strong>
+  <h1><%= @lesson.title %> <strong>Day <%= @lesson.day.day_value %></strong>
   ( <%= track_names @lesson %>) 
   <%= link_to "Edit", edit_admin_lesson_path(@lesson) %>
   </h1>
@@ -7,7 +7,11 @@
 
 <div class="widget-box">
   <div class="widget-title">
-    <h5>Current Template</h5>
+    <h5>
+      <%= @lesson.day.date.strftime("%Y-%m-%d") %> | 
+      <%= @lesson.day.semester.to_s %> | 
+      <%= track_names @lesson %>
+    </h5>
   </div>
   <div class="widget-content">
     <div class="row-fluid">

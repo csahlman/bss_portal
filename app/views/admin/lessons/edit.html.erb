@@ -9,7 +9,11 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title">
-            <h5>Current Template Info</h5>
+            <h5>
+              <%= @lesson.day.date.strftime("%Y-%m-%d") %> | 
+              <%= @lesson.day.semester.to_s %> | 
+              <%= track_names @lesson %>
+            </h5>
           </div>
           <div class="widget-content nopadding">
             <%= simple_form_for [:admin, @lesson], 
