@@ -5,9 +5,17 @@
 
 <%= form_tag admin_users_path, html: { class: 'form-horizontal' }, method: :get do %>
   <p>
-    <%= text_field_tag :user_search, params[:search], 
+    <%= text_field_tag :email_search, params[:email_search], 
       placeholder: "Enter Email Address" %>
-    <%= submit_tag "Search", class: "btn btn-notice" %>
+    <%= submit_tag "Email Search", class: "btn btn-notice" %>
+  </p>
+<% end %>
+
+<%= form_tag admin_users_path, html: { class: 'form-horizontal' }, method: :get do %>
+  <p>
+    <%= text_field_tag :name_search, params[:name_search], 
+      placeholder: "Enter User Name" %>
+    <%= submit_tag "Name Search", class: "btn btn-notice" %>
   </p>
 <% end %>
 <div class="row-fluid">
@@ -20,7 +28,9 @@
       <h1>Users for <%= @lesson.title %></h1>
       <ul>
         <% @users.each do |user| %>
-          <li><%= link_to user.name, [:admin, user] %> | 
+          <li>
+            <%= image_tag user.image.picture.url(:thumb) if user.image %>
+            <%= link_to user.name, [:admin, user] %> | 
             <%= link_to user.company, admin_users_path(company: user.company) %> | 
             <%= admin_signups_link(user, @lesson) %></li>
         <% end %>
@@ -29,18 +39,23 @@
       <h1>Users for <%= params[:company] %></h1>
       <ul>
         <% @users.each do |user| %>
-          <li><%= link_to user.name, [:admin, user] %> | 
+          <li>
+            <%= image_tag user.image.picture.url(:thumb) if user.image %>
+            <%= link_to user.name, [:admin, user] %> | 
             <%= link_to user.company, admin_users_path(company: user.company) %>
           </li>  
         <% end %>
       </ul>
 
-    <% elsif params[:user_search] %>
-      <h4>Search Results for <%= params[:user_search] %></h4>
+    <% elsif params[:email_search] || params[:name_search] %>
+      <h4>Search Results for 
+        <%= params[:email_search] ? params[:email_search] : params[:name_search] %></h4>
       <% if @users.any? %>
         <ul class="site-stats">
         <% @users.each do |user| %>
-          <li><%= link_to user.name, [:admin, user] %> |
+          <li>
+            <%= image_tag user.image.picture.url(:thumb) if user.image %>
+            <%= link_to user.name, [:admin, user] %> |
               <%= link_to "(Edit)", edit_admin_user_path(user) %>
           </li>
         <% end %>
@@ -59,7 +74,9 @@
       <%= will_paginate @users %>
         
       <% @users.each do |user| %>
-        <li><%= link_to user.name, [:admin, user] %>, <%= user.email %> 
+        <li>
+          <%= image_tag user.image.picture.url(:thumb) if user.image %>
+          <%= link_to user.name, [:admin, user] %>, <%= user.email %> 
           <%= link_to "(edit)", [:edit, :admin, user] %></li>
       <% end %>
       </ul>
@@ -70,6 +87,7 @@
       <ul>
         <% @to_reinstitute.each do |user| %>
           <li>
+            <%= image_tag user.image.picture.url(:thumb) if user.image %>
             <%= link_to user.name, user %>: 
             <%= link_to "Make Active", make_active_admin_user_path(user),
               method: :put, id: "user_#{user.id}", remote: true %>
@@ -85,6 +103,7 @@
       <ul>
         <% @inactive.each do |user| %>
           <li>
+            <%= image_tag user.image.picture.url(:thumb) if user.image %>
             <%= link_to user.name, user %>: 
             <%= link_to "Make Active", make_active_admin_user_path(user),
               method: :put, id: "user_#{user.id}", remote: true %>
@@ -97,10 +116,25 @@
   </div>
   <div class="span6">
     <div class="widget-title">
-      <h5>Users</h5>
+      <h5>New User</h5>
     </div>
     <div class="widget-content">
-
+      <%= simple_form_for [:admin, @user], html: { class: "form-horizontal" } do |f| %>
+        <%= render 'shared/error_explanation', object: @user %>
+        <%= f.input :name %>
+        <%= f.input :company %>
+        <% if params[:user_search] %>
+          <%= f.input :email, as: :string, value: params[:user_search] %>
+        <% else %>
+          <%= f.input :email, as: :string %>
+        <% end %>
+        <%= f.input :description %>
+        <%= f.input :linked_in %>
+        <%= f.input :twitter %>
+        <%= f.input :picture_url, label: "Picture Url (if picture isn't local)", as: :string %>
+        <%= f.input :image, as: :file %>
+        <%= f.button :wrapped_button, "Create User" %>
+      <% end %>
     </div>
   </div>
 </div>

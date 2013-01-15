@@ -27,8 +27,10 @@ class Admin::UsersController < Admin::BaseController
       @users = @lesson.users.sort_by(&:name)
     elsif params[:company]
       @users = User.where(company: params[:company])
-    elsif params[:user_search]
-      @users = User.search(params[:user_search]).paginate(page: params[:page], per_page: 30)
+    elsif params[:email_search]
+      @users = User.email_search(params[:email_search]).paginate(page: params[:page], per_page: 30)
+    elsif params[:name_search]
+      @users = User.name_search(params[:name_search]).paginate(page: params[:page], per_page: 30)
     else
       @users = User.ordered_by_name.paginate(page: params[:page], per_page: 30)
       @to_reinstitute = User.requested_recover
