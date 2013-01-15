@@ -58,11 +58,11 @@ class User < ActiveRecord::Base
   end
 
   def self.email_search(search)
-    where('email LIKE ?', "%#{search}%")
+    where('email LIKE ?', "%#{search}%").order(:name)
   end
 
   def self.name_search(search)
-    where('name LIKE ?', "%#{search}%")
+    where('name LIKE ?', "%#{search}%").order(:name)
   end
 
   def interested_in_teaching
