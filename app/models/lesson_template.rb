@@ -10,7 +10,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  day_value  :integer
-#  default    :boolean
+#  default    :boolean          default(TRUE)
 #
 
 class LessonTemplate < ActiveRecord::Base

@@ -9,6 +9,7 @@
   <div class="widget-content nopadding">
     <%= simple_form_for [:admin, Semester.new], html: { class: "form-horizontal" } do |f| %>
       <%= f.input :name %>
+      <%= f.input :city %>
       <%= f.input :location %>
       <%= f.input :start_date, as: :string, :input_html => { :class => 'jquery-ui-date'} %>
       <%= f.input :start_date, :as => :hidden, :input_html => { :id => 'recorded-at-alt'} %>

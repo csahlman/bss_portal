@@ -37,7 +37,9 @@ class Admin::SemestersController < Admin::BaseController
   end
 
   def destroy
-    
+    @semester = Semester.find(params[:id])
+    @semester.destroy
+    redirect_to admin_semesters_path, flash: { success: "Destroyed Semester" }
   end
 
   def populate

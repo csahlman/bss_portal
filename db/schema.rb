@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114172059) do
+ActiveRecord::Schema.define(:version => 20130115144133) do
 
   create_table "activities", :force => true do |t|
     t.text     "activity"
@@ -132,10 +132,10 @@ ActiveRecord::Schema.define(:version => 20130114172059) do
     t.string   "end_time"
     t.string   "title"
     t.text     "overview"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "day_value"
-    t.boolean  "default"
+    t.boolean  "default",    :default => true
   end
 
   create_table "lesson_tracks", :force => true do |t|
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20130114172059) do
     t.datetime "end_date"
     t.datetime "start_date"
     t.boolean  "public"
+    t.string   "city"
   end
 
   create_table "tracks", :force => true do |t|

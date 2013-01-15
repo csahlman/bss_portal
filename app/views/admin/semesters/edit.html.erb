@@ -1,7 +1,9 @@
 <%= content_for :header do %>
   <h1>
     <%= @semester.name %> | <%= @semester.location %> 
-    <%= @semester.public? ? "(Public)" : "(Private)" %>
+    <%= @semester.public? ? "(Public)" : "(Private)" %> 
+    <%= link_to "Delete Semester", admin_semester_path(@semester), method: :delete,
+      confirm: "Are you absolutely sure?", class: "btn btn-large btn-danger" %>
   </h1>
 <% end %>
 
@@ -76,7 +78,10 @@
   </thead>
   <% @semester.days.each do |day| %>  
     <tr>
-      <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %></td>
+      <td class="table-day">Day <%= day.day_value %> | <%= day.date.strftime("%Y-%m-%d") %>
+        | <%= link_to "edit", [:edit, :admin, @semester, day] %> | 
+         <%= link_to "delete", [:admin, @semester, day], method: :delete,
+             confirm: "Are you sure?", remote: true %></td>
       <% @tracks.each do |track| %>
         <td><%= admin_display_classes day.lessons, track, @semester %></td>
       <% end %>

@@ -10,16 +10,19 @@
 #  end_date   :datetime
 #  start_date :datetime
 #  public     :boolean
+#  city       :string(255)
 #
 
 class Semester < ActiveRecord::Base
-  attr_accessible :location, :name, :start_date, :end_date, :public
+  attr_accessible :location, :name, :city, :start_date, :end_date, :public
 
   has_many :days, dependent: :destroy
 
   scope :public, where(public: true)
   scope :old, -> { where("end_date <= :now", now: Time.zone.now) }
   scope :current, -> { where("end_date >= :now", now: Time.zone.now )}
+
+  validates_presence_of :location, :name, :city, :start_date, :end_date
 
   def to_s
     "#{self.name} #{self.location}"
