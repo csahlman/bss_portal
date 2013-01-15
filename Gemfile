@@ -46,6 +46,8 @@ gem 'acts_as_list'
 
 gem 'bootstrap-will_paginate'
 
+gem 'rinku', :require => 'rails_rinku'
+
 # gem 'amoeba'
 
 # gem 'devise'

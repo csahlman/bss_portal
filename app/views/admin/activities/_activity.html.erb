@@ -1,5 +1,5 @@
 <li id="activity_<%= activity.id %>">
-  <%= activity.activity %> 
+  <%= raw Rinku.auto_link(activity.activity) %>
   <%= decrement_link "activity", activity.id, activity.period.lesson_template.id %> 
   <%= increment_link "activity", activity.id, activity.period.lesson_template.id %> | 
   <%= link_to 'delete', [ :admin, activity.period, activity ],
