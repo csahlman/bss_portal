@@ -1,5 +1,10 @@
 module LessonsHelper
 
+  def twitter_link(handle)
+    twitter_name = handle.gsub(/\W+/, '')
+    return "http://twitter.com/#{twitter_name}"  
+  end
+
   def create_modals(lessons, semester)
     html_to_return = ""
     lessons.each do |lesson|

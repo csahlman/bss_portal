@@ -12,7 +12,8 @@
         <li><%= @user.email %></li>
         <li><%= link_to @user.company, admin_users_path(company: @user.company) %></li>
         <li><%= @user.linked_in.present? ? link_to("Linked In", @user.linked_in) : "No Linked In" %></li>
-        <li><%= @user.twitter.present? ? link_to("Twitter", @user.twitter) : "No Twitter" %></li>
+        <li><%= @user.twitter.present? ? 
+          link_to(twitter_link(@user.twitter), twitter_link(@user.twitter)) : "No Twitter" %></li>
         <% if @user.description.present? %>
         <li><%= @user.description %></li>
         <% end %>
