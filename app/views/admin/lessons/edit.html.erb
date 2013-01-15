@@ -70,6 +70,21 @@
             <h5>Assign User to Class</h5>
           </div>
           <div class="widget-content">
+            <% if @lesson.teachers.any? %>
+            <h3>Lesson Teachers</h3>
+            <ul id="teachers" class="site-stats">
+              <% @lesson.teachers.each do |lesson_user| %>
+                <li>
+                  <%= image_tag lesson_user.user.image.picture.url(:thumb) if 
+                    lesson_user.user.image %>
+                  <%= link_to lesson_user.user.name, [:admin, lesson_user.user] %> 
+                  <%= lesson_user.user.email %>
+                </li>
+              <% end %>
+            </ul><hr>
+            <% else %>
+              <h3>No Teachers Assigned Yet</h3><hr>
+            <% end %>
             <%= form_tag '/admin/signups', html: { class: "form-horizontal" } do %>
               <%= hidden_field_tag 'lesson_id', @lesson.id %>
               <%= select_tag "user_id", 

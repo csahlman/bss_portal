@@ -47,6 +47,10 @@ class Lesson < ActiveRecord::Base
   
   def to_s
     "#{title} - #{day.semester.name}"
+  end
+
+  def teachers
+    lesson_users.where(confirmed: true)      
   end  
 
   def self.create_clone(template, day = nil)

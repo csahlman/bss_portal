@@ -12,6 +12,21 @@
   <div class="widget-content">
     <div class="row-fluid">
       <div class="span6 well">
+        <% if @lesson.teachers.any? %>
+          <h3>Lesson Teachers</h3>
+        <ul id="teachers" class="site-stats">
+          <% @lesson.teachers.each do |lesson_user| %>
+            <li>
+              <%= image_tag lesson_user.user.image.picture.url(:thumb) if 
+                lesson_user.user.image %>
+              <%= link_to lesson_user.user.name, [:admin, lesson_user.user] %> 
+              <%= lesson_user.user.email %>
+            </li>
+          <% end %>
+        </ul><hr>
+        <% else %>
+          <h3>No Teachers Assigned Yet</h3><hr>
+        <% end %>
         <h3>High Level Overview</h3>
         <p><%= @lesson.overview %></p>
 
