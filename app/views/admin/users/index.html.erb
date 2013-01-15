@@ -3,10 +3,17 @@
 <% end %>
 
 
+<%= form_tag admin_users_path, html: { class: 'form-horizontal' }, method: :get do %>
+  <p>
+    <%= text_field_tag :user_search, params[:search], 
+      placeholder: "Enter Email Address" %>
+    <%= submit_tag "Search", class: "btn btn-notice" %>
+  </p>
+<% end %>
 <div class="row-fluid">
   <div class="span6">
     <div class="widget-title">
-      <h5>All Users</h5>
+      <h5>Users</h5>
     </div>
     <div class="widget-content">
     <% if params[:lesson_id] %>
@@ -26,11 +33,25 @@
             <%= link_to user.company, admin_users_path(company: user.company) %>
           </li>  
         <% end %>
-      </ul>  
+      </ul>
+
+    <% elsif params[:user_search] %>
+      <h4>Search Results for <%= params[:user_search] %></h4>
+      <% if @users.any? %>
+        <ul class="site-stats">
+        <% @users.each do |user| %>
+          <li><%= link_to user.name, [:admin, user] %> |
+              <%= link_to "(Edit)", edit_admin_user_path(user) %>
+          </li>
+        <% end %>
+        </ul>
+      <% else %>
+        <h4>No Results: <%= link_to "Create New User With #{params[:user_search]}",
+          new_admin_user_path(email: params[:user_search]) %></h4>
+      <% end %>
+
     <% else %>
       <h1><%= link_to "Create a New User", new_admin_user_path %></h1>
-
-
 
       <h1>All Users</h1>
 

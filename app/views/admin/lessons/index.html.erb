@@ -1,7 +1,10 @@
-<%= link_to "New Lesson", new_admin_lesson_path %>
+<%= content_for(:header) do %>
+  <h1>Manage Lessons</h1>
+<% end %>
 
 <ul>
   <% @lessons.each do |lesson| %>
-    <li><%= link_to lesson.title, [:admin, lesson] %></li>
+    <li><%= link_to lesson.title, [:admin, lesson] %> | <%= lesson.day.to_s %> 
+      <%= lesson.day.semester.to_s %></li>
   <% end %>
 </ul>

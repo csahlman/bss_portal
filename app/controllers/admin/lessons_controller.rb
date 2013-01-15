@@ -8,14 +8,12 @@ class Admin::LessonsController < Admin::BaseController
 
   def create
     @lesson = Lesson.new
-    @semester = Semester.find(params[:semester_id])
     @lesson_template = LessonTemplate.find(params[:lesson][:lesson_template_id])
-    @day_id = params[:lesson][:day_id]
-    @day = Day.find(@day_id)
+    @day = Day.find(params[:lesson][:day_id])
     @lesson = Lesson.create_clone(@lesson_template, @day)
     # @lesson.add_date(params[:lesson][:date])
     @lesson.save!
-    redirect_to edit_admin_semester_path(@semester)
+    # redirect_to edit_admin_semester_path(@day.semester)
   end
 
   def show

@@ -28,7 +28,12 @@ class Admin::SemestersController < Admin::BaseController
   end
 
   def update
-    
+    @semester = Semester.find(params[:id])
+    if @semester.update_attributes(params[:semester])
+      redirect_to [:edit, :admin, @semester], flash: { success: "updated semester" }
+    else
+      render 'edit'
+    end
   end
 
   def destroy

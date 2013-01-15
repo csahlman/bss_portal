@@ -22,9 +22,6 @@
     <h1></h1>
   </div>
   
-  <div id="search">
-    <input type="text" placeholder="Search here..."/><button type="submit" class="tip-right" title="Search"><i class="icon-search icon-white"></i></button>
-  </div>
   <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav btn-group">
       <li class="btn btn-inverse" ><a title= href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
@@ -45,10 +42,10 @@
     <ul>
       <li><%= link_to raw('<span>Dashboard</span> <i class="icon icon-home"></i>'), '/admin' %></li>
       <li><%= link_to raw('<span>Semesters</span>'), admin_semesters_path %></li>
+      <li><%= link_to raw('<span>Manage Lessons</span>'), admin_lessons_path %></li>
       <li><%= link_to raw('<span>Lesson Templates</span>'), admin_lesson_templates_path %></li>
-      <li><%= link_to raw('<span>Manage Admins</span>'), admin_users_path %></li>
-      <li><%= link_to raw('<span>Manage Teachers</span>'), admin_users_path %></li>
-      <li><%= link_to raw('<span>Manage Students</span>'), admin_users_path %></li>
+      <li><%= link_to raw('<span>View Users</span>'), admin_users_path %></li>
+      <li><%= link_to raw('<span>Create New User</span>'), new_admin_user_path %></li>
     </ul>
   </div>
 
