@@ -57,6 +57,14 @@ class User < ActiveRecord::Base
     "#{name} #{email}"
   end
 
+  def self.search(search = nil)
+    if search
+      where('email LIKE ?', "%#{search}%")
+    else
+      find(:all)
+    end
+  end
+
   def interested_in_teaching
     teaching_lessons = []
     lesson_users.where(assigned: false).each do |lesson_user|

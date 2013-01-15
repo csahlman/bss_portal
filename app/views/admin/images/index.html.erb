@@ -1,7 +1,7 @@
 <h2>Add new image</h2>
-<%= link_to "Back to edit", [:edit, :admin, @semester, @lesson] %>
+<%= link_to "Back to edit", [:edit, :admin, @lesson] %>
 
-<%= simple_form_for [:admin, @semester, @lesson, Image.new] do |f| %>
+<%= simple_form_for [:admin, @lesson, Image.new] do |f| %>
   <%= f.input :picture, as: :file, label: "Upload new image" %>
   <%= f.button :submit %>
 <% end %>
@@ -9,7 +9,7 @@
 <% @images.each do |image| %>
   <div id="image_<%= image.id %>">
   <%= image_tag image.picture.url %> | 
-  <%= link_to "Delete Image", [:admin, @semester, @lesson, image], method: :delete,
+  <%= link_to "Delete Image", [:admin, @lesson, image], method: :delete,
     confirm: "Are you sure?", remote: true %>
   </div>
 <% end %>

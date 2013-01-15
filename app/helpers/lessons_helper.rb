@@ -50,10 +50,10 @@ module LessonsHelper
     links = ""
     lessons.each do |lesson|
       if lesson.tracks.include?(track)
-        links.concat link_to lesson.title, admin_semester_lesson_path(semester, lesson), 
+        links.concat link_to lesson.title, admin_lesson_path(lesson), 
           class: "lesson_#{lesson.id}"
         links += " | "
-        links.concat link_to "delete ", [:admin, @semester, lesson], class: "lesson_#{lesson.id}",
+        links.concat link_to "delete ", [:admin, lesson], class: "lesson_#{lesson.id}",
           method: :delete, confirm: "Are you sure?", remote: true  
         links += link_to("(#{lesson.users.count})", admin_users_path(lesson_id: lesson.id)) 
         links += '<br>'

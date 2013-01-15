@@ -2,18 +2,16 @@ class Admin::ImagesController < Admin::BaseController
 
   def index
     @lesson = Lesson.find(params[:lesson_id])
-    @semester = Semester.find(params[:semester_id])
     @images = @lesson.images
   end
 
 
   def create
-    if params[:semester_id]
+    if params[:lesson_id]
       @lesson = Lesson.find(params[:lesson_id])
-      @semester = Semester.find(params[:semester_id])
       @image = @lesson.images.new(params[:image])
       if @image.save
-        redirect_to admin_semester_lesson_images_path(@semester, @lesson),
+        redirect_to admin_lesson_images_path(@lesson),
           flash: { success: "Created image" }
       else
         render 'index'
@@ -24,7 +22,7 @@ class Admin::ImagesController < Admin::BaseController
       if @image.save
         redirect_to [:edit, :admin, @lesson_template], flash: { success: "Created image" }
       else
-        
+        render 'new'
       end
     end
   end

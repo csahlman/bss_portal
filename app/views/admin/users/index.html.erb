@@ -2,79 +2,85 @@
   <h1>Manage Users</h1>
 <% end %>
 
-<% if params[:lesson_id] %>
-  <h1>Users for <%= @lesson.title %></h1>
-  <ul>
-    <% @users.each do |user| %>
-      <li><%= link_to user.name, [:admin, user] %> | 
-        <%= link_to user.company, admin_users_path(company: user.company) %> | 
-        <%= admin_signups_link(user, @lesson) %></li>
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="widget-title">
+      <h5>All Users</h5>
+    </div>
+    <div class="widget-content">
+    <% if params[:lesson_id] %>
+      <h1>Users for <%= @lesson.title %></h1>
+      <ul>
+        <% @users.each do |user| %>
+          <li><%= link_to user.name, [:admin, user] %> | 
+            <%= link_to user.company, admin_users_path(company: user.company) %> | 
+            <%= admin_signups_link(user, @lesson) %></li>
+        <% end %>
+      </ul>
+    <% elsif params[:company] %>
+      <h1>Users for <%= params[:company] %></h1>
+      <ul>
+        <% @users.each do |user| %>
+          <li><%= link_to user.name, [:admin, user] %> | 
+            <%= link_to user.company, admin_users_path(company: user.company) %>
+          </li>  
+        <% end %>
+      </ul>  
+    <% else %>
+      <h1><%= link_to "Create a New User", new_admin_user_path %></h1>
+
+
+
+      <h1>All Users</h1>
+
+      <ul>
+      <%= will_paginate @users %>
+        
+      <% @users.each do |user| %>
+        <li><%= link_to user.name, [:admin, user] %>, <%= user.email %> 
+          <%= link_to "(edit)", [:edit, :admin, user] %></li>
+      <% end %>
+      </ul>
+      
+      <% if @to_reinstitute.any? %>
+      <h2>Users that have explicitly requested reauthorization:</h2>
+
+      <ul>
+        <% @to_reinstitute.each do |user| %>
+          <li>
+            <%= link_to user.name, user %>: 
+            <%= link_to "Make Active", make_active_admin_user_path(user),
+              method: :put, id: "user_#{user.id}", remote: true %>
+          </li>
+        <% end %>
+      </ul>
+      <% end %>
+
+      <% if @inactive.any? %>
+
+      <h2>Users that have expired:</h2>
+
+      <ul>
+        <% @inactive.each do |user| %>
+          <li>
+            <%= link_to user.name, user %>: 
+            <%= link_to "Make Active", make_active_admin_user_path(user),
+              method: :put, id: "user_#{user.id}", remote: true %>
+          </li>
+        <% end %>
+      </ul>
+      <% end %>
     <% end %>
-  </ul>
-<% elsif params[:company] %>
-  <h1>Users for <%= params[:company] %></h1>
-  <ul>
-    <% @users.each do |user| %>
-      <li><%= link_to user.name, [:admin, user] %> | 
-        <%= link_to user.company, admin_users_path(company: user.company) %>
-      </li>  
-    <% end %>
-  </ul>  
-<% else %>
-  <h2>Create a new user</h2>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="widget-title">
+      <h5>Users</h5>
+    </div>
+    <div class="widget-content">
 
-  <%= simple_form_for [:admin, @user], html: { class: "form-horizontal" } do |f| %>
-    <%= render 'shared/error_explanation', object: @user %>
-    <%= f.input :name %>
-    <%= f.input :company %>
-    <%= f.input :email, as: :string %>
-    <%= f.input :description %>
-    <%= f.input :linked_in %>
-    <%= f.input :twitter %>
-    <%= f.input :picture_url, label: "Picture Url (if picture isn't local)", as: :string %>
-    <%= f.input :image, as: :file %>
-    <%= f.button :wrapped_button, "Create User" %>
-  <% end %>
+    </div>
+  </div>
+</div>
 
-
-
-  <h1>All Users</h1>
-
-  <ul>
-  <%= will_paginate @users %>
-    
-  <% @users.each do |user| %>
-    <li><%= link_to user.name, [:admin, user] %>, <%= user.email %> 
-      <%= link_to "(edit)", [:edit, :admin, user] %></li>
-  <% end %>
-  </ul>
-  
-  <% if @to_reinstitute.any? %>
-  <h2>Users that have explicitly requested reauthorization:</h2>
-
-  <ul>
-    <% @to_reinstitute.each do |user| %>
-      <li>
-        <%= link_to user.name, user %>: 
-        <%= link_to "Make Active", make_active_admin_user_path(user),
-          method: :put, id: "user_#{user.id}", remote: true %>
-      </li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  <% if @inactive.any? %>
-
-  <h2>Users that have expired:</h2>
-
-  <ul>
-    <% @inactive.each do |user| %>
-      <li>
-        <%= link_to user.name, user %>: 
-        <%= link_to "Make Active", make_active_admin_user_path(user),
-          method: :put, id: "user_#{user.id}", remote: true %>
-      </li>
-    <% end %>
-  </ul>
-  <% end %>
-<% end %>

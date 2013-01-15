@@ -1,4 +1,9 @@
 <li id="image_<%= image.id %>"><%= image_tag image.picture.url(:large) %>
-<%= link_to "delete", [:admin, image.lesson_template, image], 
-  method: :delete, confirm: "Are you sure?", remote: true %>
+<% if image.lesson_template %>
+  <%= link_to "delete", [:admin, image.lesson_template, image], 
+    method: :delete, confirm: "Are you sure?", remote: true %>
+<% else %>
+  <%= link_to "delete", [:admin, image.lesson, image], 
+    method: :delete, confirm: "Are you sure?", remote: true %>
+<% end %>
 </li>
