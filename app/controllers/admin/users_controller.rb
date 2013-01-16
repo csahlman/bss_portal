@@ -28,13 +28,13 @@ class Admin::UsersController < Admin::BaseController
     elsif params[:company]
       @users = User.where(company: params[:company])
     elsif params[:email_search]
-      @users = User.email_search(params[:email_search]).paginate(page: params[:page], per_page: 20)
+      @users = User.email_search(params[:email_search]).paginate(page: params[:page], per_page: 10)
     elsif params[:name_search]
-      @users = User.name_search(params[:name_search]).paginate(page: params[:page], per_page: 20)
+      @users = User.name_search(params[:name_search]).paginate(page: params[:page], per_page: 10)
     else
-      @users = User.ordered_by_name.paginate(page: params[:page], per_page: 20)
-      @to_reinstitute = User.requested_recover
-      @inactive = User.inactive
+      @users = User.ordered_by_name.paginate(page: params[:page], per_page: 10)
+      @to_reinstitute = User.requested_recover.paginate(page: params[:page], per_page: 10)
+      @inactive = User.inactive.paginate(page: params[:page], per_page: 10)
     end
   end
 

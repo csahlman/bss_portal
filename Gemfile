@@ -35,7 +35,7 @@ gem 'less-rails'
 gem 'therubyracer', :platforms => :ruby
 gem 'simple_form'
 
-gem 'mercury-rails'
+# gem 'mercury-rails'
 
 gem "paperclip"
 gem 'aws-sdk', '~> 1.3.4'

@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20130115144133) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "position"
-    t.integer  "parent_id"
   end
 
   create_table "activity_list_items", :force => true do |t|
@@ -27,6 +26,13 @@ ActiveRecord::Schema.define(:version => 20130115144133) do
     t.integer  "activity_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "admin_lessons", :force => true do |t|
+    t.integer  "admin_id"
+    t.integer  "lesson_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "attachments", :force => true do |t|
@@ -38,6 +44,13 @@ ActiveRecord::Schema.define(:version => 20130115144133) do
     t.datetime "document_updated_at"
     t.integer  "lesson_id"
     t.integer  "lesson_template_id"
+  end
+
+  create_table "cloned_lesson_users", :force => true do |t|
+    t.integer  "lesson_clone_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "day_lessons", :force => true do |t|
@@ -81,6 +94,15 @@ ActiveRecord::Schema.define(:version => 20130115144133) do
     t.integer  "lesson_id"
     t.integer  "lesson_template_id"
     t.integer  "user_id"
+  end
+
+  create_table "lesson_clones", :force => true do |t|
+    t.integer  "lesson_id"
+    t.string   "summary"
+    t.text     "description"
+    t.text     "short_description"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "lesson_days", :force => true do |t|
