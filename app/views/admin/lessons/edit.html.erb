@@ -42,6 +42,7 @@
             <%= simple_form_for [:admin, @lesson, Attachment.new], 
               html: { class: "form-horizontal"} do |f| %>
               <%= f.input :document, as: :file, label: "Upload Attachment" %>
+              <%= f.input :document_url, as: :string %>
               <%= f.button :wrapped_button %>
             <% end %>
             <ul id="attachments">
@@ -60,6 +61,7 @@
           <%= simple_form_for [:admin, @lesson, Image.new],
             html: { class: "form-horizontal"} do |f| %>
             <%= f.input :picture, as: :file, label: "Upload an image" %>
+            <%= f.input :picture_url, as: :string %>
             <%= f.button :wrapped_button %>
           <% end %>
           <ul id="images">

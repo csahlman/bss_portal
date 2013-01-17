@@ -1,7 +1,7 @@
 <h2>Add new Attachment</h2>
-<%= link_to "Back to edit", [:edit, :admin, @semester, @lesson] %>
+<%= link_to "Back to edit", [:edit, :admin, @lesson] %>
 
-<%= simple_form_for [:admin, @semester, @lesson, Attachment.new] do |f| %>
+<%= simple_form_for [:admin, @lesson, Attachment.new] do |f| %>
   <%= f.input :document, as: :file, label: "Upload new attachment" %>
   <%= f.button :submit %>
 <% end %>
@@ -9,7 +9,7 @@
 <% @attachments.each do |attachment| %>
   <div id="attachment_<%= attachment.id %>">
   <%= link_to attachment.document_file_name, attachment.document.url %> | 
-  <%= link_to "Delete attachment", [:admin, @semester, @lesson, attachment], 
+  <%= link_to "Delete attachment", [:admin, @lesson, attachment], 
     method: :delete, confirm: "Are you sure?", remote: true %>
   </div>
 <% end %>
