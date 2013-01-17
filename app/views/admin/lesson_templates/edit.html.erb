@@ -1,6 +1,9 @@
 <%= content_for(:header) do %>
   <h1>Edit: <%= @lesson_template.title %> <strong>Day <%= @lesson_template.day_value %></strong> 
-   <%= link_to "(View)", [:admin, @lesson_template] %></h1>
+   <%= link_to "(View)", [:admin, @lesson_template] %>
+   <%= link_to "DELETE", admin_lesson_template_path(@lesson_template), method: :delete,
+    confirm: "Are you positive?", class: "btn btn-danger" %>
+ </h1>
 <% end %>
 
 <div class="row-fluid">

@@ -10,9 +10,7 @@
   <li id="lesson_template_<%= lesson.id %>">
     <strong>Day <%= lesson.day_value %></strong> | 
     <%= link_to lesson.title, [:admin, lesson] %> <%= track_names lesson %> | 
-    <%= link_to "Edit", [:edit, :admin, lesson] %> |
-    <%= link_to "Delete", [:admin, lesson], method: :delete, confirm: "Are you sure?",
-      remote: true %> | 
+    <%= link_to "Edit", [:edit, :admin, lesson] %> | 
     <%= default_link lesson %>
   </li>
 <% end %>

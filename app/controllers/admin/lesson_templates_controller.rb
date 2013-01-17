@@ -22,17 +22,21 @@ class Admin::LessonTemplatesController < Admin::BaseController
   def update
     @lesson_template = LessonTemplate.find(params[:id])
     @lesson_template.set_attributes(params[:lesson_template])
-    @lesson_template.save!
+    if @lesson_template.save
+      redirect_to [:edit, :admin, @lesson_template], flash: { success: "Updated template" }
+    else
+      render 'edit'
+    end
   end
 
   def index
-    @lesson_templates = LessonTemplate.all
-    @day_values = @lesson_templates.map(&:day_value).uniq
+    @lesson_templates = LessonTemplate.days
   end
 
   def destroy
     @lesson_template = LessonTemplate.find(params[:id])
     @lesson_template.destroy
+    redirect_to admin_lesson_templates_path, flash: { success: "Deleted Template" }
   end
 
   def show

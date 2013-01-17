@@ -22,6 +22,7 @@ class Admin::LessonsController < Admin::BaseController
   end
 
   def index
+    @semesters = Semester.includes(days: { lessons: :users }).all
     @lessons = Lesson.all
   end
 

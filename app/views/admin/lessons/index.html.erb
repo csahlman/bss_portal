@@ -2,9 +2,14 @@
   <h1>Manage Lessons</h1>
 <% end %>
 
-<ul>
-  <% @lessons.each do |lesson| %>
-    <li><%= link_to lesson.title, [:admin, lesson] %> | <%= lesson.day.to_s %> 
-      <%= lesson.day.semester.to_s %></li>
+<% @semesters.each do |semester| %>
+  <h1><%= semester.to_s %></h1>
+  <% semester.days.each do |day| %>
+    <h5><%= day.to_s %></h5>
+    <ul>
+    <% day.lessons.each do |lesson| %>
+      <li><%= link_to lesson.title, [:admin, lesson] %></li>
+    <% end %>
+    </ul>
   <% end %>
-</ul>
+<% end %>
