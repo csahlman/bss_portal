@@ -119,21 +119,15 @@ class Lesson < ActiveRecord::Base
     self.images = clone.images    
   end
 
-  def set_parameters(params_hash)
-    self.short_description = params_hash[:short_description]
-    self.title = params_hash[:summary]
-    self.description = params_hash[:description]
-    self.save_template = params_hash[:save_template]
-    if params_hash[:image_ids]
-      image = self.images.new
-      image.picture = params_hash[:image_ids]
-      self.images << image
-    end
-    if params_hash[:attachment_ids]
-      attachment = self.attachments.new
-      attachment.document = params_hash[:attachment_ids]
-      self.attachments << attachment
-    end
+  def set_attributes(params_hash)
+    self.start_time = params_hash[:start_time]
+    self.end_time = params_hash[:end_time]
+    self.title = params_hash[:title]
+    self.overview = params_hash[:overview]
+    track_ids = params_hash[:track_ids].map { |id| id.to_i }
+    track_ids.delete(0)
+    # bug because first entry is ""
+    self.tracks = Track.find(track_ids)
   end
 
   def add_user(user)

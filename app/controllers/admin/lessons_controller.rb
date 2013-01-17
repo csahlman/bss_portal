@@ -32,24 +32,9 @@ class Admin::LessonsController < Admin::BaseController
 
   def update
     @lesson = Lesson.find(params[:id])
-    @semester = Semester.find(params[:semester_id])
-    if params[:content]
-      @lesson.description = Lesson.parse_json(params[:content])
-    else
-      @lesson.set_parameters(params[:lesson])
-      track_ids = params[:lesson][:track_ids].map { |id| id.to_i }
-      track_ids.delete(0)
-      @tracks = Track.find(track_ids)
-      @lesson.tracks = @tracks
-      day_ids = params[:lesson][:day_ids].map { |id| id.to_i }
-      day_ids.delete(0)
-      @days = Day.find(day_ids)
-      # this is a bug with rails 
-      @lesson.days = @days
-      # @lesson.add_date(params[:lesson][:date])
-    end
+    @lesson.set_attributes(params[:lesson])
     if @lesson.save
-      redirect_to [:admin, @semester, @lesson], flash: { success: "updated successfully" }
+      redirect_to [:edit, :admin, @lesson], flash: { success: "Updated Lesson" }
     else
       render 'edit'
     end
@@ -58,6 +43,7 @@ class Admin::LessonsController < Admin::BaseController
   def destroy
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
+    redirect_to admin_path, flash: { success: "Lesson Destroyed" }
   end
 
   def lesson_info

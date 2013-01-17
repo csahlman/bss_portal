@@ -5,10 +5,11 @@
 <% @semesters.each do |semester| %>
   <h1><%= semester.to_s %></h1>
   <% semester.days.each do |day| %>
-    <h5><%= day.to_s %></h5>
+    <h5>Day <%= day.to_s %></h5>
     <ul>
     <% day.lessons.each do |lesson| %>
-      <li><%= link_to lesson.title, [:admin, lesson] %></li>
+      <li><%= link_to lesson.title, [:admin, lesson] %> | 
+        <%= link_to "(edit)", [:edit, :admin, lesson] %></li>
     <% end %>
     </ul>
   <% end %>
