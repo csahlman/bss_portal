@@ -16,15 +16,30 @@
         <h3>Objectives</h3>
         <h5>At the end of the day, students should be able to</h5>
         <ul id="objectives" class="site-stats">
-          <%= render @lesson_template.objectives %>
-        </ul>
+         <% @lesson_template.objectives.each do |objective| %>
+           <li><%= raw Rinku.auto_link(objective.objective) %></li>
+         <% end %>
+        </ul><hr>
       </div>
       <div class="span6 well">
         <div id="periods">
           <h3>Schedule <%= @lesson_template.start_time %> - <%= @lesson_template.end_time %></h3>
           <ul>
             <% @lesson_template.periods.each do |period| %>
-              <%= render 'admin/periods/new_activity_link', period: period %>
+              <li>
+                <strong>Period: <%= period.to_s %></strong>
+                <ul id="activities">
+                  <% period.activities.each do |activity| %>
+                    <li><%= raw Rinku.auto_link(activity.activity) %>
+                      <ul id="list-items">
+                        <% activity.activity_list_items.each do |list_item| %>
+                          <li><%= raw Rinku.auto_link(list_item.list_item) %></li>
+                        <% end %>
+                      </ul>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
             <% end %>
           </ul>
         </div>
