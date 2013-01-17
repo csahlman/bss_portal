@@ -32,40 +32,21 @@
           <h3>No Teachers Assigned Yet</h3><hr>
         <% end %>
         <h3>High Level Overview</h3>
-        <p><%= @lesson.overview %></p>
+        <p><%= @lesson.overview %></p><hr>
 
         <h3>Objectives</h3>
         <h5>At the end of the day, students should be able to</h5>
         <ul id="objectives" class="site-stats">
-          <%= render @lesson.objectives %>
-        </ul>
-      </div>
-      <div class="span6 well">
-        <div id="periods">
-          <h3>Schedule <%= @lesson.start_time %> - <%= @lesson.end_time %></h3>
-          <ul>
-            <% @lesson.periods.each do |period| %>
-              <%= render 'admin/periods/new_activity_link', period: period %>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="widget-box">
-  <div class="widget-title">
-    <h5>Attachments and Images</h5>
-  </div>
-  <div class="widget-content">
-    <div class="row-fluid">
-      <div class="span4 well">
+         <% @lesson.objectives.each do |objective| %>
+           <li><%= raw Rinku.auto_link(objective.objective) %></li>
+         <% end %>
+        </ul><hr>
         <h3>Attachments</h3>
         <ul id="attachments" class="site-stats">
-          <%= render @lesson.attachments %>
-        </ul>
-      </div>
-      <div class="span8 well">
+          <% @lesson.attachments.each do |attachment| %>
+            <li><%= link_to attachment.document_file_name, attachment.document.url %></li>
+          <% end %>
+        </ul><hr>
         <h3>Images</h3>
         <ul class="thumbnails">
           <% @lesson.images.each do |image| %>
@@ -74,6 +55,29 @@
           </li>
           <% end %>
         </ul>
+      </div>
+      <div class="span6 well">
+        <div id="periods">
+          <h3>Schedule <%= @lesson.start_time %> - <%= @lesson.end_time %></h3>
+          <ul>
+            <% @lesson.periods.each do |period| %>
+              <li>
+                <strong>Period: <%= period.to_s %></strong>
+                <ul id="activities">
+                  <% period.activities.each do |activity| %>
+                    <li><%= raw Rinku.auto_link(activity.activity) %>
+                      <ul id="list-items">
+                        <% activity.activity_list_items.each do |list_item| %>
+                          <li><%= raw Rinku.auto_link(list_item.list_item) %></li>
+                        <% end %>
+                      </ul>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
