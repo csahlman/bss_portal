@@ -48,6 +48,8 @@ gem 'bootstrap-will_paginate'
 
 gem 'rinku', :require => 'rails_rinku'
 
+gem 'tinymce-rails'
+
 # gem 'amoeba'
 
 # gem 'devise'

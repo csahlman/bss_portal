@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require twitter/bootstrap
+//= require tinymce-jquery
 //= require_self
 //= require_tree .
 
