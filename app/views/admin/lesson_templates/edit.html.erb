@@ -72,6 +72,21 @@
   <div class="span6">
     <div class="row-fluid">
       <div class="span12">
+       <div class="widget-box">
+        <div class="widget-title">
+          <h5>Add Objectives</h5>
+        </div>
+        <div class="widget-content">
+          <%= simple_form_for [:admin, @lesson_template, Objective.new], 
+              html: { class: "form-horizontal" }, remote: true do |f| %>
+            <%= f.input :objective %>
+            <%= f.button :wrapped_button %>
+          <% end %>
+          <ul id="objectives" class="site-stats">
+            <%= render @lesson_template.objectives %>
+          </ul>
+        </div>
+      </div>
         <div class="widget-box">
           <div class="widget-title">
             <h5>Add Periods</h5>
@@ -91,21 +106,6 @@
               </ul>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="widget-box">
-        <div class="widget-title">
-          <h5>Add Objectives</h5>
-        </div>
-        <div class="widget-content">
-          <%= simple_form_for [:admin, @lesson_template, Objective.new], 
-              html: { class: "form-horizontal" }, remote: true do |f| %>
-            <%= f.input :objective %>
-            <%= f.button :wrapped_button %>
-          <% end %>
-          <ul id="objectives" class="site-stats">
-            <%= render @lesson_template.objectives %>
-          </ul>
         </div>
       </div>
     </div>

@@ -134,7 +134,9 @@
             <%= f.button :wrapped_button %>
           <% end %>
           <ul id="objectives" class="site-stats">
-            <%= render @lesson.objectives %>
+            <% @lesson.objectives.each do |objective| %>
+              <li><%= objective.objective %></li>
+            <% end %>
           </ul>
         </div>
       </div>

@@ -3,7 +3,7 @@
   <%= decrement_link "activity", activity.id, activity.period.lesson_template.id %> 
   <%= increment_link "activity", activity.id, activity.period.lesson_template.id %> | 
   <%= link_to 'delete', [ :admin, activity.period, activity ],
-    method: :delete, remote: true %> | 
+    method: :delete, confirm: "Are you sure?", remote: true %> | 
   <%= link_to "add subitem", new_admin_activity_activity_list_item_path(activity), 
     remote: true %>
 

@@ -5,7 +5,7 @@ class Admin::ObjectivesController < Admin::BaseController
       @lesson_template = LessonTemplate.find(params[:lesson_template_id])
       @objective = @lesson_template.objectives.new
     else
-      @lesson = Lesson.find(params[:id])
+      @lesson = Lesson.find(params[:lesson_id])
       @objective = @lesson.objectives.new
     end
     @objective.objective = params[:objective][:objective]

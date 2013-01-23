@@ -27,7 +27,7 @@
           <ul>
             <% @lesson_template.periods.each do |period| %>
               <li>
-                <strong>Period: <%= period.to_s %></strong>
+                <strong><%= period.to_s %></strong>
                 <ul id="activities">
                   <% period.activities.each do |activity| %>
                     <li><%= raw Rinku.auto_link(activity.activity) %>

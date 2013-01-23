@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, @period, Activity.new], remote: true do |f| %>
   <%= text_area_tag :editor, "", name: "activity[activity]", 
-    class: "tinymce", id: "activity_input", rows: 15, cols: 55 %>
-  <%= tinymce :theme => "simple" %>
+    class: "tinymce", id: "activity_input", rows: 15 %>
+  <%= tinymce :theme => "simple", width: '400px' %>
   <%= f.button :submit, "Add Activity" %>
 <% end %>
