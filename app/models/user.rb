@@ -35,8 +35,13 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: email_regex },
     uniqueness: { case_sensitive: false }
 
+  validates_presence_of :tracks
+
   has_many :lessons, through: :lesson_users
   has_many :lesson_users, dependent: :destroy
+
+  has_many :tracks, through: :track_users
+  has_many :track_users, dependent: :destroy
 
   has_one :image, dependent: :destroy
 
@@ -104,6 +109,9 @@ class User < ActiveRecord::Base
     self.linked_in = user_hash[:linked_in] if user_hash[:linked_in].present?
     self.twitter = user_hash[:twitter] if user_hash[:twitter].present?
     self.description = user_hash[:description] if user_hash[:description].present?
+    track_ids = user_hash[:track_ids].map { |id| id.to_i }
+    track_ids.delete(0)
+    self.tracks = Track.find(track_ids)
     if user_hash[:image].present?
       self.build_image(picture: user_hash[:image])
     elsif user_hash[:picture_url].present?

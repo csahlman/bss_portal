@@ -11,6 +11,11 @@
       <ul class="site-stats">
         <li><%= @user.email %></li>
         <li><%= link_to @user.company, admin_users_path(company: @user.company) %></li>
+        <li>Tracks: 
+          <% @user.tracks.each do |track| %>
+            <%= track.name %> 
+          <% end %>
+        </li>
         <li><%= @user.linked_in.present? ? link_to("Linked In", @user.linked_in) : "No Linked In" %></li>
         <li><%= @user.twitter.present? ? 
           link_to(twitter_link(@user.twitter), twitter_link(@user.twitter)) : "No Twitter" %></li>

@@ -18,6 +18,9 @@ class Track < ActiveRecord::Base
   has_many :lesson_templates, through: :lesson_template_tracks
   has_many :lesson_template_tracks, dependent: :destroy
 
+  has_many :track_users, dependent: :destroy
+  has_many :users, through: :track_users
+
 
   def ordered_days
     lessons.order('day_value ASC')

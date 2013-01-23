@@ -123,6 +123,7 @@
         <%= f.input :name %>
         <%= f.input :company %>
         <%= f.input :email, as: :string %>
+        <%= f.association :tracks %>
         <%= f.input :description %>
         <%= f.input :linked_in %>
         <%= f.input :twitter, label: "Twitter Handle" %>
