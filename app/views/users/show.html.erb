@@ -28,7 +28,7 @@
 
   <% @teaching_lessons.each do |lesson| %>
     <%= lesson.title %> | <%= lesson.start_time %>-<%= lesson.end_time %> 
-    <strong>Day <%= lesson.days.first.to_s %></strong><br>
+    <strong>Day <%= lesson.day.first.to_s %></strong><br>
     <%= link_to "Edit Curriculum", [:edit, :teachers, lesson] %><br>
   <% end %>
 <% end %>

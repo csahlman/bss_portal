@@ -13,7 +13,7 @@ class Admin::LessonsController < Admin::BaseController
     @lesson = Lesson.create_clone(@lesson_template, @day)
     # @lesson.add_date(params[:lesson][:date])
     @lesson.save!
-    # redirect_to edit_admin_semester_path(@day.semester)
+    redirect_to edit_admin_semester_path(@day.semester)
   end
 
   def show
